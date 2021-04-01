@@ -1,0 +1,10 @@
+{
+  "name": "Modelado de datos",
+  "entryPoints": [
+    "./src"
+  ],
+  "out": "./docs",
+  "theme": "default",
+  "highlightTheme": "github-light",
+  "media": "./images"
+}
