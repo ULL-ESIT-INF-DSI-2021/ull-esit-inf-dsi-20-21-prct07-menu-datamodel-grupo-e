@@ -56,6 +56,8 @@ export abstract class BasicFood {
   }
 
 
+
   abstract getFoodGroup(): FoodGroup;
   abstract getInfo(): string;
+  
 };
