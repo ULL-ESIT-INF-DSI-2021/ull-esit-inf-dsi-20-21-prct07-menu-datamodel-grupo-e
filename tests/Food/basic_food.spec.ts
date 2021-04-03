@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { BasicFood } from '../../src/Food/index';
+import { BasicFood, FoodGroup } from '../../src/Food/index';
 
 /**
  * Mock class for testing BasicFood
@@ -19,8 +19,8 @@ class MockFood extends BasicFood {
     return `${this.name} from ${this.origin}`;
   }
 
-  foodGroup(): string {
-    return 'Grupo Mock de comida';
+  getFoodGroup(): FoodGroup {
+    return FoodGroup.proteinRich;
   }
 }
 
