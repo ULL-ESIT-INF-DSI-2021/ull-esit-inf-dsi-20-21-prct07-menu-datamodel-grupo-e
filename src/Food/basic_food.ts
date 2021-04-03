@@ -56,8 +56,15 @@ export abstract class BasicFood {
   }
 
 
-
   abstract getFoodGroup(): FoodGroup;
-  abstract getInfo(): string;
+  getInfo(): string {
+    return `Name: ${this.name}\n` +
+      `Origin: ${this.origin}\n` + 
+      `Price: ${this.priceByKg} € / Kg\n` +
+      `Macronutrients (per 100 g):\n` + 
+      `  lipids: ${this.macronutrients.lipids}\n` + 
+      `  carbohydrates: ${this.macronutrients.carbohydrates}\n` + 
+      `  proteins: ${this.macronutrients.proteins}\n`;
+  }
   
 };
