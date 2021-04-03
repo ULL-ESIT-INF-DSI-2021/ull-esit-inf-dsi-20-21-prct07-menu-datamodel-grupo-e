@@ -14,6 +14,40 @@ export abstract class BasicFood {
 
   }
 
+  // Getters
+  getName(): string {
+    return this.name;
+  }
+
+  getOrigin(): string {
+    return this.origin;
+  }
+
+  getMacronutrients(): Macronutrients {
+    return this.macronutrients;
+  }
+
+  getPriceByKg(): number {
+    return this.priceByKg;
+  }
+
+  // Setters
+  setName(newName: string) {
+    this.name = newName;
+  }
+
+  setOrigin(newOrigin: string) {
+    this.origin = newOrigin;
+  }
+
+  setPriceByKg(newPriceByKg: number) {
+    this.priceByKg = newPriceByKg;
+  }
+  
+  setMacronutrients(newMacronutrients: Macronutrients) {
+    this.macronutrients = newMacronutrients;
+  }
+
 
   abstract foodGroup(): string;
   abstract getInfo(): string;

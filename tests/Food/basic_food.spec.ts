@@ -27,7 +27,40 @@ class MockFood extends BasicFood {
 describe('BasicFood tests', () => {
   it('Can be instianciated', () => {
     expect((new MockFood()) instanceof BasicFood).to.be.true;
-  });
+  });  
 
-  
+  it('Has getters', () => {
+    const mockFood = new MockFood();
+    expect(mockFood.getName()).to.be.eq('Plátano');
+    expect(mockFood.getOrigin()).to.be.eq('Canarias');
+    expect(mockFood.getPriceByKg()).to.be.eq(10);
+    expect(mockFood.getMacronutrients()).to.be.eql(
+        {
+          lipids: 1,
+          carbohydrates: 2,
+          proteins: 3,
+        }
+    );
+  });  
+
+  it('Has setters', () => {
+    const mockFood = new MockFood();
+    mockFood.setName('Papa');
+    expect(mockFood.getName()).to.be.eq('Papa');
+    mockFood.setOrigin('Irlanda')
+    expect(mockFood.getOrigin()).to.be.eq('Irlanda');
+    mockFood.setPriceByKg(7);
+    expect(mockFood.getPriceByKg()).to.be.eq(7);
+    
+    mockFood.setMacronutrients({lipids: 9, carbohydrates: 8, proteins: 7});
+    expect(mockFood.getMacronutrients()).to.be.eql(
+        {
+          lipids: 9,
+          carbohydrates: 8,
+          proteins: 7,
+        }
+    );
+  });  
 });
+
+
