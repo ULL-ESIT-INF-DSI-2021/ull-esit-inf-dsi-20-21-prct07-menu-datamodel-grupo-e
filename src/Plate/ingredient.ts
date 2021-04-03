@@ -6,6 +6,14 @@ export class Ingredient {
 
   }
 
+  getFood(): BasicFood {
+    return this.food;
+  }
+
+  getAmmount(): number {
+    return this.ammount;
+  }
+
   /**
    * 
    * @returns Precio del ingrediente
