@@ -1,6 +1,6 @@
 import 'mocha';
 import { expect } from 'chai';
-import { BasicFood } from '../../src/Food/index';
+import { BasicFood, FoodGroup } from '../../src/Food/index';
 
 /**
  * Mock class for testing BasicFood
@@ -19,8 +19,8 @@ class MockFood extends BasicFood {
     return `${this.name} from ${this.origin}`;
   }
 
-  foodGroup(): string {
-    return 'Grupo Mock de comida';
+  getFoodGroup(): FoodGroup {
+    return FoodGroup.proteinRich;
   }
 }
 
@@ -47,7 +47,7 @@ describe('BasicFood tests', () => {
     const mockFood = new MockFood();
     mockFood.setName('Papa');
     expect(mockFood.getName()).to.be.eq('Papa');
-    mockFood.setOrigin('Irlanda')
+    mockFood.setOrigin('Irlanda');
     expect(mockFood.getOrigin()).to.be.eq('Irlanda');
     mockFood.setPriceByKg(7);
     expect(mockFood.getPriceByKg()).to.be.eq(7);
