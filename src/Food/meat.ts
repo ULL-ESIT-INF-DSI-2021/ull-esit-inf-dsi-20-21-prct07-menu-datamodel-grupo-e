@@ -8,5 +8,7 @@ export class Meat extends RichProteinFood {
     super(name, origin, priceByKg, macronutrients);
   }
 
-  
+  getInfo() {
+    return `CARNE\n` + super.getInfo();
+  }
 };
