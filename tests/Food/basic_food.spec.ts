@@ -47,7 +47,7 @@ describe('BasicFood tests', () => {
     const mockFood = new MockFood();
     mockFood.setName('Papa');
     expect(mockFood.getName()).to.be.eq('Papa');
-    mockFood.setOrigin('Irlanda')
+    mockFood.setOrigin('Irlanda');
     expect(mockFood.getOrigin()).to.be.eq('Irlanda');
     mockFood.setPriceByKg(7);
     expect(mockFood.getPriceByKg()).to.be.eq(7);
