@@ -1,7 +1,12 @@
 import { FoodGroup, Macronutrients } from "../Food";
 import { Ingredient } from "./ingredient";
 
-
+export enum PlateType {
+  starterPlate = 'Entrante',
+  firstPlate = 'Primer plato',
+  secondPlate = 'Segundo plato',
+  dessert = 'Postre'
+};
 export abstract class BasicPlate {
   constructor(protected ingredients: Ingredient[] = []) {
     
@@ -53,4 +58,6 @@ export abstract class BasicPlate {
 
     return result;
   }
+
+  abstract getType(): PlateType;
 };
