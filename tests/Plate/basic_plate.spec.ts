@@ -2,6 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 import { BasicPlate, Ingredient } from '../../src/Plate';
 import { BasicFood, FoodGroup, Macronutrients, Meat } from '../../src/Food';
+import { PlateType } from '../../src/Plate/basic_plate';
 
 class MockFood extends BasicFood {
   constructor() {
@@ -31,6 +32,10 @@ class MockPlate extends BasicPlate {
           new Ingredient(new Meat('Ternera', 'Argentina', 7, new Macronutrients()), 200)
         ]
     );
+  }
+
+  getType() {
+    return PlateType.firstPlate;
   }
 }
 
