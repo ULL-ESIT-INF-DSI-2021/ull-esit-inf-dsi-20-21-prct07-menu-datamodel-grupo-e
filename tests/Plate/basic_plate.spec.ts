@@ -23,7 +23,7 @@ class MockFood extends BasicFood {
 
 class MockPlate extends BasicPlate {
   constructor() {
-    super(
+    super( 'Ternerada',
         [
           new Ingredient(new MockFood(), 500), 
           new Ingredient(new MockFood(), 500),
@@ -46,6 +46,10 @@ describe('BasicPlate tests', () => {
     expect(plate instanceof BasicPlate).to.be.true;
   });
 
+  it('Retrieves name', () => {
+    expect(plate.getName()).to.be.eq('Ternerada');
+  });
+  
   it('Calculates the predominant food group', () => {
     expect(plate.getPredominantFoodGroup()).to.be.eq(FoodGroup.proteinRich);
   });

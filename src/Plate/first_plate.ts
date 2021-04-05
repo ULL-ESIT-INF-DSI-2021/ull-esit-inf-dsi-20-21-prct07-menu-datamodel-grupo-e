@@ -2,8 +2,8 @@ import { BasicPlate, PlateType } from "./basic_plate";
 import { Ingredient } from "./ingredient";
 
 export class FirstPlate extends BasicPlate {
-  constructor(...ingredients: Ingredient[]) {
-    super(ingredients);
+  constructor(name: string, ...ingredients: Ingredient[]) {
+    super(name, ingredients);
   }
 
   getType() {
