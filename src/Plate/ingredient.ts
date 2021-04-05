@@ -2,8 +2,19 @@ import { BasicFood, Macronutrients } from "../Food";
 
 
 export class Ingredient {
-  constructor(private food: BasicFood, private ammount: number) {
+  private nutritionalComposition: Macronutrients;
 
+  constructor(private food: BasicFood, private ammount: number) {
+    this.nutritionalComposition = this.calculateNutritionalComposition();
+  }
+
+  private calculateNutritionalComposition(): Macronutrients {
+    const nutritionalComposition = new Macronutrients();
+    nutritionalComposition.lipids = this.food.getMacronutrients().lipids * (this.ammount / 100);
+    nutritionalComposition.carbohydrates = this.food.getMacronutrients().carbohydrates * (this.ammount / 100);
+    nutritionalComposition.proteins = this.food.getMacronutrients().proteins * (this.ammount / 100);
+
+    return nutritionalComposition;
   }
 
   getFood(): BasicFood {
@@ -23,11 +34,6 @@ export class Ingredient {
   }
 
   getNutritionalComposition(): Macronutrients {
-    const nutritionalComposition = new Macronutrients();
-    nutritionalComposition.lipids = this.food.getMacronutrients().lipids * (this.ammount / 100);
-    nutritionalComposition.carbohydrates = this.food.getMacronutrients().carbohydrates * (this.ammount / 100);
-    nutritionalComposition.proteins = this.food.getMacronutrients().proteins * (this.ammount / 100);
-
-    return nutritionalComposition;
+    return this.nutritionalComposition;
   }
 };
