@@ -122,4 +122,9 @@ describe('Menu tests', () => {
     expect(menu.getPlates()).to.be.eql(plates.concat(appleDessert));
   });
 
+  it('Removes a plate by name', () => {
+    menu.removePlate('Postre de manzana');
+    expect(menu.getPlates()).to.be.eql(plates);
+  });
+
 });
