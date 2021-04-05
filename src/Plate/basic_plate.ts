@@ -8,15 +8,14 @@ export enum PlateType {
   dessert = 'Postre'
 };
 export abstract class BasicPlate {
+  
+  private nutritionalComposition: Macronutrients;
+
   constructor(protected ingredients: Ingredient[] = []) {
-    
+    this.nutritionalComposition = this.calculateNutritionalComposition();  
   }
 
-  getPrice(): number {
-    return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price);
-  }
-
-  getNutritionalComposition(): Macronutrients {
+  private calculateNutritionalComposition(): Macronutrients {
     const nutritionalComposition = new Macronutrients();
     const ingredientsCompositions = this.ingredients.map((ingredient) => ingredient.getNutritionalComposition());
     
@@ -25,6 +24,14 @@ export abstract class BasicPlate {
     nutritionalComposition.proteins = ingredientsCompositions.reduce((proteins, ingredient) => proteins + ingredient.proteins, 0);
 
     return nutritionalComposition;
+  }
+
+  getPrice(): number {
+    return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price);
+  }
+
+  getNutritionalComposition(): Macronutrients {
+    return this.nutritionalComposition;
   }
 
   getFoodgroups(): FoodGroup[] {
