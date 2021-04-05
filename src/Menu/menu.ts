@@ -8,43 +8,35 @@ import { SecondPlate } from "../Plate/second_plate";
 
 export class Menu {
 
-  private starterPlates: StarterPlate[] = [];
-  private firstPlates: FirstPlate[] = [];
-  private secondPlates: SecondPlate[] = [];
-  private desserts: Dessert[] = [];
+  private plates: BasicPlate[];
 
-  constructor(...plates: BasicPlate[]) {
-    if (!this.platesAreValid(plates)) {
+  constructor(...plates_: BasicPlate[]) {
+    if (!this.platesAreValid(plates_)) {
       throw new Error('Bad Menu configuration');
     }
 
-    plates.forEach((plate) => {
-      if (plate instanceof StarterPlate) this.starterPlates.push(plate);
-      if (plate instanceof FirstPlate) this.firstPlates.push(plate);
-      if (plate instanceof SecondPlate) this.secondPlates.push(plate);
-      if (plate instanceof Dessert) this.desserts.push(plate);
-    });
+    this.plates = plates_;
   }
 
   // Getters
   getPlates(): BasicPlate[] {
-    return this.starterPlates.concat(this.firstPlates).concat(this.secondPlates).concat(this.desserts);
+    return this.plates;
   }
 
   getStarterPlates(): StarterPlate[] {
-    return this.starterPlates;
+    return this.plates.filter((plate) => plate instanceof StarterPlate);
   }
 
   getFirsPlates(): FirstPlate[] {
-    return this.firstPlates;
+    return this.plates.filter((plate) => plate instanceof FirstPlate);
   }
 
   getSecondPlates(): SecondPlate[] {
-    return this.secondPlates;
+    return this.plates.filter((plate) => plate instanceof SecondPlate);
   }
 
   getDesserts(): Dessert[] {
-    return this.desserts;
+    return this.plates.filter((plate) => plate instanceof Dessert);
   }
 
   getPrice(): number {
@@ -78,4 +70,18 @@ export class Menu {
 
     return true;
   }
+
+  addPlate(newPlate: BasicPlate) {
+    this.plates = this.plates.concat(newPlate);
+  }
+
+  removePlate(plateName: string) {
+    this.plates.forEach((plate, index) => plate.getName() === plateName ? this.removePlateByIndex(index) : true);
+  }
+
+  private removePlateByIndex(index: number) {
+    this.plates.splice(index, 1);
+  }
+
+  
 };

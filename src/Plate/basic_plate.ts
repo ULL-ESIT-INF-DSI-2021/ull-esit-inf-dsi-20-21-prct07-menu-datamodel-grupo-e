@@ -11,7 +11,7 @@ export abstract class BasicPlate {
   
   private nutritionalComposition: Macronutrients;
 
-  constructor(protected ingredients: Ingredient[] = []) {
+  constructor(protected name: string, protected ingredients: Ingredient[] = []) {
     this.nutritionalComposition = this.calculateNutritionalComposition();  
   }
 
@@ -26,6 +26,10 @@ export abstract class BasicPlate {
     return nutritionalComposition;
   }
 
+  getName(): string {
+    return this.name;
+  }
+  
   getPrice(): number {
     return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price);
   }
