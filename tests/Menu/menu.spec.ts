@@ -2,26 +2,30 @@ import 'mocha';
 import { expect } from 'chai';
 import { Menu } from '../../src/Menu';
 import { Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate } from '../../src/Plate';
-import { FoodGroup, Macronutrients, Meat } from '../../src/Food';
+import { FoodGroup, Fruit, Macronutrients, Meat } from '../../src/Food';
+
+// Mejorar estos tests
 
 describe('Menu tests', () => {
-  const menu = new Menu(
-      new StarterPlate(
-          new Ingredient(
-              new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
-          )
-      ),
-      new FirstPlate(
-          new Ingredient(
-              new Meat('Costillas', 'Canarias', 7, new Macronutrients()), 1000
-          )
-      ),
-      new SecondPlate(
-          new Ingredient(
-              new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2000
-          )
-      )
-  );
+  const plates = [
+    new StarterPlate(
+        new Ingredient(
+            new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
+        )
+    ),
+    new FirstPlate(
+        new Ingredient(
+            new Meat('Costillas', 'Canarias', 7, new Macronutrients()), 1000
+        )
+    ),
+    new SecondPlate(
+        new Ingredient(
+            new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2000
+        )
+    )
+  ];
+
+  const menu = new Menu(...plates);
 
 
   it('Can be instanciated', () => {
@@ -102,4 +106,19 @@ describe('Menu tests', () => {
     expect(menu.listFoodGroups()).to.be.eql([FoodGroup.proteinRich]);
   });
   
+  it('Retrieves all plates', () => {
+    expect(menu.getPlates()).to.be.eql(plates);
+  });
+
+  it('Adds a new plate', () => {
+    const appleDessert = new Dessert(
+        new Ingredient(
+            new Fruit('Manzana', 'Tacoronte', 3, new Macronutrients()),
+            1
+        )
+    );
+
+    menu.addPlate(appleDessert);
+    expect(menu.getPlates()).to.be.eql(plates.concat(appleDessert));
+  });
 });

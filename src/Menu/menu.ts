@@ -78,4 +78,11 @@ export class Menu {
 
     return true;
   }
+
+  addPlate(newPlate: BasicPlate) {
+    if (newPlate instanceof StarterPlate) this.starterPlates = this.starterPlates.concat(newPlate);
+    if (newPlate instanceof FirstPlate) this.firstPlates = this.firstPlates.concat(newPlate);
+    if (newPlate instanceof SecondPlate) this.secondPlates = this.secondPlates.concat(newPlate);
+    if (newPlate instanceof Dessert) this.desserts = this.desserts.concat(newPlate);
+  }
 };
