@@ -20,7 +20,8 @@ export class Menu {
 
   // Getters
   getPlates(): BasicPlate[] {
-    return this.plates;
+    // En orden de aparición
+    return this.getStarterPlates().concat(this.getFirsPlates()).concat(this.getSecondPlates()).concat(this.getDesserts());
   }
 
   getStarterPlates(): StarterPlate[] {
