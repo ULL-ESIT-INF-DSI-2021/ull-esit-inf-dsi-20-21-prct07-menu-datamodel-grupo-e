@@ -7,7 +7,7 @@ export class Cereal extends BasicFood {
   }
 
   getFoodGroup(): FoodGroup {
-    return FoodGroup.cereals;
+    return FoodGroup.Cereals;
   }
 
   getInfo() {

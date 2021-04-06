@@ -2,10 +2,14 @@ import { Menu } from "../Menu";
 import { BasicPlate } from "../Plate";
 
 export class Carta {
-  constructor(private menus: Menu[], private singlePlates: BasicPlate[]) {
+  constructor(private name: string, private menus: Menu[], private singlePlates: BasicPlate[]) {
 
   }
 
+  getName(): string {
+    return this.name;
+  }
+  
   getMenus(): Menu[] {
     return this.menus;
   }

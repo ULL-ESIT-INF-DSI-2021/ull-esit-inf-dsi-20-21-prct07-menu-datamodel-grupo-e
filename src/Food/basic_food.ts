@@ -3,8 +3,8 @@ import { Macronutrients } from "./macronutrients";
 export enum FoodGroup {
   proteinRich = 'Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres.',
   vegetables = 'Verduras y hortalizas.',
-  dairy = 'Leche y derivados.',
-  cereals = 'Cereales.',
+  Dairy = 'Leche y derivados.',
+  Cereals = 'Cereales.',
   Fruits = 'Frutas.'
 }
 export abstract class BasicFood {
