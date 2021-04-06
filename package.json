@@ -21,6 +21,8 @@
   "devDependencies": {
     "@types/chai": "^4.2.16",
     "@types/deep-equal-in-any-order": "^1.0.1",
+    "@types/inquirer": "^7.3.1",
+    "@types/lowdb": "^1.0.9",
     "@types/mocha": "^8.2.2",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
@@ -28,6 +30,9 @@
     "deep-equal-in-any-order": "^1.1.4",
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",
+    "inquirer": "^8.0.0",
+    "inquirer-recursive": "^0.0.7",
+    "lowdb": "^1.0.0",
     "mocha": "^8.3.2",
     "npm-watch": "^0.9.0",
     "nyc": "^15.1.0",
