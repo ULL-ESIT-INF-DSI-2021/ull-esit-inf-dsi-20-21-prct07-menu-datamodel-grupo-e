@@ -10,7 +10,7 @@ import { Carta } from '../../src/Carta';
 chai.use(deepEqualInAnyOrder);
 
 describe('Carta tests', () => {
-  const menu1 = new Menu(
+  const menu1 = new Menu('Menu 1',
       new StarterPlate('Entrante', 
           new Ingredient(
               new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
@@ -30,7 +30,7 @@ describe('Carta tests', () => {
           )
       ),
   );
-  const menu2 = new Menu(
+  const menu2 = new Menu('Menu 2',
       new Dessert('Postre', 
           new Ingredient(
               new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),

@@ -6,7 +6,7 @@ import { StarterPlate, Ingredient, FirstPlate, SecondPlate } from '../../src/Pla
 import { CommandOrder } from '../../src/Command';
 
 describe('CommandOrder tests', () => {
-  const menu1 = new Menu(
+  const menu1 = new Menu('Menu 1',
       new StarterPlate('Entrante', 
           new Ingredient(
               new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
