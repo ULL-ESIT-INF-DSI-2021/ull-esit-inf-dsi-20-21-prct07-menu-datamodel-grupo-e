@@ -10,7 +10,7 @@ export class Menu {
 
   private plates: BasicPlate[];
 
-  constructor(...plates_: BasicPlate[]) {
+  constructor(private name: string, ...plates_: BasicPlate[]) {
     if (!this.platesAreValid(plates_)) {
       throw new Error('Bad Menu configuration');
     }
@@ -19,6 +19,10 @@ export class Menu {
   }
 
   // Getters
+  getNameOfMenu() {
+    return this.name;
+  }
+
   getPlates(): BasicPlate[] {
     // En orden de aparición
     return this.getStarterPlates().concat(this.getFirsPlates()).concat(this.getSecondPlates()).concat(this.getDesserts());
