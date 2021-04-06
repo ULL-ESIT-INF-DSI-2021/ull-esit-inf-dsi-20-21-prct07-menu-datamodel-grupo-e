@@ -77,7 +77,13 @@ export class Menu {
   }
 
   addPlate(newPlate: BasicPlate) {
-    this.plates = this.plates.concat(newPlate);
+    const setNameofPlates = new Set();
+    this.plates.forEach((plate) => setNameofPlates.add(plate.getName()));
+  
+    if (!setNameofPlates.has(newPlate.getName())) {
+      this.plates = this.plates.concat(newPlate);
+      setNameofPlates.add(newPlate.getName());
+    }
   }
 
   removePlate(plateName: string) {

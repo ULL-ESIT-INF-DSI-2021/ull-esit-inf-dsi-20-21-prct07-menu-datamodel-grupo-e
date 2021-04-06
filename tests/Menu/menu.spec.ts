@@ -110,7 +110,7 @@ describe('Menu tests', () => {
     expect(menu.getPlates()).to.be.eql(plates);
   });
 
-  it('Adds a new   plate', () => {
+  it('Adds a new plate', () => {
     const appleDessert = new Dessert( 'Postre de manzana',
         new Ingredient(
             new Fruit('Manzana', 'Tacoronte', 3, new Macronutrients()),
@@ -124,6 +124,17 @@ describe('Menu tests', () => {
 
   it('Removes a plate by name', () => {
     menu.removePlate('Postre de manzana');
+    expect(menu.getPlates()).to.be.eql(plates);
+  });
+
+  it('Adds a repeat plate', () => {
+    const vealStarter = new StarterPlate( 'Entrante de ternera',
+        new Ingredient(
+            new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
+        )
+    ); 
+
+    menu.addPlate(vealStarter);
     expect(menu.getPlates()).to.be.eql(plates);
   });
 
