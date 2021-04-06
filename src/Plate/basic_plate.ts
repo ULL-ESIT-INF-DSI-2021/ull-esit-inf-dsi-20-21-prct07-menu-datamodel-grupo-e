@@ -42,6 +42,9 @@ export abstract class BasicPlate {
     return [...new Set<FoodGroup>(this.ingredients.map((ingredient) => ingredient.getFood().getFoodGroup()))];
   }
 
+  getIngredients(): Ingredient[] {
+    return this.ingredients;
+  }
   /**
    * Se puede mejorar
    * @returns 
