@@ -3,3 +3,4 @@ package-lock.json
 .eslintrc.json
 .vscode
 .nyc_output
+/dist
