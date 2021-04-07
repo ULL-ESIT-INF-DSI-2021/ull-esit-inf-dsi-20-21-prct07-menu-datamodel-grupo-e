@@ -1,20 +1,38 @@
 import { FoodGroup, Macronutrients } from "../Food";
 import { Ingredient } from "./ingredient";
 
+/**
+ * Objeto de tipo PlateType,
+ * es un enumerable
+ */
 export enum PlateType {
   starterPlate = 'Entrante',
   firstPlate = 'Primer plato',
   secondPlate = 'Segundo plato',
   dessert = 'Postre'
 };
+/**
+ * Clase abstracta BasicPlate que engloba a 
+ * start, first, second, y dessert plates
+ */
 export abstract class BasicPlate {
   
   private nutritionalComposition: Macronutrients;
 
+  /**
+   * Constructor de la clase BasicPlate
+   * @param name Nombre del plato básico 
+   * @param ingredients Vector de ingredientes
+   */
   constructor(protected name: string, protected ingredients: Ingredient[] = []) {
     this.nutritionalComposition = this.calculateNutritionalComposition();  
   }
 
+  /**
+   * Método privado al que se llama en el constructor
+   * calcula la composición nutricional
+   * @returns objeto de tipo Macronutrients
+   */
   private calculateNutritionalComposition(): Macronutrients {
     const nutritionalComposition = new Macronutrients();
     const ingredientsCompositions = this.ingredients.map((ingredient) => ingredient.getNutritionalComposition());
@@ -26,28 +44,49 @@ export abstract class BasicPlate {
     return nutritionalComposition;
   }
 
+  /**
+   * Getter del atributo 'name'
+   * @returns nombre del plato
+   */
   getName(): string {
     return this.name;
   }
   
+  /**
+   * Getter del precio total
+   * @returns suma de los precios de cada ingrediente
+   */
   getPrice(): number {
     return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price);
   }
 
+  /**
+   * Getter del atributo 'nutritionalComposition'
+   * @returns objeto de Macronutrients
+   */
   getNutritionalComposition(): Macronutrients {
     return this.nutritionalComposition;
   }
 
+  /**
+   * Getter del grupo de alimentos, (set)
+   * @returns un objeto set con los grupos
+   */
   getFoodgroups(): FoodGroup[] {
     return [...new Set<FoodGroup>(this.ingredients.map((ingredient) => ingredient.getFood().getFoodGroup()))];
   }
 
+  /**
+   * Getter del atributo 'ingredients'
+   * @returns 
+   */
   getIngredients(): Ingredient[] {
     return this.ingredients;
   }
   /**
-   * Se puede mejorar
-   * @returns 
+   * Getter del grupo predominante, calcula
+   * cuál es el tipo de alimento que más aparece
+   * @returns un objeto de tipo PlateType
    */
   getPredominantFoodGroup(): FoodGroup {
     const counter = new Map<FoodGroup, number>();
