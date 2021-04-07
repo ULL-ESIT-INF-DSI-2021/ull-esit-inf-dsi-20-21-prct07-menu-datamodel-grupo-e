@@ -56,7 +56,7 @@ describe('Carta tests', () => {
     new Dessert('Applepie', new Ingredient(new Fruit('manzana', 'Tacoronte', 3, new Macronutrients()), 250))
   ];
 
-  const carta = new Carta([menu1, menu2], singlePlates);
+  const carta = new Carta('carta1', [menu1, menu2], singlePlates);
 
   it('It can be instanciated', () => {
     expect(carta instanceof Carta).to.be.true;
