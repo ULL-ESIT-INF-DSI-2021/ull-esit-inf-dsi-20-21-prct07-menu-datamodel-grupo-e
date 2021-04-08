@@ -169,8 +169,34 @@ export class Stock {
   
 
   /*****************************************************************************************/
+  // loadMenus() {
+  //   this.menus = this.database.get('stock.menu').value().map((menu: jsonMenu) => this.parseJsonMenu(menu));
+  // }
+
+  getMenus() {
+    return this.menus;
+  }
+  
   addMenu(newMenu: Menu) {
+    if (!this.menus.map((menu) => menu.getNameOfMenu()).includes(newMenu.getNameOfMenu())) {
+      this.menus.push(newMenu);
+      this.storeMenus();
+    }
     this.menus.push(newMenu);
+  }
+
+  parseJsonMenu(newMenu: Menu): jsonMenu {
+    const object: jsonMenu = {
+      name: newMenu.getNameOfMenu(),
+      price: newMenu.getPrice(),
+      jsonPlates: newMenu.getPlates().map((plate) => this.parseJsonPlate(plate)),
+    };
+
+    return object;
+  }
+
+  storeMenus() {
+    this.database.set('stock.Menus', this.menus.map((menu) => this.parseJsonMenu(menu))).write();
   }
 
   deleteMenu(name: string) {
@@ -178,6 +204,8 @@ export class Stock {
     if (menuIndex >= 0) this.menus.splice(menuIndex, 1);
   }
 
+
+  /**************************************************************************************/
   addCarta(newCarta: Carta) {
     this.cartas.push(newCarta);
   }

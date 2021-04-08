@@ -1,8 +1,9 @@
 import 'mocha';
 import { expect } from 'chai';
 import { Stock } from '../../src/Stock';
-import { Fruit, Macronutrients } from '../../src/Food';
-import { Dessert, Ingredient } from '../../src/Plate';
+import { Fruit, Macronutrients, Meat } from '../../src/Food';
+import { Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate } from '../../src/Plate';
+import { Menu } from '../../src/Menu';
 
 const apple = new Fruit('manzana', 'Australia', 2, {lipids: 3, carbohydrates: 6, proteins: 5});
 
@@ -70,4 +71,38 @@ describe('Stock plates tests', () => {
   });
 });
 
+describe('Stock menu test', () => {
+  const stock = new Stock('./tests/Stock/database_test.json');
+
+  const plates = [
+    new StarterPlate( 'Entrante de ternera',
+        new Ingredient(
+            new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
+        )
+    ),
+    new FirstPlate( 'Costillas asadas',
+        new Ingredient(
+            new Meat('Costillas', 'Canarias', 7, new Macronutrients()), 1000
+        )
+    ),
+    new SecondPlate( 'Chuleta al horno',
+        new Ingredient(
+            new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2000
+        )
+    )
+  ];
+
+  const menu = new Menu('Grill lovers', ...plates);
+
+  it('Add a menu', () => {
+    stock.addMenu(menu);
+    console.log(stock.getMenus())
+    expect(stock.getMenus()).to.be.eql([menu]);
+  });
+
+  // it('Does not add a repeated menu', () => {
+  //   stock.addMenu(menu);
+  //   expect(stock.getMenus()).to.be.eql([menu]);
+  // });
+});
 
