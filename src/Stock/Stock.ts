@@ -35,6 +35,7 @@ export class Stock {
     if (this.database.has('stock').value()) {
       this.loadFoods();
       this.loadPlates();
+      this.loadMenus();
     } else {
       this.database.set('stock', {foods: []}).write();
     }
@@ -166,12 +167,34 @@ export class Stock {
     }
 
   }
+
+  parsePlate(plate: jsonPlate): BasicPlate {
+    switch (plate.type) {
+      case PlateType.starterPlate:
+        return new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+      case PlateType.dessert:
+        return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+      case PlateType.firstPlate:
+        return new FirstPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+      case PlateType.secondPlate:
+        return new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+        //Compobar este default puesto para que no se queje
+      default: 
+        return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+    }
+  }
   
 
   /*****************************************************************************************/
-  // loadMenus() {
-  //   this.menus = this.database.get('stock.menu').value().map((menu: jsonMenu) => this.parseJsonMenu(menu));
-  // }
+  loadMenus() {
+    this.database.get('stock.Menus').value().forEach((menu: jsonMenu) => {
+      this.menus.push(new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate))));
+    });
+  }
 
   getMenus() {
     return this.menus;
@@ -182,7 +205,6 @@ export class Stock {
       this.menus.push(newMenu);
       this.storeMenus();
     }
-    this.menus.push(newMenu);
   }
 
   parseJsonMenu(newMenu: Menu): jsonMenu {
@@ -201,7 +223,10 @@ export class Stock {
 
   deleteMenu(name: string) {
     const menuIndex = this.menus.findIndex((menu) => menu.getNameOfMenu() === name);
-    if (menuIndex >= 0) this.menus.splice(menuIndex, 1);
+    if (menuIndex >= 0) {
+      this.menus.splice(menuIndex, 1);
+      this.storeMenus();
+    }
   }
 
 

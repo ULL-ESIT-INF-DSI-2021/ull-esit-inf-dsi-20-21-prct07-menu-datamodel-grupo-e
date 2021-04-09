@@ -96,13 +96,27 @@ describe('Stock menu test', () => {
 
   it('Add a menu', () => {
     stock.addMenu(menu);
-    console.log(stock.getMenus())
     expect(stock.getMenus()).to.be.eql([menu]);
   });
 
-  // it('Does not add a repeated menu', () => {
-  //   stock.addMenu(menu);
-  //   expect(stock.getMenus()).to.be.eql([menu]);
-  // });
+  it('Does not add a repeated menu', () => {
+    stock.addMenu(menu);
+    expect(stock.getMenus()).to.be.eql([menu]);
+  });
+
+  it('Added menu persists', () => {
+    const newStock = new Stock('./tests/Stock/database_test.json');
+    expect(newStock.getMenus()).to.be.eql([menu]);
+  });
+
+  it('Deletes a menu element', () => {
+    stock.deleteMenu('Grill lovers');
+    expect(stock.getMenus()).to.be.eql([]);
+  });
+
+  it('Deletes menu element from database', () => {
+    const newStock = new Stock('./tests/Stock/database_test.json');
+    expect(newStock.getMenus()).to.be.eql([]);
+  });
 });
 
