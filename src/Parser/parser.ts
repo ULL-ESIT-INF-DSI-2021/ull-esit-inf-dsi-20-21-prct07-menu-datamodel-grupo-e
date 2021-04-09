@@ -1,6 +1,8 @@
+import { Carta } from "../Carta";
 import { BasicFood, FoodGroup, Fruit, Cereal, RichProteinFood } from "../Food";
-import { BasicPlate, Ingredient } from "../Plate";
-import { jsonFood, jsonIngredient, jsonPlate } from "../Stock";
+import { Menu } from "../Menu";
+import { BasicPlate, Dessert, FirstPlate, Ingredient, PlateType, SecondPlate, StarterPlate } from "../Plate";
+import { jsonCarta, jsonFood, jsonIngredient, jsonMenu, jsonPlate } from "../Stock";
 
 export class Parser {
   constructor() {
@@ -50,6 +52,26 @@ export class Parser {
     return result;
   }
 
+  parsePlate(plate: jsonPlate): BasicPlate {
+    switch (plate.type) {
+      case PlateType.starterPlate:
+        return new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+      case PlateType.dessert:
+        return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+      case PlateType.firstPlate:
+        return new FirstPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+      case PlateType.secondPlate:
+        return new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+        break;
+        //Compobar este default puesto para que no se queje
+      default: 
+        return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
+    }
+  }
+  
   parseJsonPlate(newPlate: BasicPlate): jsonPlate {
     const object :jsonPlate = {
       name: newPlate.getName(),
@@ -60,4 +82,29 @@ export class Parser {
     };
     return object;
   }
-}
+
+  parseMenu(menu: jsonMenu): Menu {
+    return new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate)));
+  }
+  
+  parseJsonMenu(newMenu: Menu): jsonMenu {
+    const object: jsonMenu = {
+      name: newMenu.getNameOfMenu(),
+      price: newMenu.getPrice(),
+      jsonPlates: newMenu.getPlates().map((plate) => this.parseJsonPlate(plate)),
+    };
+
+    return object;
+  }
+
+  parseJsonCarta(newCarta: Carta): jsonCarta {
+    const object: jsonCarta = {
+      name: newCarta.getName(),
+      menus: newCarta.getMenus().map((menu) => this.parseJsonMenu(menu)),
+      singlePlates: newCarta.getAllPlates().map((plate) => this.parseJsonPlate(plate)),
+    };
+
+    return object;
+  }
+
+};

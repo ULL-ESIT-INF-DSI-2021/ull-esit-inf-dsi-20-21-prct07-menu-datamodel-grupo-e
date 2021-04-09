@@ -34,20 +34,23 @@ export class Stock {
   }
   
   private setDatabase(databaseName: string) {
+        
     this.database = lowdb(new FileSync(databaseName));
+    if (!this.database.has('stock').value()) this.database.set('stock', {}).write();
 
-    if (this.database.has('stock').value()) {
-      this.loadFoods();
-      this.loadPlates();
-      this.loadMenus();
-      this.loadCarta();
-    } else {
-      this.database.set('stock', {foods: []}).write();
-    }
+    this.loadFoods();
+    this.loadPlates();
+    this.loadMenus();
+    this.loadCartas();
   }
 
   loadFoods() {
-    this.foods = this.database.get('stock.foods').value().map((food: jsonFood) => this.parser.parseFood(food));
+    if (this.database.has('stock.foods').value()) {
+      this.foods = this.database.get('stock.foods').value().map((food: jsonFood) => this.parser.parseFood(food));
+    } else {
+      // Sets stock.foods: []
+      this.storeFoods();
+    }
   }
 
   getFoods() {
@@ -75,26 +78,12 @@ export class Stock {
 
 
   /*****************************************************************************************/
-
-
-  /*****************************************************************************************/
   loadPlates() {
-    this.database.get('stock.plates').value().forEach((plate: jsonPlate) => {
-      switch (plate.type) {
-        case PlateType.starterPlate:
-          this.plates.push(new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
-          break;
-        case PlateType.dessert:
-          this.plates.push(new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
-          break;
-        case PlateType.firstPlate:
-          this.plates.push(new FirstPlate(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
-          break;
-        case PlateType.secondPlate:
-          this.plates.push(new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
-          break;
-      }
-    }); 
+    if (this.database.has('stock.plates').value()) {
+      this.plates = this.database.get('stock.plates').value().map((plate: jsonPlate) => this.parser.parsePlate(plate));
+    } else {
+      this.storePlates();
+    }
   }
 
 
@@ -123,32 +112,14 @@ export class Stock {
 
   }
 
-  parsePlate(plate: jsonPlate): BasicPlate {
-    switch (plate.type) {
-      case PlateType.starterPlate:
-        return new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
-        break;
-      case PlateType.dessert:
-        return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
-        break;
-      case PlateType.firstPlate:
-        return new FirstPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
-        break;
-      case PlateType.secondPlate:
-        return new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
-        break;
-        //Compobar este default puesto para que no se queje
-      default: 
-        return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
-    }
-  }
-  
 
   /*****************************************************************************************/
   loadMenus() {
-    this.database.get('stock.Menus').value().forEach((menu: jsonMenu) => {
-      this.menus.push(new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate))));
-    });
+    if (this.database.has('stock.menus').value()) {
+      this.menus = this.database.get('stock.menus').value().map((menu: jsonMenu) => this.parser.parseMenu(menu));
+    } else {
+      this.storeMenus();
+    }
   }
 
   getMenus() {
@@ -162,22 +133,9 @@ export class Stock {
     }
   }
 
-  parseJsonMenu(newMenu: Menu): jsonMenu {
-    const object: jsonMenu = {
-      name: newMenu.getNameOfMenu(),
-      price: newMenu.getPrice(),
-      jsonPlates: newMenu.getPlates().map((plate) => this.parseJsonPlate(plate)),
-    };
-
-    return object;
-  }
-
-  parseMenu(menu: jsonMenu): Menu {
-    return new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate)));
-  }
 
   storeMenus() {
-    this.database.set('stock.Menus', this.menus.map((menu) => this.parseJsonMenu(menu))).write();
+    this.database.set('stock.menus', this.menus.map((menu) => this.parser.parseJsonMenu(menu))).write();
   }
 
   deleteMenu(name: string) {
@@ -190,44 +148,39 @@ export class Stock {
 
 
   /**************************************************************************************/
-  loadCarta() {
-    this.database.get('stock.cartas').value().forEach((carta: jsonCarta) => {
-      this.cartas.push(new Carta(carta.name,
-          [...carta.menus.map((carta) => this.parseMenu(carta))],
-          [...carta.singlePlates.map((plate) => this.parsePlate(plate))]));
-    });
+  loadCartas() {
+    if (this.database.has('stock.cartas').value()) {
+      this.database.get('stock.cartas').value().forEach((carta: jsonCarta) => {
+        this.cartas.push(new Carta(carta.name,
+            [...carta.menus.map((carta) => this.parser.parseMenu(carta))],
+            [...carta.singlePlates.map((plate) => this.parser.parsePlate(plate))]));
+      });
+    } else {
+      this.storeCartas();
+    }
   }
 
-  getCarta() {
+  getCartas() {
     return this.cartas;
   }
   
   addCarta(newCarta: Carta) {
     if (!this.cartas.map((carta) => carta.getName()).includes(newCarta.getName())) {
       this.cartas.push(newCarta);
-      this.storeCarta();
+      this.storeCartas();
     }
   }
 
-  parseJsonCarta(newCarta: Carta): jsonCarta {
-    const object: jsonCarta = {
-      name: newCarta.getName(),
-      menus: newCarta.getMenus().map((menu) => this.parseJsonMenu(menu)),
-      singlePlates: newCarta.getAllPlates().map((plate) => this.parseJsonPlate(plate)),
-    };
 
-    return object;
-  }
-
-  storeCarta() {
-    this.database.set('stock.cartas', this.cartas.map((carta) => this.parseJsonCarta(carta))).write();
+  storeCartas() {
+    this.database.set('stock.cartas', this.cartas.map((carta) => this.parser.parseJsonCarta(carta))).write();
   }
 
   deleteCarta(name: string) {
     const cartaIndex = this.cartas.findIndex((carta) => carta.getName() === name);
     if (cartaIndex >= 0) {
       this.cartas.splice(cartaIndex, 1);
-      this.storeCarta();
+      this.storeCartas();
     }
   }
 }
