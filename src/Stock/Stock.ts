@@ -7,6 +7,7 @@ import { BasicPlate, Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate 
 import { Menu } from '../Menu';
 import { Carta } from '../Carta';
 import { PlateType } from '../Plate/basic_plate';
+import { Parser } from '../Parser';
 
 type StockScheme = {
   stock: {
@@ -18,6 +19,8 @@ type StockScheme = {
 }
 
 export class Stock {
+  private parser: Parser;
+
   private database: lowdb.LowdbSync<StockScheme>;
   private foods: BasicFood[] = [];
   private plates: BasicPlate[] = [];
@@ -26,6 +29,7 @@ export class Stock {
   
   
   constructor(databaseName: string) {
+    this.parser = new Parser();
     this.setDatabase(databaseName);
   }
   
@@ -43,7 +47,7 @@ export class Stock {
   }
 
   loadFoods() {
-    this.foods = this.database.get('stock.foods').value().map((food: jsonFood) => this.parseFood(food));
+    this.foods = this.database.get('stock.foods').value().map((food: jsonFood) => this.parser.parseFood(food));
   }
 
   getFoods() {
@@ -66,67 +70,28 @@ export class Stock {
   }
 
   storeFoods() {
-    this.database.set('stock.foods', this.foods.map((food) => this.parseJsonFood(food))).write();
+    this.database.set('stock.foods', this.foods.map((food) => this.parser.parseJsonFood(food))).write();
   }
 
-  parseFood(food: jsonFood): BasicFood {
-    switch (food.type) {
-      case FoodGroup.Fruits:
-        return new Fruit(food.name, food.origin, food.price, food.macronutrients);
-        break;
-      case FoodGroup.Cereals:
-        return new Cereal(food.name, food.origin, food.price, food.macronutrients);
-        break;
-      // case FoodGroup.Dairy:
-      //   this.foods.push(new Dairy(food.name, food.origin, food.price, food.macronutrients));
-      case FoodGroup.proteinRich:
-        return new RichProteinFood(food.name, food.origin, food.price, food.macronutrients);
-        break;
-      default:
-        return new Fruit(food.name, food.origin, food.price, food.macronutrients);
-    }
-  }
 
-  parseJsonFood(newFood: BasicFood): jsonFood {
-    const object :jsonFood= {
-      name: newFood.getName(),
-      origin: newFood.getOrigin(),
-      price: newFood.getPriceByKg(),
-      macronutrients: newFood.getMacronutrients(),
-      type: newFood.getFoodGroup(),
-    };
-    return object;
-  }
   /*****************************************************************************************/
-  parseIngredient(ingredient: jsonIngredient): Ingredient {
-    const result = new Ingredient(this.parseFood(ingredient.jsonFood), ingredient.ammount);
-    return result;
-  }
 
-  parseJsonIngredient(ingredient: Ingredient): jsonIngredient {
-    const result: jsonIngredient = {
-      jsonFood: this.parseJsonFood(ingredient.getFood()),
-      ammount: ingredient.getAmmount(),
-    };
-
-    return result;
-  }
 
   /*****************************************************************************************/
   loadPlates() {
     this.database.get('stock.plates').value().forEach((plate: jsonPlate) => {
       switch (plate.type) {
         case PlateType.starterPlate:
-          this.plates.push(new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing))));
+          this.plates.push(new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
           break;
         case PlateType.dessert:
-          this.plates.push(new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing))));
+          this.plates.push(new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
           break;
         case PlateType.firstPlate:
-          this.plates.push(new FirstPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing))));
+          this.plates.push(new FirstPlate(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
           break;
         case PlateType.secondPlate:
-          this.plates.push(new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing))));
+          this.plates.push(new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parser.parseIngredient(ing))));
           break;
       }
     }); 
@@ -145,20 +110,9 @@ export class Stock {
   }
 
   storePlates() {
-    this.database.set('stock.plates', this.plates.map((plate) => this.parseJsonPlate(plate))).write();
+    this.database.set('stock.plates', this.plates.map((plate) => this.parser.parseJsonPlate(plate))).write();
   }
   
-
-  parseJsonPlate(newPlate: BasicPlate): jsonPlate {
-    const object :jsonPlate = {
-      name: newPlate.getName(),
-      price: newPlate.getPrice(),
-      nutritionalC: newPlate.getNutritionalComposition(),
-      ingredients: newPlate.getIngredients().map((ingredient) => this.parseJsonIngredient(ingredient)),
-      type: newPlate.getType(),
-    };
-    return object;
-  }
 
   deletePlate(name: string) {
     const plateIndex = this.plates.findIndex((plate) => plate.getName() === name);
