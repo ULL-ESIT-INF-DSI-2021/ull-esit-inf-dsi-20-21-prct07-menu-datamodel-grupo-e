@@ -1,8 +1,14 @@
 import 'mocha';
 import { expect } from 'chai';
 import { Stock } from '../../src/Stock';
-import { Fruit, Macronutrients } from '../../src/Food';
-import { Dessert, Ingredient } from '../../src/Plate';
+import { Cereal, Fruit, Macronutrients, Meat, Vegetable } from '../../src/Food';
+import { Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate } from '../../src/Plate';
+import { Menu } from '../../src/Menu';
+import { Carta } from '../../src/Carta';
+import deepEqualInAnyOrder = require('deep-equal-in-any-order');
+import chai = require('chai');
+
+chai.use(deepEqualInAnyOrder);
 
 const apple = new Fruit('manzana', 'Australia', 2, {lipids: 3, carbohydrates: 6, proteins: 5});
 
@@ -70,4 +76,130 @@ describe('Stock plates tests', () => {
   });
 });
 
+describe('Stock menu test', () => {
+  const stock = new Stock('./tests/Stock/database_test.json');
+
+  const plates = [
+    new StarterPlate( 'Entrante de ternera',
+        new Ingredient(
+            new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
+        )
+    ),
+    new FirstPlate( 'Costillas asadas',
+        new Ingredient(
+            new Meat('Costillas', 'Canarias', 7, new Macronutrients()), 1000
+        )
+    ),
+    new SecondPlate( 'Chuleta al horno',
+        new Ingredient(
+            new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2000
+        )
+    )
+  ];
+
+  const menu = new Menu('Grill lovers', ...plates);
+
+  it('Add a menu', () => {
+    stock.addMenu(menu);
+    expect(stock.getMenus()).to.be.eql([menu]);
+  });
+
+  it('Does not add a repeated menu', () => {
+    stock.addMenu(menu);
+    expect(stock.getMenus()).to.be.eql([menu]);
+  });
+
+  it('Added menu persists', () => {
+    const newStock = new Stock('./tests/Stock/database_test.json');
+    expect(newStock.getMenus()).to.be.eql([menu]);
+  });
+
+  it('Deletes a menu element', () => {
+    stock.deleteMenu('Grill lovers');
+    expect(stock.getMenus()).to.be.eql([]);
+  });
+
+  it('Deletes menu element from database', () => {
+    const newStock = new Stock('./tests/Stock/database_test.json');
+    expect(newStock.getMenus()).to.be.eql([]);
+  });
+});
+
+/** ***************************************/ 
+describe('Stock Carta test', () => {
+
+  const menu1 = new Menu('Menu 1',
+      new StarterPlate('Entrante', 
+          new Ingredient(
+              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+              1
+          )
+      ),
+      new FirstPlate('PrimerPlato', 
+          new Ingredient(
+              new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
+              1
+          )
+      ),
+      new SecondPlate('SegundoPlato', 
+          new Ingredient(
+              new Meat('Costillas', 'Brasil', 12, new Macronutrients()),
+              1
+          )
+      ),
+  );
+  const menu2 = new Menu('Menu 2',
+      new Dessert('Postre', 
+          new Ingredient(
+              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+              1
+          )
+      ),
+      new FirstPlate('PrimerPlato2', 
+          new Ingredient(
+              new Cereal('Avena', 'Madrid', 3, new Macronutrients()),
+              2
+          )
+      ),
+      new SecondPlate('SegundoPlato2', 
+          new Ingredient(
+              new Meat('Costillas', 'Brasil', 12, new Macronutrients()),
+              1
+          )
+      ),
+  );
+
+  const singlePlates = [
+    new FirstPlate('Carne fiesta', new Ingredient(new Meat('Cerdo', 'Canarias', 7, new Macronutrients()), 1)),
+    new Dessert('Applepie', new Ingredient(new Fruit('manzana', 'Tacoronte', 3, new Macronutrients()), 250))
+  ];
+
+  const carta = new Carta('carta1', [menu1, menu2], singlePlates);
+
+  const stock = new Stock('./tests/Stock/database_test.json');
+
+  it('Add a Carta', () => {
+    stock.addCarta(carta);
+    expect(stock.getCarta()).to.be.eql([carta]);
+  });
+  it('Does not add a repeated carta', () => {
+    stock.addCarta(carta);
+    expect(stock.getCarta()).to.be.eql([carta]);
+  });
+
+  it('Added carta persists', () => {
+    const newStock = new Stock('./tests/Stock/database_test.json');
+    expect(newStock.getCarta()).to.deep.equalInAnyOrder([carta]);
+  });
+
+  it('Deletes a carta element', () => {
+    stock.deleteCarta('carta1');
+    expect(stock.getCarta()).to.be.eql([]);
+  });
+
+  it('Deletes carta element from database', () => {
+    const newStock = new Stock('./tests/Stock/database_test.json');
+    expect(newStock.getCarta()).to.be.eql([]);
+  });
+});
 

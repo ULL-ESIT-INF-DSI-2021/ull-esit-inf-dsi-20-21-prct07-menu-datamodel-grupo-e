@@ -1,6 +1,8 @@
 {
   "stock": {
     "foods": [],
-    "plates": []
+    "plates": [],
+    "Menus": [],
+    "cartas": []
   }
 }
