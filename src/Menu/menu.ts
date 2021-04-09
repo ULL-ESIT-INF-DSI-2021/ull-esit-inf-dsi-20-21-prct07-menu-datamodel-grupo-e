@@ -5,7 +5,6 @@ import { Dessert } from "../Plate/dessert";
 import { FirstPlate } from "../Plate/first_plate";
 import { SecondPlate } from "../Plate/second_plate";
 
-
 export class Menu {
 
   private plates: BasicPlate[];
