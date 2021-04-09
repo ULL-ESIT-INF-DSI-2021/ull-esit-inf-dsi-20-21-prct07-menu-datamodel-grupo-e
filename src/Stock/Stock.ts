@@ -36,6 +36,7 @@ export class Stock {
       this.loadFoods();
       this.loadPlates();
       this.loadMenus();
+      this.loadCarta();
     } else {
       this.database.set('stock', {foods: []}).write();
     }
@@ -217,6 +218,10 @@ export class Stock {
     return object;
   }
 
+  parseMenu(menu: jsonMenu): Menu {
+    return new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate)));
+  }
+
   storeMenus() {
     this.database.set('stock.Menus', this.menus.map((menu) => this.parseJsonMenu(menu))).write();
   }
@@ -231,12 +236,44 @@ export class Stock {
 
 
   /**************************************************************************************/
+  loadCarta() {
+    this.database.get('stock.cartas').value().forEach((carta: jsonCarta) => {
+      this.cartas.push(new Carta(carta.name,
+          [...carta.menus.map((carta) => this.parseMenu(carta))],
+          [...carta.singlePlates.map((plate) => this.parsePlate(plate))]));
+    });
+  }
+
+  getCarta() {
+    return this.cartas;
+  }
+  
   addCarta(newCarta: Carta) {
-    this.cartas.push(newCarta);
+    if (!this.cartas.map((carta) => carta.getName()).includes(newCarta.getName())) {
+      this.cartas.push(newCarta);
+      this.storeCarta();
+    }
+  }
+
+  parseJsonCarta(newCarta: Carta): jsonCarta {
+    const object: jsonCarta = {
+      name: newCarta.getName(),
+      menus: newCarta.getMenus().map((menu) => this.parseJsonMenu(menu)),
+      singlePlates: newCarta.getAllPlates().map((plate) => this.parseJsonPlate(plate)),
+    };
+
+    return object;
+  }
+
+  storeCarta() {
+    this.database.set('stock.cartas', this.cartas.map((carta) => this.parseJsonCarta(carta))).write();
   }
 
   deleteCarta(name: string) {
     const cartaIndex = this.cartas.findIndex((carta) => carta.getName() === name);
-    if (cartaIndex >= 0) this.cartas.splice(cartaIndex, 1);
+    if (cartaIndex >= 0) {
+      this.cartas.splice(cartaIndex, 1);
+      this.storeCarta();
+    }
   }
 }
