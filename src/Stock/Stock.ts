@@ -1,4 +1,6 @@
 /* eslint-disable spaced-comment */
+import * as inquirer from 'inquirer';
+import 'colors';
 import {jsonFood, jsonPlate, jsonMenu, jsonCarta, jsonIngredient} from './jsonObjects';
 import lowdb = require('lowdb');
 import FileSync = require('lowdb/adapters/FileSync');
@@ -183,4 +185,54 @@ export class Stock {
       this.storeCartas();
     }
   }
+
+  displayFoods() {
+    this.foods.forEach((food) => console.log(food.getName()));
+
+  }
 }
+
+
+// -----------------------------------------------------------------------------------------
+
+const stockTest :Stock = new Stock('database');
+stockTest.addFood(new Fruit("Papaya", "Brasil", 3, {lipids: 3, carbohydrates: 6, proteins: 5}));
+enum Commands {
+  DisplayFood = "Show Foods",
+  Quit = "Quit",
+}
+
+
+function promptMenu() {
+  console.clear();
+  inquirer.prompt({
+    type: "list",
+    name: "command",
+    message: "Choose option",
+    choices: Object.values(Commands)
+  }).then((answers) => {
+    switch (answers["command"]) {
+      case Commands.DisplayFood:
+        promptFoodView();
+        break;
+    }
+  });
+};
+
+function promptFoodView() {
+  stockTest.displayFoods();
+  inquirer.prompt({
+    type: "list",
+    name: "command",
+    message: "option",
+    choices: Object.values(Commands)
+  }).then((answers) => {
+    switch (answers["command"]) {
+      case Commands.Quit:
+        promptMenu();
+        break;
+    }
+  });
+}
+
+promptMenu();

@@ -1,0 +1,40 @@
+{
+  "stock": {
+    "foods": [
+      {
+        "name": "Papaya",
+        "origin": "Brasil",
+        "price": 3,
+        "macronutrients": {
+          "lipids": 3,
+          "carbohydrates": 6,
+          "proteins": 5
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "f",
+        "origin": "r",
+        "macronutrients": {
+          "lipids": 5,
+          "carbohydrates": 6,
+          "proteins": 4
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Vaca",
+        "origin": "España",
+        "macronutrients": {
+          "lipids": 4,
+          "carbohydrates": 5,
+          "proteins": 6
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      }
+    ],
+    "plates": [],
+    "menus": [],
+    "cartas": []
+  }
+}
