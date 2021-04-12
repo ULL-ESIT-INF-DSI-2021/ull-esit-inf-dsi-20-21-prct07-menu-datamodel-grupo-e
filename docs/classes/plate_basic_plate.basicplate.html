@@ -68,6 +68,14 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Clase abstracta BasicPlate que engloba a
+						start, first, second, y dessert plates</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -113,6 +121,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="plate_basic_plate.basicplate.html#calculatenutritionalcomposition" class="tsd-kind-icon">calculate<wbr>Nutritional<wbr>Composition</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="plate_basic_plate.basicplate.html#getfoodgroups" class="tsd-kind-icon">get<wbr>Foodgroups</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="plate_basic_plate.basicplate.html#getingredients" class="tsd-kind-icon">get<wbr>Ingredients</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="plate_basic_plate.basicplate.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="plate_basic_plate.basicplate.html#getnutritionalcomposition" class="tsd-kind-icon">get<wbr>Nutritional<wbr>Composition</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="plate_basic_plate.basicplate.html#getpredominantfoodgroup" class="tsd-kind-icon">get<wbr>Predominant<wbr>Food<wbr>Group</a></li>
@@ -135,16 +144,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L12">Plate/basic_plate.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L20">Plate/basic_plate.ts:20</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Constructor de la clase BasicPlate</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Nombre del plato básico</p>
+									</div>
 								</li>
 								<li>
 									<h5>ingredients: <a href="plate_ingredient.ingredient.html" class="tsd-signature-type" data-tsd-kind="Class">Ingredient</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Vector de ingredientes</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h4>
@@ -174,7 +194,7 @@
 					<div class="tsd-signature tsd-kind-icon">nutritional<wbr>Composition<span class="tsd-signature-symbol">:</span> <a href="food_macronutrients.macronutrients.html" class="tsd-signature-type" data-tsd-kind="Class">Macronutrients</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L12">Plate/basic_plate.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L20">Plate/basic_plate.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,10 +211,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L18">Plate/basic_plate.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L36">Plate/basic_plate.ts:36</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Método privado al que se llama en el constructor
+									calcula la composición nutricional</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="food_macronutrients.macronutrients.html" class="tsd-signature-type" data-tsd-kind="Class">Macronutrients</a></h4>
+							<p>objeto de tipo Macronutrients</p>
 						</li>
 					</ul>
 				</section>
@@ -208,10 +235,38 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L41">Plate/basic_plate.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L75">Plate/basic_plate.ts:75</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter del grupo de alimentos, (set)</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/food_basic_food.foodgroup.html" class="tsd-signature-type" data-tsd-kind="Enumeration">FoodGroup</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>un objeto set con los grupos</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getingredients" class="tsd-anchor"></a>
+					<h3>get<wbr>Ingredients</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Ingredients<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="plate_ingredient.ingredient.html" class="tsd-signature-type" data-tsd-kind="Class">Ingredient</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L83">Plate/basic_plate.ts:83</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter del atributo &#39;ingredients&#39;</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="plate_ingredient.ingredient.html" class="tsd-signature-type" data-tsd-kind="Class">Ingredient</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -225,10 +280,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L29">Plate/basic_plate.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L51">Plate/basic_plate.ts:51</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter del atributo &#39;name&#39;</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>nombre del plato</p>
 						</li>
 					</ul>
 				</section>
@@ -242,10 +303,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L37">Plate/basic_plate.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L67">Plate/basic_plate.ts:67</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter del atributo &#39;nutritionalComposition&#39;</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <a href="food_macronutrients.macronutrients.html" class="tsd-signature-type" data-tsd-kind="Class">Macronutrients</a></h4>
+							<p>objeto de Macronutrients</p>
 						</li>
 					</ul>
 				</section>
@@ -259,15 +326,17 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L49">Plate/basic_plate.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L91">Plate/basic_plate.ts:91</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Se puede mejorar</p>
+									<p>Getter del grupo predominante, calcula
+									cuál es el tipo de alimento que más aparece</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/food_basic_food.foodgroup.html" class="tsd-signature-type" data-tsd-kind="Enumeration">FoodGroup</a></h4>
+							<p>un objeto de tipo PlateType</p>
 						</li>
 					</ul>
 				</section>
@@ -281,10 +350,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L33">Plate/basic_plate.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L59">Plate/basic_plate.ts:59</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Getter del precio total</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>suma de los precios de cada ingrediente</p>
 						</li>
 					</ul>
 				</section>
@@ -298,7 +373,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/8556ec0/src/Plate/basic_plate.ts#L73">Plate/basic_plate.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/d23fd5b/src/Plate/basic_plate.ts#L115">Plate/basic_plate.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="../enums/plate_basic_plate.platetype.html" class="tsd-signature-type" data-tsd-kind="Enumeration">PlateType</a></h4>
@@ -313,71 +388,8 @@
 					<li class=" ">
 						<a href="../modules.html">Exports</a>
 					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/carta.html">Carta</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/carta_carta.html">Carta/carta</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/command.html">Command</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/command_command.html">Command/command</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/command_command_order.html">Command/command_<wbr>order</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food.html">Food</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_basic_food.html">Food/basic_<wbr>food</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_cereal.html">Food/cereal</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_fruit.html">Food/fruit</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_macronutrients.html">Food/macronutrients</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_meat.html">Food/meat</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_rich_protein_food.html">Food/rich_<wbr>protein_<wbr>food</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/food_vegetable.html">Food/vegetable</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/menu.html">Menu</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/menu_menu.html">Menu/menu</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/plate.html">Plate</a>
-					</li>
 					<li class="current tsd-kind-module">
 						<a href="../modules/plate_basic_plate.html">Plate/basic_<wbr>plate</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/plate_dessert.html">Plate/dessert</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/plate_first_plate.html">Plate/first_<wbr>plate</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/plate_ingredient.html">Plate/ingredient</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/plate_second_plate.html">Plate/second_<wbr>plate</a>
-					</li>
-					<li class=" tsd-kind-module">
-						<a href="../modules/plate_starter_plate.html">Plate/starter_<wbr>plate</a>
 					</li>
 				</ul>
 			</nav>
@@ -408,6 +420,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="plate_basic_plate.basicplate.html#getfoodgroups" class="tsd-kind-icon">get<wbr>Foodgroups</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="plate_basic_plate.basicplate.html#getingredients" class="tsd-kind-icon">get<wbr>Ingredients</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="plate_basic_plate.basicplate.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
@@ -445,6 +460,9 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
