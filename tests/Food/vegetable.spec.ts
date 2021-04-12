@@ -9,7 +9,7 @@ describe('Vegetable tests', () => {
   });
 
   it('Group food', () => {
-    expect(garbanzos.getFoodGroup()).to.be.eq('Verduras y hortalizas.')
+    expect(garbanzos.getFoodGroup()).to.be.eq('Verduras y hortalizas.');
   });
 
   it('Prints info correctly', () => {

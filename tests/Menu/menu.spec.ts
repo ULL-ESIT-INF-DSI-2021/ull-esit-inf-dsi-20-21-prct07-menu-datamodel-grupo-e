@@ -2,7 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 import { Menu } from '../../src/Menu';
 import { Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate } from '../../src/Plate';
-import { FoodGroup, Fruit, Macronutrients, Meat } from '../../src/Food';
+import { FoodGroup, Fruit, Macronutrients, RichProteinFood } from '../../src/Food';
 
 // Mejorar estos tests
 
@@ -10,17 +10,17 @@ describe('Menu tests', () => {
   const plates = [
     new StarterPlate( 'Entrante de ternera',
         new Ingredient(
-            new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
+            new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
         )
     ),
     new FirstPlate( 'Costillas asadas',
         new Ingredient(
-            new Meat('Costillas', 'Canarias', 7, new Macronutrients()), 1000
+            new RichProteinFood('Costillas', 'Canarias', 7, new Macronutrients()), 1000
         )
     ),
     new SecondPlate( 'Chuleta al horno',
         new Ingredient(
-            new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2000
+            new RichProteinFood('Chuleta', 'Galicia', 15, new Macronutrients()), 2000
         )
     )
   ];
@@ -35,26 +35,26 @@ describe('Menu tests', () => {
   it('Validates bad plates config correctly', () => {
     expect(menu.platesAreValid(
         [
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1))
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1))
         ]
     )).to.be.false;
 
     expect(menu.platesAreValid(
         [
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1))
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1))
         ]
     )).to.be.false;
 
     expect(menu.platesAreValid(
         [
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1))
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1))
         ]
     )).to.be.false;
   });
@@ -62,26 +62,26 @@ describe('Menu tests', () => {
   it('Validates good plates config correctly', () => {
     expect(menu.platesAreValid(
         [
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new StarterPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new SecondPlate('', new Ingredient(new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2))
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new StarterPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new SecondPlate('', new Ingredient(new RichProteinFood('Chuleta', 'Galicia', 15, new Macronutrients()), 2))
         ]
     )).to.be.true;
 
     expect(menu.platesAreValid(
         [
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new StarterPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new Dessert('', new Ingredient(new Meat('Carne dulce', 'Cataluña', 15, new Macronutrients()), 1))
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new StarterPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new Dessert('', new Ingredient(new RichProteinFood('Carne dulce', 'Cataluña', 15, new Macronutrients()), 1))
         ]
     )).to.be.true;
 
     expect(menu.platesAreValid(
         [
-          new FirstPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new StarterPlate('', new Ingredient(new Meat('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
-          new SecondPlate('', new Ingredient(new Meat('Chuleta', 'Galicia', 15, new Macronutrients()), 2)),
-          new Dessert('', new Ingredient(new Meat('Carne dulce', 'Cataluña', 15, new Macronutrients()), 1))
+          new FirstPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new StarterPlate('', new Ingredient(new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients()), 1)),
+          new SecondPlate('', new Ingredient(new RichProteinFood('Chuleta', 'Galicia', 15, new Macronutrients()), 2)),
+          new Dessert('', new Ingredient(new RichProteinFood('Carne dulce', 'Cataluña', 15, new Macronutrients()), 1))
         ]
     )).to.be.true;
   
@@ -130,7 +130,7 @@ describe('Menu tests', () => {
   it('Adds a repeat plate', () => {
     const vealStarter = new StarterPlate( 'Entrante de ternera',
         new Ingredient(
-            new Meat('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
+            new RichProteinFood('Ternera', 'Argentina', 12, new Macronutrients(1, 2, 7)), 1000
         )
     ); 
 

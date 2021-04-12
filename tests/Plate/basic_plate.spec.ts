@@ -1,7 +1,7 @@
 import 'mocha';
 import { expect } from 'chai';
 import { BasicPlate, Ingredient } from '../../src/Plate';
-import { BasicFood, FoodGroup, Macronutrients, Meat } from '../../src/Food';
+import { BasicFood, FoodGroup, Macronutrients, RichProteinFood } from '../../src/Food';
 import { PlateType } from '../../src/Plate/basic_plate';
 
 class MockFood extends BasicFood {
@@ -27,9 +27,9 @@ class MockPlate extends BasicPlate {
         [
           new Ingredient(new MockFood(), 500), 
           new Ingredient(new MockFood(), 500),
-          new Ingredient(new Meat('Ternera', 'Argentina', 7, new Macronutrients()), 200),
-          new Ingredient(new Meat('Ternera', 'Argentina', 7, new Macronutrients()), 200),
-          new Ingredient(new Meat('Ternera', 'Argentina', 7, new Macronutrients()), 200)
+          new Ingredient(new RichProteinFood('Ternera', 'Argentina', 7, new Macronutrients()), 200),
+          new Ingredient(new RichProteinFood('Ternera', 'Argentina', 7, new Macronutrients()), 200),
+          new Ingredient(new RichProteinFood('Ternera', 'Argentina', 7, new Macronutrients()), 200)
         ]
     );
   }

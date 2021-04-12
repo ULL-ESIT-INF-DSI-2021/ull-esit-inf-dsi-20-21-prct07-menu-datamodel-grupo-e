@@ -1,7 +1,7 @@
 import 'mocha';
 import { expect } from 'chai';
 import { Command, CommandOrder } from '../../src/Command';
-import { Fruit, Macronutrients, Vegetable, Meat } from '../../src/Food';
+import { Fruit, Macronutrients, Vegetable, RichProteinFood } from '../../src/Food';
 import { Menu } from '../../src/Menu';
 import { StarterPlate, Ingredient, FirstPlate, SecondPlate } from '../../src/Plate';
 
@@ -22,7 +22,7 @@ describe('Command tests', () => {
       ),
       new SecondPlate('SegundoPlato', 
           new Ingredient(
-              new Meat('Costillas', 'Brasil', 12, new Macronutrients()),
+              new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
               1
           )
       ),
