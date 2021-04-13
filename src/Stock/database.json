@@ -1,6 +1,17 @@
 {
   "stock": {
-    "foods": [],
+    "foods": [
+      {
+        "name": "Carne",
+        "origin": "Argentina",
+        "macronutrients": {
+          "lipids": 1,
+          "carbohydrates": 2,
+          "proteins": 3
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      }
+    ],
     "plates": [],
     "menus": [],
     "cartas": []

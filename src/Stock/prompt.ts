@@ -19,8 +19,8 @@ class App {
     this.prompt = new PromptStock(this.stock);
   }
 
-  run() {
-    this.prompt.menu();
+  async run() {
+    await this.prompt.menu();
   }
 
 
@@ -28,29 +28,29 @@ class App {
 class PromptStock {
   constructor(private stock: Stock) {}
 
-  menu() {
+  async menu() {
     console.clear();
     inquirer.prompt({
       type: "list",
       name: "command",
       message: "Choose option",
       choices: Object.values(Commands)
-    }).then((answers) => {
+    }).then(async (answers) => {
       switch (answers["command"]) {
         case Commands.DisplayFood:
           this.promptFoodView();
           break;
         case Commands.AddFood:
-          this.addFood();
+          await this.addFood();
           this.menu();
           break;
       }
     });
   };
 
-  promptFoodView() {
+  async promptFoodView() {
     console.clear();
-    this.stock.displayFoods();
+    await this.stock.displayFoods();
     inquirer.prompt({
       type: "list",
       name: "command",
@@ -66,12 +66,12 @@ class PromptStock {
   }
 
 
-  addFood() {
+  async addFood() {
     const foodsToBeAdded: BasicFood[] = [];
     const parser = new Parser();
     
     inquirer.registerPrompt('recursive', require('inquirer-recursive'));
-    inquirer.prompt([
+    await inquirer.prompt([
       {
         type: 'recursive',
         message: 'Add new food',
@@ -119,9 +119,9 @@ class PromptStock {
 
         ]
       }]).then(function(answers) {
-      answers.foods.forEach((food: jsonFood) => parser.parseFood(food));
+      answers.foods.forEach((food: jsonFood) => foodsToBeAdded.push(parser.parseFood(food)));
     });
-
+    console.log('FOODS: ', foodsToBeAdded);
     foodsToBeAdded.forEach((food) => this.stock.addFood(food));
   }
 };

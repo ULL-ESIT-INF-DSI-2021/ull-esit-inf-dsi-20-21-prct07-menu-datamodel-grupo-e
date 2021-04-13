@@ -186,7 +186,7 @@ export class Stock {
     }
   }
 
-  displayFoods() {
+  async displayFoods() {
     this.foods.forEach((food) => console.log(food.getName()));
 
   }
