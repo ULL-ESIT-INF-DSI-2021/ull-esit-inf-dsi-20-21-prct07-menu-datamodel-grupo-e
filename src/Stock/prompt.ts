@@ -3,6 +3,7 @@ import * as inquirer from 'inquirer';
 import 'colors';
 import { BasicFood, Cereal, FoodGroup, Fruit, RichProteinFood, Macronutrients } from '../Food';
 import Prompt = require("inquirer/lib/prompts/base");
+import { Parser } from "../Parser";
 
 enum Commands {
   DisplayFood = "Show Foods",
@@ -10,10 +11,24 @@ enum Commands {
   Quit = "Quit",
 }
 
-class PromptStock {
-  constructor(private stock_ :Stock) {}
+class App {
+  private stock = new Stock('./src/Stock/database.json');
+  private prompt: PromptStock;
 
-  promptMenu() {
+  constructor() {
+    this.prompt = new PromptStock(this.stock);
+  }
+
+  run() {
+    this.prompt.menu();
+  }
+
+
+}
+class PromptStock {
+  constructor(private stock: Stock) {}
+
+  menu() {
     console.clear();
     inquirer.prompt({
       type: "list",
@@ -26,8 +41,8 @@ class PromptStock {
           this.promptFoodView();
           break;
         case Commands.AddFood:
-          this.promptAddFood();
-          this.promptMenu();
+          this.addFood();
+          this.menu();
           break;
       }
     });
@@ -35,7 +50,7 @@ class PromptStock {
 
   promptFoodView() {
     console.clear();
-    this.stock_.displayFoods();
+    this.stock.displayFoods();
     inquirer.prompt({
       type: "list",
       name: "command",
@@ -44,16 +59,17 @@ class PromptStock {
     }).then((answers) => {
       switch (answers["command"]) {
         case Commands.Quit:
-          this.promptMenu();
+          this.menu();
           break;
       }
     });
   }
 
 
-  promptAddFood() {
-    const foods: BasicFood[] = [];
-    const stock = this.stock_;
+  addFood() {
+    const foodsToBeAdded: BasicFood[] = [];
+    const parser = new Parser();
+    
     inquirer.registerPrompt('recursive', require('inquirer-recursive'));
     inquirer.prompt([
       {
@@ -103,43 +119,14 @@ class PromptStock {
 
         ]
       }]).then(function(answers) {
-
-      // console.log(answers);
-      answers.foods.forEach((food: jsonFood) => {
-        switch (food.type) {
-          case FoodGroup.Fruits:
-            // eslint-disable-next-line no-invalid-this
-            foods.push(new Fruit(food.name, food.origin, food.price, food.macronutrients));
-            break;
-          case FoodGroup.Cereals:
-            // eslint-disable-next-line no-invalid-this
-            foods.push(new Cereal(food.name, food.origin, food.price, food.macronutrients));
-            break;
-          case FoodGroup.proteinRich:
-            // eslint-disable-next-line no-invalid-this
-            foods.push(new RichProteinFood(food.name, food.origin, food.price, food.macronutrients));
-            break;
-          case FoodGroup.Cereals:
-            // eslint-disable-next-line no-invalid-this
-            foods.push(new Cereal(food.name, food.origin, food.price, food.macronutrients));
-            break;
-        }
-      });
-      console.log(foods);
-      foods.forEach((food) => {
-        stock.addFood(food);
-      });
-  
+      answers.foods.forEach((food: jsonFood) => parser.parseFood(food));
     });
-  }
-  run() {
-    this.promptMenu();
+
+    foodsToBeAdded.forEach((food) => this.stock.addFood(food));
   }
 };
 
-const stockTest :Stock = new Stock('database');
-stockTest.addFood(new Fruit("Papaya", "Brasil", 3, {lipids: 3, carbohydrates: 6, proteins: 5}));
 
-const myPrompt :PromptStock = new PromptStock(stockTest);
+const app = new App();
 
-myPrompt.run();
+app.run();
