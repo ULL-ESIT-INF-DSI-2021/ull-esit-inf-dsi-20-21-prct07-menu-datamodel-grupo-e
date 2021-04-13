@@ -21,6 +21,7 @@
   "homepage": "https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e#readme",
   "devDependencies": {
     "@types/chai": "^4.2.16",
+    "@types/clone": "^2.1.0",
     "@types/deep-equal-in-any-order": "^1.0.1",
     "@types/inquirer": "^7.3.1",
     "@types/lowdb": "^1.0.9",
@@ -28,6 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
     "chai": "^4.3.4",
+    "clone": "^2.1.2",
     "deep-equal-in-any-order": "^1.1.4",
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",

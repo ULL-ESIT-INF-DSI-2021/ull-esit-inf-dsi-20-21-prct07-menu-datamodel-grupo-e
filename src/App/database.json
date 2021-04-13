@@ -2,12 +2,12 @@
   "stock": {
     "foods": [
       {
-        "name": "Carne",
+        "name": "Costillas",
         "origin": "Argentina",
         "macronutrients": {
-          "lipids": 1,
-          "carbohydrates": 2,
-          "proteins": 3
+          "lipids": 12,
+          "carbohydrates": 13,
+          "proteins": 14
         },
         "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
       }
