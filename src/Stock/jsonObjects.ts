@@ -3,7 +3,7 @@ import { Macronutrients } from "../Food/macronutrients";
 import { FoodGroup } from "../Food/basic_food";
 import { BasicPlate } from "../Plate/basic_plate";
 
-export type jsonFood = {
+export type JsonFood = {
   name: string,
   origin: string,
   price :number,
@@ -11,30 +11,28 @@ export type jsonFood = {
   type :FoodGroup
 };
 
-export type jsonIngredient = {
-  jsonFood :jsonFood,
+export type JsonIngredient = {
+  jsonFood :JsonFood,
   ammount :number,
 };
 
 
-export type jsonPlate = {
+export type JsonPlate = {
   name :string,
-  price: number,
-  ingredients: jsonIngredient[],
-  nutritionalC :Macronutrients,
+  ingredients: JsonIngredient[],
   type: string,
 };
 
 
-export type jsonMenu = {
+export type JsonMenu = {
   name :string,
   price :number,
-  jsonPlates :jsonPlate[],
+  jsonPlates :JsonPlate[],
 };
 
-export type jsonCarta = {
+export type JsonCarta = {
   name: string, 
-  menus: jsonMenu[],
-  singlePlates: jsonPlate[],
+  menus: JsonMenu[],
+  singlePlates: JsonPlate[],
 }
 

@@ -1,7 +1,7 @@
 /* eslint-disable spaced-comment */
 import * as inquirer from 'inquirer';
 import 'colors';
-import {jsonFood, jsonPlate, jsonMenu, jsonCarta, jsonIngredient} from './jsonObjects';
+import {JsonFood, JsonPlate, JsonMenu, JsonCarta, JsonIngredient} from './jsonObjects';
 import lowdb = require('lowdb');
 import FileSync = require('lowdb/adapters/FileSync');
 import { BasicFood, Cereal, FoodGroup, Fruit, RichProteinFood } from '../Food';
@@ -13,10 +13,10 @@ import { Parser } from '../Parser';
 
 type StockScheme = {
   stock: {
-    foods: jsonFood[],
-    plates: jsonPlate[],
-    menus: jsonMenu[],
-    cartas: jsonCarta[],
+    foods: JsonFood[],
+    plates: JsonPlate[],
+    menus: JsonMenu[],
+    cartas: JsonCarta[],
   }
 }
 
@@ -48,7 +48,7 @@ export class Stock {
 
   loadFoods() {
     if (this.database.has('stock.foods').value()) {
-      this.foods = this.database.get('stock.foods').value().map((food: jsonFood) => this.parser.parseFood(food));
+      this.foods = this.database.get('stock.foods').value().map((food: JsonFood) => this.parser.parseFood(food));
     } else {
       // Sets stock.foods: []
       this.storeFoods();
@@ -57,6 +57,14 @@ export class Stock {
 
   getFoods() {
     return this.foods;
+  }
+
+  searchFoodByname(name: string) {
+    const result = this.getFoods().find((food) => food.getName() === name);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar un alimento llamado ${name}`);
+    
   }
 
   addFood(newFood: BasicFood) {
@@ -82,7 +90,7 @@ export class Stock {
   /*****************************************************************************************/
   loadPlates() {
     if (this.database.has('stock.plates').value()) {
-      this.plates = this.database.get('stock.plates').value().map((plate: jsonPlate) => this.parser.parsePlate(plate));
+      this.plates = this.database.get('stock.plates').value().map((plate: JsonPlate) => this.parser.parsePlate(plate));
     } else {
       this.storePlates();
     }
@@ -118,7 +126,7 @@ export class Stock {
   /*****************************************************************************************/
   loadMenus() {
     if (this.database.has('stock.menus').value()) {
-      this.menus = this.database.get('stock.menus').value().map((menu: jsonMenu) => this.parser.parseMenu(menu));
+      this.menus = this.database.get('stock.menus').value().map((menu: JsonMenu) => this.parser.parseMenu(menu));
     } else {
       this.storeMenus();
     }
@@ -152,7 +160,7 @@ export class Stock {
   /**************************************************************************************/
   loadCartas() {
     if (this.database.has('stock.cartas').value()) {
-      this.database.get('stock.cartas').value().forEach((carta: jsonCarta) => {
+      this.database.get('stock.cartas').value().forEach((carta: JsonCarta) => {
         this.cartas.push(new Carta(carta.name,
             [...carta.menus.map((carta) => this.parser.parseMenu(carta))],
             [...carta.singlePlates.map((plate) => this.parser.parsePlate(plate))]));

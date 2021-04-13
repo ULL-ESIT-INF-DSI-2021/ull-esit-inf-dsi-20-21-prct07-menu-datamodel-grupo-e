@@ -1,5 +1,5 @@
 
 export { Stock } from './Stock';
-export { jsonFood, jsonIngredient, jsonPlate, jsonMenu, jsonCarta } from './jsonObjects';
+export { JsonFood, JsonIngredient, JsonPlate, JsonMenu, JsonCarta } from './jsonObjects';
 
 

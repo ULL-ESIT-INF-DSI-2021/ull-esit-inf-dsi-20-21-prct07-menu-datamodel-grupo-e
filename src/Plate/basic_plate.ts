@@ -45,6 +45,14 @@ export abstract class BasicPlate {
   }
 
   /**
+   * Añade un nuevo ingrediente
+   * 
+   */
+  addIngredient(ingredient: Ingredient) {
+    this.ingredients.push(ingredient);
+  }
+
+  /**
    * Getter del atributo 'name'
    * @returns nombre del plato
    */
