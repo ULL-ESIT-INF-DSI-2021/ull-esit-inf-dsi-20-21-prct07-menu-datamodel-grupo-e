@@ -102,7 +102,5 @@ export abstract class BasicFood {
       `  carbohydrates: ${this.macronutrients.carbohydrates}\n` + 
       `  proteins: ${this.macronutrients.proteins}\n`;
   }
-
-  abstract getType(): FoodGroup;
   
 };

@@ -205,7 +205,7 @@ export class StockEditor {
 
     const action = (answers: any) => {
       const modifiedFood = this.parser.parseFood({
-        type: food.getType(),
+        type: food.getFoodGroup(),
         name: answers['name'],
         origin: answers['origin'],
         macronutrients: answers['macronutrients'],

@@ -24,8 +24,4 @@ export class RichProteinFood extends BasicFood {
   getFoodGroup(): FoodGroup {
     return FoodGroup.proteinRich;
   }
-
-  getType(): FoodGroup {
-    return FoodGroup.proteinRich;
-  }
 };
