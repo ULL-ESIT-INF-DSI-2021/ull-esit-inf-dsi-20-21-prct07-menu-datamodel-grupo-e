@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc-watch --onSuccess \"node dist/Stock/Stock.js\"",
-    "test": "nyc mocha",
+    "test": "mocha",
+    "coverage": "nyc npm test && nyc report --reporter=lcov",
     "doc": "typedoc"
   },
   "repository": {
