@@ -201,11 +201,4 @@ describe('Stock Carta test', () => {
     const newStock = new Stock('./tests/Stock/database_test.json');
     expect(newStock.getCartas()).to.be.eql([]);
   });
-
-  it('Add Food', () => {
-    const fruit = new Fruit('Pera', 'Madrid', 2, {lipids: 5, carbohydrates: 12, proteins: 3 });
-    stock.addFood(fruit);
-    expect(true);
-  });
 });
-

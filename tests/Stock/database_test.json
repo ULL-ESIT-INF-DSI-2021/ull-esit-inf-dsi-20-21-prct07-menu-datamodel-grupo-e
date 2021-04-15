@@ -1,18 +1,6 @@
 {
   "stock": {
-    "foods": [
-      {
-        "name": "Pera",
-        "origin": "Madrid",
-        "price": 2,
-        "macronutrients": {
-          "lipids": 5,
-          "carbohydrates": 12,
-          "proteins": 3
-        },
-        "type": "Frutas."
-      }
-    ],
+    "foods": [],
     "plates": [],
     "menus": [],
     "cartas": []
