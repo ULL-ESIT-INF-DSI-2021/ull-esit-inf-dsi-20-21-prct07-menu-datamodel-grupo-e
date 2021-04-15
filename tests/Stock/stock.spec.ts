@@ -202,4 +202,3 @@ describe('Stock Carta test', () => {
     expect(newStock.getCartas()).to.be.eql([]);
   });
 });
-
