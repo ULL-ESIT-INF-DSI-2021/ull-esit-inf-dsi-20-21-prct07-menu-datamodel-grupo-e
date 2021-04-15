@@ -12,22 +12,12 @@
         "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
       },
       {
-        "name": "Papa",
-        "origin": "Canarias",
+        "name": "Zanahoria",
+        "origin": "INglaterra",
         "macronutrients": {
-          "lipids": 1,
-          "carbohydrates": 2,
-          "proteins": 3
-        },
-        "type": "Frutas."
-      },
-      {
-        "name": "Piña",
-        "origin": "Canarias",
-        "macronutrients": {
-          "lipids": 3,
-          "carbohydrates": 2,
-          "proteins": 1
+          "lipids": 12,
+          "carbohydrates": 13,
+          "proteins": 14
         },
         "type": "Frutas."
       }

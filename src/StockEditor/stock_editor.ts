@@ -24,6 +24,16 @@ export class StockEditor {
       addPlate: "Añadir plato",
       quit: "Salir"
     };
+    /**
+     * Añadir plato
+     *   *Muetsra todos los platos como lista*
+     *      Indique cantidad
+     * 
+     * Añadir menú
+     * 
+     * 
+     * 
+    */
 
     const prompt: inquirer.QuestionCollection<any> = [
       {
@@ -172,7 +182,7 @@ export class StockEditor {
         prompts: [
           {
             type: 'list',
-            name: 'name',
+            name: 'foodName',
             message: 'Seleccione un alimento:',
             choices: this.stock.getFoods().map((food) => food.getName()),
           },
@@ -192,8 +202,8 @@ export class StockEditor {
     ];
 
     const action = (answers: any) => {
-      answers['ingredients'].forEach((ingredient: {name: string, ammount: number}) => {
-        plate.addIngredient(new Ingredient(this.stock.searchFoodByname(ingredient.name), ingredient.ammount));
+      answers['ingredients'].forEach((ingredient: {foodName: string, ammount: number}) => {
+        plate.addIngredient(new Ingredient(this.stock.searchFoodByname(ingredient.foodName), ingredient.ammount));
       });
     };
 

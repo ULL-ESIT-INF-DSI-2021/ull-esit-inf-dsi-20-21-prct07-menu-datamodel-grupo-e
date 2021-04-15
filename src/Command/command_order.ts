@@ -6,6 +6,7 @@ export class CommandOrder {
     
   }
 
+
   getOrder(): Menu | BasicPlate {
     return this.order;
   }
