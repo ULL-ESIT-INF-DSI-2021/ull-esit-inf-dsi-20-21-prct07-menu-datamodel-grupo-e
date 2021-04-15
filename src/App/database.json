@@ -1,0 +1,29 @@
+{
+  "stock": {
+    "foods": [
+      {
+        "name": "Cerdo",
+        "origin": "Canarias",
+        "macronutrients": {
+          "lipids": 120,
+          "carbohydrates": 100,
+          "proteins": 32
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Zanahoria",
+        "origin": "INglaterra",
+        "macronutrients": {
+          "lipids": 12,
+          "carbohydrates": 13,
+          "proteins": 14
+        },
+        "type": "Frutas."
+      }
+    ],
+    "plates": [],
+    "menus": [],
+    "cartas": []
+  }
+}

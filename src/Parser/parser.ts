@@ -2,14 +2,14 @@ import { Carta } from "../Carta";
 import { BasicFood, FoodGroup, Fruit, Cereal, RichProteinFood } from "../Food";
 import { Menu } from "../Menu";
 import { BasicPlate, Dessert, FirstPlate, Ingredient, PlateType, SecondPlate, StarterPlate } from "../Plate";
-import { jsonCarta, jsonFood, jsonIngredient, jsonMenu, jsonPlate } from "../Stock";
+import { JsonCarta, JsonFood, JsonIngredient, JsonMenu, JsonPlate } from "../Stock";
 
 export class Parser {
   constructor() {
 
   }
 
-  parseFood(food: jsonFood): BasicFood {
+  parseFood(food: JsonFood): BasicFood {
     switch (food.type) {
       case FoodGroup.Fruits:
         return new Fruit(food.name, food.origin, food.price, food.macronutrients);
@@ -27,8 +27,8 @@ export class Parser {
     }
   }
 
-  parseJsonFood(newFood: BasicFood): jsonFood {
-    const object :jsonFood= {
+  parseJsonFood(newFood: BasicFood): JsonFood {
+    const object :JsonFood= {
       name: newFood.getName(),
       origin: newFood.getOrigin(),
       price: newFood.getPriceByKg(),
@@ -38,13 +38,13 @@ export class Parser {
     return object;
   }
 
-  parseIngredient(ingredient: jsonIngredient): Ingredient {
+  parseIngredient(ingredient: JsonIngredient): Ingredient {
     const result = new Ingredient(this.parseFood(ingredient.jsonFood), ingredient.ammount);
     return result;
   }
 
-  parseJsonIngredient(ingredient: Ingredient): jsonIngredient {
-    const result: jsonIngredient = {
+  parseJsonIngredient(ingredient: Ingredient): JsonIngredient {
+    const result: JsonIngredient = {
       jsonFood: this.parseJsonFood(ingredient.getFood()),
       ammount: ingredient.getAmmount(),
     };
@@ -52,7 +52,7 @@ export class Parser {
     return result;
   }
 
-  parsePlate(plate: jsonPlate): BasicPlate {
+  parsePlate(plate: JsonPlate): BasicPlate {
     switch (plate.type) {
       case PlateType.starterPlate:
         return new StarterPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
@@ -66,29 +66,27 @@ export class Parser {
       case PlateType.secondPlate:
         return new SecondPlate(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
         break;
-        //Compobar este default puesto para que no se queje
+        
       default: 
         return new Dessert(plate.name, ...plate.ingredients.map((ing) => this.parseIngredient(ing)));
     }
   }
   
-  parseJsonPlate(newPlate: BasicPlate): jsonPlate {
-    const object :jsonPlate = {
+  parseJsonPlate(newPlate: BasicPlate): JsonPlate {
+    const object :JsonPlate = {
       name: newPlate.getName(),
-      price: newPlate.getPrice(),
-      nutritionalC: newPlate.getNutritionalComposition(),
       ingredients: newPlate.getIngredients().map((ingredient: Ingredient) => this.parseJsonIngredient(ingredient)),
       type: newPlate.getType(),
     };
     return object;
   }
 
-  parseMenu(menu: jsonMenu): Menu {
+  parseMenu(menu: JsonMenu): Menu {
     return new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate)));
   }
   
-  parseJsonMenu(newMenu: Menu): jsonMenu {
-    const object: jsonMenu = {
+  parseJsonMenu(newMenu: Menu): JsonMenu {
+    const object: JsonMenu = {
       name: newMenu.getNameOfMenu(),
       price: newMenu.getPrice(),
       jsonPlates: newMenu.getPlates().map((plate) => this.parseJsonPlate(plate)),
@@ -97,8 +95,8 @@ export class Parser {
     return object;
   }
 
-  parseJsonCarta(newCarta: Carta): jsonCarta {
-    const object: jsonCarta = {
+  parseJsonCarta(newCarta: Carta): JsonCarta {
+    const object: JsonCarta = {
       name: newCarta.getName(),
       menus: newCarta.getMenus().map((menu) => this.parseJsonMenu(menu)),
       singlePlates: newCarta.getAllPlates().map((plate) => this.parseJsonPlate(plate)),
