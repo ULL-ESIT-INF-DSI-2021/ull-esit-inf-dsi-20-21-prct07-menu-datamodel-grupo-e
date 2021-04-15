@@ -31,4 +31,8 @@ export class Cereal extends BasicFood {
   getInfo() {
     return `Cereales\n` + super.getInfo();
   }
+
+  getType(): FoodGroup {
+    return FoodGroup.Cereals;
+  }
 }

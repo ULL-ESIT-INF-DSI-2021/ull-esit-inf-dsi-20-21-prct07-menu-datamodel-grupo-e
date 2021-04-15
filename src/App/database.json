@@ -2,24 +2,37 @@
   "stock": {
     "foods": [
       {
-        "name": "Cerdo",
-        "origin": "Canarias",
+        "name": "Pollito",
+        "origin": "Baleares",
+        "priceByKg": 4,
         "macronutrients": {
-          "lipids": 120,
-          "carbohydrates": 100,
-          "proteins": 32
+          "lipids": 1,
+          "carbohydrates": 2,
+          "proteins": 3
         },
         "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
       },
       {
-        "name": "Zanahoria",
-        "origin": "INglaterra",
+        "name": "Manzana",
+        "origin": "Tacoronte",
+        "priceByKg": 3,
         "macronutrients": {
-          "lipids": 12,
-          "carbohydrates": 13,
-          "proteins": 14
+          "lipids": 1,
+          "carbohydrates": 2,
+          "proteins": 3
         },
         "type": "Frutas."
+      },
+      {
+        "name": "Pescado",
+        "origin": "Canarias",
+        "priceByKg": 12,
+        "macronutrients": {
+          "lipids": 4,
+          "carbohydrates": 5,
+          "proteins": 6
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
       }
     ],
     "plates": [],

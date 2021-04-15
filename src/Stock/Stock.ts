@@ -96,6 +96,12 @@ export class Stock {
     }
   }
 
+  searchPlateByName(plateName: string) {
+    const result = this.getPlates().find((plate) => plate.getName() === plateName);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar un plato llamado ${plateName}`);
+  }
 
   getPlates() {
     return this.plates;

@@ -31,4 +31,8 @@ export class Fruit extends BasicFood {
   getInfo() {
     return `Fruta\n` + super.getInfo();
   }
+
+  getType(): FoodGroup {
+    return FoodGroup.Fruits;
+  }
 }

@@ -6,7 +6,7 @@ import { BasicPlate } from "../Plate/basic_plate";
 export type JsonFood = {
   name: string,
   origin: string,
-  price :number,
+  priceByKg :number,
   macronutrients :Macronutrients,
   type :FoodGroup
 };

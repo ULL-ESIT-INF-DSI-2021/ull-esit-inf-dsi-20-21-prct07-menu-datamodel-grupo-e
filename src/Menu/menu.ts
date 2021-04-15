@@ -69,7 +69,6 @@ export class Menu {
     if (plates.length > 4 || plates.length < 3) return false;
 
     const uniqPlateTypes = [...new Set<PlateType>(plates.map((plate) => plate.getType()))];
-    
     if (uniqPlateTypes.length < 3) return false;
 
     return true;

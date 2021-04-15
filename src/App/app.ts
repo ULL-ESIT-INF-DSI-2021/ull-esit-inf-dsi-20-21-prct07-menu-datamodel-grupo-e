@@ -1,11 +1,10 @@
 import inquirer = require("inquirer");
 import { Stock } from "../Stock";
 import { StockEditor } from "../StockEditor";
-import * as clone from 'clone';
 
 
 export class App {
-  
+
   private stockEditor: StockEditor;
   private stock: Stock;
   // private commandMaker: CommandMaker;
@@ -15,14 +14,15 @@ export class App {
     this.stockEditor = new StockEditor(this.stock);
   }
 
-  run() {
-    this.promptMainMenu();
+  async run() {
+    await this.promptMainMenu();
   }
 
   async promptMainMenu() {
     const choices = {
       stockEditor: 'Editar inventario',
       commandMaker: 'Crear comanda',
+      exit: 'Salir',
     };
 
     const prompt = [
@@ -34,20 +34,25 @@ export class App {
       }
     ];
 
-    let outAnswers: any;
-    const action = (answers: any) => {
-      outAnswers = clone(answers);
+    let quit = false;
+    const action = async (answers: any) => {
+      switch (answers['choice']) {
+        case choices.stockEditor:
+          await this.stockEditor.run();
+          break;
+        case choices.commandMaker:
+          console.log('CommandMaker');
+          break;
+        case choices.exit:
+          quit = true;
+      }
     };
-    
+
     await inquirer.prompt(prompt).then(action);
-    
-    
-    switch (outAnswers['choice']) {
-      case choices.stockEditor:
-        this.stockEditor.run();
-        break;
-    }
+    if (quit) return;
+    await this.promptMainMenu();
   }
+
 };
 
 const app = new App('./src/App/database.json');

@@ -31,4 +31,8 @@ export class Vegetable extends BasicFood {
   getInfo() {
     return `Vegetal\n` + super.getInfo();
   }
+
+  getType(): FoodGroup {
+    return FoodGroup.vegetables;
+  }
 }

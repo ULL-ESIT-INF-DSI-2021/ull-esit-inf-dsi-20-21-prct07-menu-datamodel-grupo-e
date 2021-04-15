@@ -12,18 +12,18 @@ export class Parser {
   parseFood(food: JsonFood): BasicFood {
     switch (food.type) {
       case FoodGroup.Fruits:
-        return new Fruit(food.name, food.origin, food.price, food.macronutrients);
+        return new Fruit(food.name, food.origin, food.priceByKg, food.macronutrients);
         break;
       case FoodGroup.Cereals:
-        return new Cereal(food.name, food.origin, food.price, food.macronutrients);
+        return new Cereal(food.name, food.origin, food.priceByKg, food.macronutrients);
         break;
       // case FoodGroup.Dairy:
       //   this.foods.push(new Dairy(food.name, food.origin, food.price, food.macronutrients));
       case FoodGroup.proteinRich:
-        return new RichProteinFood(food.name, food.origin, food.price, food.macronutrients);
+        return new RichProteinFood(food.name, food.origin, food.priceByKg, food.macronutrients);
         break;
       default:
-        return new Fruit(food.name, food.origin, food.price, food.macronutrients);
+        return new Fruit(food.name, food.origin, food.priceByKg, food.macronutrients);
     }
   }
 
@@ -31,7 +31,7 @@ export class Parser {
     const object :JsonFood= {
       name: newFood.getName(),
       origin: newFood.getOrigin(),
-      price: newFood.getPriceByKg(),
+      priceByKg: newFood.getPriceByKg(),
       macronutrients: newFood.getMacronutrients(),
       type: newFood.getFoodGroup(),
     };
