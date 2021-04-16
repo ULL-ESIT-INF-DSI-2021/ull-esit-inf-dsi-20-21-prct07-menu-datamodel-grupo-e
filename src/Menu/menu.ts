@@ -9,16 +9,21 @@ export class Menu {
 
   private plates: BasicPlate[];
 
-  constructor(private name: string, ...plates_: BasicPlate[]) {
-    if (!this.platesAreValid(plates_)) {
+  constructor(private name: string, plates_: BasicPlate[], validatePlates = true) {
+    if (validatePlates && !this.platesAreValid(plates_)) {
       throw new Error('Bad Menu configuration');
     }
 
     this.plates = plates_;
   }
 
+  // Setters
+  setName(newName: string) {
+    this.name = newName;
+  }
+
   // Getters
-  getNameOfMenu() {
+  getName() {
     return this.name;
   }
 
@@ -74,6 +79,9 @@ export class Menu {
     return true;
   }
 
+  /**
+   * Posible nuevo comportamiento: si ya existe uno con el mismo nombre es sustituido.
+   */
   addPlate(newPlate: BasicPlate) {
     const setNameofPlates = new Set();
     this.plates.forEach((plate) => setNameofPlates.add(plate.getName()));

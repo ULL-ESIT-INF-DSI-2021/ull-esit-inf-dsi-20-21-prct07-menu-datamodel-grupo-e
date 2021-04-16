@@ -33,10 +33,183 @@
           "proteins": 6
         },
         "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Papa",
+        "origin": "Canarias",
+        "priceByKg": 13,
+        "macronutrients": {
+          "lipids": 12,
+          "carbohydrates": 13,
+          "proteins": 14
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Mojo",
+        "origin": "Canarias",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 1,
+          "carbohydrates": 2,
+          "proteins": 3
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Cerdo",
+        "origin": "España",
+        "priceByKg": 7,
+        "macronutrients": {
+          "lipids": 23,
+          "carbohydrates": 24,
+          "proteins": 25
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Muesli",
+        "origin": "Francia",
+        "priceByKg": 12,
+        "macronutrients": {
+          "lipids": 43,
+          "carbohydrates": 23,
+          "proteins": 2
+        },
+        "type": "Cereales."
       }
     ],
-    "plates": [],
-    "menus": [],
+    "plates": [
+      {
+        "name": "Papas con mojo",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Papa",
+              "origin": "Canarias",
+              "priceByKg": 13,
+              "macronutrients": {
+                "lipids": 12,
+                "carbohydrates": 13,
+                "proteins": 14
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Mojo",
+              "origin": "Canarias",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 1,
+                "carbohydrates": 2,
+                "proteins": 3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 25
+          }
+        ],
+        "type": "Entrante"
+      },
+      {
+        "name": "Carne fiesta",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Cerdo",
+              "origin": "España",
+              "priceByKg": 7,
+              "macronutrients": {
+                "lipids": 23,
+                "carbohydrates": 24,
+                "proteins": 25
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 300
+          },
+          {
+            "jsonFood": {
+              "name": "Papa",
+              "origin": "Canarias",
+              "priceByKg": 13,
+              "macronutrients": {
+                "lipids": 12,
+                "carbohydrates": 13,
+                "proteins": 14
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Pie de manzana",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Manzana",
+              "origin": "Tacoronte",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 1,
+                "carbohydrates": 2,
+                "proteins": 3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          }
+        ],
+        "type": "Postre"
+      },
+      {
+        "name": "Mojo con papas",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Mojo",
+              "origin": "Canarias",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 1,
+                "carbohydrates": 2,
+                "proteins": 3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Papa",
+              "origin": "Canarias",
+              "priceByKg": 13,
+              "macronutrients": {
+                "lipids": 12,
+                "carbohydrates": 13,
+                "proteins": 14
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          }
+        ],
+        "type": "Segundo plato"
+      }
+    ],
+    "menus": [
+      {
+        "name": "Menú no especial :(",
+        "price": 0,
+        "jsonPlates": []
+      }
+    ],
     "cartas": []
   }
 }

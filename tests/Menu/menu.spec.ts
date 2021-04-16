@@ -25,7 +25,7 @@ describe('Menu tests', () => {
     )
   ];
 
-  const menu = new Menu('Grill lovers', ...plates);
+  const menu = new Menu('Grill lovers', plates);
 
 
   it('Can be instanciated', () => {
@@ -139,7 +139,7 @@ describe('Menu tests', () => {
   });
 
   it('Get the name of menu', () => {
-    expect(menu.getNameOfMenu()).to.be.equal('Grill lovers');
+    expect(menu.getName()).to.be.equal('Grill lovers');
   });
 
 });

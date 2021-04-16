@@ -8,24 +8,26 @@ import { StarterPlate, Ingredient, FirstPlate, SecondPlate } from '../../src/Pla
 
 describe('Command tests', () => {
   const menu1 = new Menu('Menu 1',
-      new StarterPlate('Entrante', 
-          new Ingredient(
-              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new FirstPlate('PrimerPlato', 
-          new Ingredient(
-              new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new SecondPlate('SegundoPlato', 
-          new Ingredient(
-              new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
-              1
-          )
-      ),
+      [
+        new StarterPlate('Entrante', 
+            new Ingredient(
+                new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new FirstPlate('PrimerPlato', 
+            new Ingredient(
+                new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new SecondPlate('SegundoPlato', 
+            new Ingredient(
+                new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
+                1
+            )
+        ),
+      ]
   );
 
   const command = new Command([new CommandOrder(menu1, 1)]);

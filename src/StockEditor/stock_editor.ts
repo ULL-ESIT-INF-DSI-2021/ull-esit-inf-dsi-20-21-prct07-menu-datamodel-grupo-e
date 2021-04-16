@@ -6,6 +6,7 @@ import { JsonFood, JsonPlate } from "../Stock";
 import { BasicPlate, Ingredient, PlateType } from "../Plate";
 import * as clone from 'clone';
 import { Menu } from "../Menu";
+import 'colors';
 
 export class StockEditor {
   private parser = new Parser();
@@ -20,17 +21,17 @@ export class StockEditor {
   async promptMainMenu() {
 
     const choices = {
-      addFood: "Añadir alimento",
-      modifyFood: "Modificar Alimento",
-      removeFood: "Quitar alimento",
+      addFood: "Añadir alimento".blue,
+      modifyFood: "Modificar Alimento".blue,
+      removeFood: "Quitar alimento".blue,
 
-      addPlate: "Añadir plato",
+      addPlate: "Añadir plato".green,
       // modifyPlate: "Modificar plato",
-      removePlate: "Quitar plato",
+      removePlate: "Quitar plato".green,
 
-      addMenu: "Añadir menú",
-      // modifyMenu: "Modificar menú",
-      removeMenu: "Quitar menú",
+      addMenu: "Añadir menú".yellow,
+      modifyMenu: "Modificar menú".yellow,
+      removeMenu: "Quitar menú".yellow,
 
       quit: "Volver"
     };
@@ -47,7 +48,7 @@ export class StockEditor {
     let quit = false;
     const action = async (answers: any) => {
       switch (answers['choice']) {
-    
+        // Food options
         case choices.addFood:
           await this.promptAddFood();
           break;
@@ -58,19 +59,25 @@ export class StockEditor {
           await this.modifyFood();
           break;
 
+        // Plate options
         case choices.addPlate:
           await this.promptAddPlate();
           break;
         case choices.removePlate:
           await this.promptRemovePlate();
           break;
-    
+
+        // Menu options
         case choices.addMenu:
           await this.promptAddMenu();
           break;
         case choices.removeMenu:
           await this.promptRemoveMenu();
-    
+          break;
+        case choices.modifyMenu:
+          await this.promptModifyMenu();
+          break;
+
         case choices.quit:
           quit = true;
           break;
@@ -83,6 +90,7 @@ export class StockEditor {
   };
 
 
+  // Food
   async promptAddFood() {
 
     const prompt = [
@@ -135,7 +143,6 @@ export class StockEditor {
       }];
 
     const action = (answers: any) => {
-      console.log('FOODS:', answers.foods);
       answers.foods.forEach((food: JsonFood) => this.stock.addFood(this.parser.parseFood(food)));
     };
 
@@ -212,7 +219,7 @@ export class StockEditor {
         priceByKg: answers['priceByKg']
       });
 
-      this.stock.deleteFood(foodName);
+      this.stock.removeFood(foodName);
       this.stock.addFood(modifiedFood);
     };
 
@@ -235,14 +242,19 @@ export class StockEditor {
     const action = (answers: any) => {
       console.log('Eliminando alimentos...');
       if (answers['foodNames']) {
-        answers['foodNames'].forEach((foodName: string) => this.stock.deleteFood(foodName));
+        answers['foodNames'].forEach((foodName: string) => this.stock.removeFood(foodName));
       }
     };
 
     await inquirer.prompt(prompt).then(action);
   }
 
-  async promptAddPlate() {
+  // Plate
+  /**
+   * Permite al usuario añadir platos al objeto platesReceiver
+   * @param platesReceiver Objeto que recibirá los platos
+   */
+  async promptAddPlate(platesReceiver: { addPlate(plate: BasicPlate): unknown } = this.stock) {
     let choices: string[] = Object.values(PlateType);
     choices = choices.concat('Volver');
 
@@ -267,10 +279,9 @@ export class StockEditor {
       const jsonFood: JsonPlate = { name: answers['name'], type: answers['type'], ingredients: [] };
       const newPlate = this.parser.parsePlate(jsonFood);
 
-      console.log('\nIngrese los ingredientes:\n');
       await this.promptIngredientsFor(newPlate);
 
-      this.stock.addPlate(newPlate);
+      platesReceiver.addPlate(newPlate);
     };
 
     await inquirer.prompt(prompt).then(action);
@@ -329,7 +340,7 @@ export class StockEditor {
     const action = (answers: any) => {
       console.log('Eliminando platos...');
       if (answers['plateNames']) {
-        answers['plateNames'].forEach((plateName: string) => this.stock.deletePlate(plateName));
+        answers['plateNames'].forEach((plateName: string) => this.stock.removePlate(plateName));
       }
     };
 
@@ -337,6 +348,10 @@ export class StockEditor {
   }
 
 
+  // Menu
+  /**
+   * Permite al usuario crear un menú con los platos ya existentes
+   */
   async promptAddMenu() {
 
     const prompt = [
@@ -355,33 +370,139 @@ export class StockEditor {
 
     const action = (answers: any) => {
       const plates = answers['plates'].map((plateName: string) => this.stock.searchPlateByName(plateName));
-      this.stock.addMenu(new Menu(answers['menuName'], ...plates));
+      this.stock.addMenu(new Menu(answers['menuName'], plates));
     };
 
     // Donde poner los await? Aquí o fuera del promptAddFood?
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+   * Permite al usuario seleccionar un menú y eliminarlo del inventario
+   */
   async promptRemoveMenu() {
-    const menuNames = this.stock.getMenus().map((Menu) => Menu.getNameOfMenu());
+    const menuNames = this.stock.getMenus().map((Menu) => Menu.getName());
 
     const prompt: inquirer.QuestionCollection<any> = [
       {
         type: 'checkbox',
-        name: 'Menus',
+        name: 'menuNames',
         message: 'Elija los menus a eliminar',
         choices: menuNames,
       }
     ];
 
     const action = (answers: any) => {
-      console.log('Eliminando alimentos...');
-      if (answers['foodNames']) {
-        answers['foodNames'].forEach((foodName: string) => this.stock.deleteFood(foodName));
+      console.log('Eliminando menús...');
+      if (answers['menuNames']) {
+        answers['menuNames'].forEach((menuName: string) => this.stock.removeMenu(menuName));
       }
     };
 
     await inquirer.prompt(prompt).then(action);
   };
 
+  /**
+   * Permite al usuario modificar un menú: Cambiar su nombre, Añadir platos (existentes o nuevos) y también eliminarlos
+   */
+  async promptModifyMenu() {
+
+    // Elegir el menú
+    let menuToEdit: Menu;
+    let oldMenuName: string;
+    await inquirer.prompt(
+        {
+          type: 'list',
+          name: 'menuName',
+          choices: this.stock.getMenus().map((menu) => menu.getName()),
+        }
+    ).then((answers: any) => {
+      menuToEdit = clone(this.stock.searchMenuByName(answers.menuName));
+      oldMenuName = menuToEdit.getName();
+    });
+
+    // Elegir el tipo de modificación
+    const choices = {
+      changeName: 'Cambiar nombre',
+      addExistentPlate: 'Añadir platos existentes.',
+      addNewPlate: 'Añdir nuevo plato.',
+      removePlates: 'Quitar platos.',
+      quit: 'Volver',
+    };
+
+    const prompt: inquirer.QuestionCollection<any> = [
+      {
+        type: 'list',
+        name: 'choice',
+        choices: Object.values(choices),
+      }
+    ];
+
+    const action = async (answers: any) => {
+      switch (answers.choice) {
+        case choices.changeName:
+          await this.promptNameFor(menuToEdit);
+          break;
+        case choices.addExistentPlate:
+          await this.promptExistentPlatesFor(menuToEdit);
+          break;
+        case choices.addNewPlate:
+          await this.promptAddPlate(menuToEdit);
+          break;
+        case choices.removePlates:
+          await this.promptRemovePlatesFrom(menuToEdit);
+      }
+      this.stock.removeMenu(oldMenuName);
+      this.stock.addMenu(menuToEdit);
+    };
+
+    await inquirer.prompt(prompt).then(action);
+  }
+  
+  async promptExistentPlatesFor(menu: Menu) {
+    const choices = this.stock.getPlates().map((plate) => plate.getName());
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'checkbox',
+      name: 'plateNames',
+      choices: choices
+    };
+
+    const action = (answers: any) => {
+      answers.plateNames.forEach((plateName: string) => menu.addPlate(this.stock.searchPlateByName(plateName)));
+    };
+
+    await inquirer.prompt(prompt).then(action);
+  }
+
+  async promptRemovePlatesFrom(platesContainer: {getPlates(): BasicPlate[], removePlate(plateName: string): unknown}) {
+    const choices = platesContainer.getPlates().map((plate) => plate.getName());
+
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'checkbox',
+      message: 'Elija los platos a quitar',
+      name: 'plateNames',
+      choices: choices,
+    };
+
+    const action = (answers: any) => {
+      answers.plateNames.forEach((plateName: string) => platesContainer.removePlate(plateName));
+    };
+
+    await inquirer.prompt(prompt).then(action);
+  }
+
+  async promptNameFor(nameHolder: {getName(): string, setName(newName: string): unknown}) {
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'input',
+      name: 'newName',
+      message: `Nuevo nombre (${nameHolder.getName()}):`,
+    };
+
+    const action = (answers: any) => {
+      nameHolder.setName(answers.newName);
+    };
+
+    await inquirer.prompt(prompt).then(action);
+  }
 };
+

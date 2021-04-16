@@ -74,7 +74,7 @@ export class Stock {
     }
   }
 
-  deleteFood(foodName :string) {
+  removeFood(foodName :string) {
     const indexFood = this.foods.findIndex((food) => food.getName() === foodName );
     if (indexFood != -1) {
       this.foods.splice(indexFood, 1);
@@ -119,7 +119,7 @@ export class Stock {
   }
   
 
-  deletePlate(name: string) {
+  removePlate(name: string) {
     const plateIndex = this.plates.findIndex((plate) => plate.getName() === name);
     if (plateIndex >= 0) {
       this.plates.splice(plateIndex, 1);
@@ -132,7 +132,8 @@ export class Stock {
   /*****************************************************************************************/
   loadMenus() {
     if (this.database.has('stock.menus').value()) {
-      this.menus = this.database.get('stock.menus').value().map((menu: JsonMenu) => this.parser.parseMenu(menu));
+      // No se validan los platos que contiene el menú alojado en la base de datos
+      this.menus = this.database.get('stock.menus').value().map((menu: JsonMenu) => this.parser.parseMenu(menu, false));
     } else {
       this.storeMenus();
     }
@@ -143,7 +144,7 @@ export class Stock {
   }
   
   addMenu(newMenu: Menu) {
-    if (!this.menus.map((menu) => menu.getNameOfMenu()).includes(newMenu.getNameOfMenu())) {
+    if (!this.menus.map((menu) => menu.getName()).includes(newMenu.getName())) {
       this.menus.push(newMenu);
       this.storeMenus();
     }
@@ -154,12 +155,19 @@ export class Stock {
     this.database.set('stock.menus', this.menus.map((menu) => this.parser.parseJsonMenu(menu))).write();
   }
 
-  deleteMenu(name: string) {
-    const menuIndex = this.menus.findIndex((menu) => menu.getNameOfMenu() === name);
+  removeMenu(name: string) {
+    const menuIndex = this.menus.findIndex((menu) => menu.getName() === name);
     if (menuIndex >= 0) {
       this.menus.splice(menuIndex, 1);
       this.storeMenus();
     }
+  }
+
+  searchMenuByName(menuName: string) {
+    const result = this.getMenus().find((menu) => menu.getName() === menuName);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar un menú llamado ${menuName}`);
   }
 
 
@@ -192,7 +200,7 @@ export class Stock {
     this.database.set('stock.cartas', this.cartas.map((carta) => this.parser.parseJsonCarta(carta))).write();
   }
 
-  deleteCarta(name: string) {
+  removeCarta(name: string) {
     const cartaIndex = this.cartas.findIndex((carta) => carta.getName() === name);
     if (cartaIndex >= 0) {
       this.cartas.splice(cartaIndex, 1);

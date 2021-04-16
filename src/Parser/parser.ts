@@ -81,13 +81,13 @@ export class Parser {
     return object;
   }
 
-  parseMenu(menu: JsonMenu): Menu {
-    return new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate)));
+  parseMenu(menu: JsonMenu, validatePlates = true): Menu {
+    return new Menu(menu.name, menu.jsonPlates.map((plate) => this.parsePlate(plate)), validatePlates);
   }
   
   parseJsonMenu(newMenu: Menu): JsonMenu {
     const object: JsonMenu = {
-      name: newMenu.getNameOfMenu(),
+      name: newMenu.getName(),
       price: newMenu.getPrice(),
       jsonPlates: newMenu.getPlates().map((plate) => this.parseJsonPlate(plate)),
     };
