@@ -5,10 +5,21 @@ import { Dessert } from "../Plate/dessert";
 import { FirstPlate } from "../Plate/first_plate";
 import { SecondPlate } from "../Plate/second_plate";
 
+/**
+ * Clase menú, representa a un conjunto de
+ * platos variable,tiene un atributo que es
+ * un vector de BasicPlate[]
+ */
 export class Menu {
 
   private plates: BasicPlate[];
 
+  /**
+   * El constructor inicializa el vector
+   * interno de platos
+   * @param name nombre
+   * @param plates_ un conjunto de platos
+   */
   constructor(private name: string, ...plates_: BasicPlate[]) {
     if (!this.platesAreValid(plates_)) {
       throw new Error('Bad Menu configuration');
@@ -17,36 +28,72 @@ export class Menu {
     this.plates = plates_;
   }
 
-  // Getters
+  /**
+   * Método que obtiene el nombre del menú
+   * @returns Una cadena de caracteres
+   */
   getNameOfMenu() {
     return this.name;
   }
 
+  /**
+   * Método que lista los grupos de alimentos por
+   * orden de aparición
+   * @returns Un vector de platos
+   */
   getPlates(): BasicPlate[] {
-    // En orden de aparición
     return this.getStarterPlates().concat(this.getFirsPlates()).concat(this.getSecondPlates()).concat(this.getDesserts());
   }
 
+  /**
+   * Método que lista los posibles
+   * entrantes del menú
+   * @returns Un vector de StarterPlate
+   */
   getStarterPlates(): StarterPlate[] {
     return this.plates.filter((plate) => plate instanceof StarterPlate);
   }
 
+  /**
+   * Método que lista los posibles
+   * primeros platos del menú
+   * @returns Un vector de FirstPlate
+   */
   getFirsPlates(): FirstPlate[] {
     return this.plates.filter((plate) => plate instanceof FirstPlate);
   }
 
+  /**
+   * Método que lista los posibles 
+   * segundos platos del menú
+   * @returns Un vector de SecondPlate
+   */
   getSecondPlates(): SecondPlate[] {
     return this.plates.filter((plate) => plate instanceof SecondPlate);
   }
 
+  /**
+   * Método que lista los posibles 
+   * postres del menú
+   * @returns Un vector de Dessert
+   */
   getDesserts(): Dessert[] {
     return this.plates.filter((plate) => plate instanceof Dessert);
   }
 
+  /**
+   * Método que calcula el precio total del menú en euros
+   * @returns Un valor numérico
+   */
   getPrice(): number {
     return this.getPlates().reduce((total, plate) => total + plate.getPrice(), 0);
   }
 
+  /**
+   * Método que calcula la composición nutricional del menú
+   * basándose en los platos que lo componen
+   * @returns Un objeto Macronutrients
+   */
   getNutritionalComposition(): Macronutrients {
     const nutritionalComposition = new Macronutrients();
     const platesCompositions = this.getPlates().map((plate) => plate.getNutritionalComposition());
@@ -58,6 +105,10 @@ export class Menu {
     return nutritionalComposition;
   }
 
+  /**
+   * Método que calcula el listado de grupo de alimentos
+   * @returns Un vector de grupo de alimentos
+   */
   listFoodGroups(): FoodGroup[] {
     if (this.getPlates()) {
       return [...new Set<FoodGroup>(this.getPlates().map((plate) => plate.getPredominantFoodGroup()))];
@@ -65,6 +116,12 @@ export class Menu {
     return [];
   }
   
+  /**
+   * Un menú debe estar compuesto por un plato de cada
+   * categoría o de al menos, tres de ellas
+   * @param plates Un vector de platos
+   * @returns Un valor verdadero o falso
+   */
   platesAreValid(plates: BasicPlate[]): boolean {
     if (plates.length > 4 || plates.length < 3) return false;
 
@@ -75,6 +132,10 @@ export class Menu {
     return true;
   }
 
+  /**
+   * Método que sirve para añadir un plato
+   * @param newPlate El plato añadido
+   */
   addPlate(newPlate: BasicPlate) {
     const setNameofPlates = new Set();
     this.plates.forEach((plate) => setNameofPlates.add(plate.getName()));
@@ -85,10 +146,18 @@ export class Menu {
     }
   }
 
+  /**
+   * Método que elimina un plato por su nombre
+   * @param plateName El nombre del plato
+   */
   removePlate(plateName: string) {
     this.plates.forEach((plate, index) => plate.getName() === plateName ? this.removePlateByIndex(index) : true);
   }
 
+  /**
+   * Método que elimina un plato de acuerdo a su orden
+   * @param index Un valor numérico (índice)
+   */
   private removePlateByIndex(index: number) {
     this.plates.splice(index, 1);
   }
