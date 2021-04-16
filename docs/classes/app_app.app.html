@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CommandOrder | Modelado de datos</title>
+	<title>App | Modelado de datos</title>
 	<meta name="description" content="Documentation for Modelado de datos">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,32 +55,24 @@
 					<a href="../modules.html">Modelado de datos</a>
 				</li>
 				<li>
-					<a href="../modules/command_command_order.html">Command/command_order</a>
+					<a href="../modules/app_app.html">App/app</a>
 				</li>
 				<li>
-					<a href="command_command_order.commandorder.html">CommandOrder</a>
+					<a href="app_app.app.html">App</a>
 				</li>
 			</ul>
-			<h1>Class CommandOrder</h1>
+			<h1>Class App</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Clase CommandOrder que gestiona un menú
-						o plato, y una cantidad</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CommandOrder</span>
+						<span class="target">App</span>
 					</li>
 				</ul>
 			</section>
@@ -91,14 +83,21 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="command_command_order.commandorder.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="app_app.app.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="app_app.app.html#stock" class="tsd-kind-icon">stock</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="app_app.app.html#stockeditor" class="tsd-kind-icon">stock<wbr>Editor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#getorder" class="tsd-kind-icon">get<wbr>Order</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#getquantity" class="tsd-kind-icon">get<wbr>Quantity</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="app_app.app.html#promptmainmenu" class="tsd-kind-icon">prompt<wbr>Main<wbr>Menu</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="app_app.app.html#run" class="tsd-kind-icon">run</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,85 +109,82 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<wbr>Order<span class="tsd-signature-symbol">(</span>order<span class="tsd-signature-symbol">: </span><a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a>, quantity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command_command_order.commandorder.html" class="tsd-signature-type" data-tsd-kind="Class">CommandOrder</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>App<span class="tsd-signature-symbol">(</span>databaseName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="app_app.app.html" class="tsd-signature-type" data-tsd-kind="Class">App</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/Command/command_order.ts#L8">Command/command_order.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/App/app.ts#L10">App/app.ts:10</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Constructor de la clase CommandOrder</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>order: <a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Objeto de tipo Menu o BasicPlate</p>
-									</div>
-								</li>
-								<li>
-									<h5>quantity: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Cantidad numérica</p>
-									</div>
+									<h5>databaseName: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command_command_order.commandorder.html" class="tsd-signature-type" data-tsd-kind="Class">CommandOrder</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="app_app.app.html" class="tsd-signature-type" data-tsd-kind="Class">App</a></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="stock" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> stock</h3>
+					<div class="tsd-signature tsd-kind-icon">stock<span class="tsd-signature-symbol">:</span> <a href="stock_stock.stock.html" class="tsd-signature-type" data-tsd-kind="Class">Stock</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/App/app.ts#L10">App/app.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="stockeditor" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> stock<wbr>Editor</h3>
+					<div class="tsd-signature tsd-kind-icon">stock<wbr>Editor<span class="tsd-signature-symbol">:</span> <a href="stockeditor_stock_editor.stockeditor.html" class="tsd-signature-type" data-tsd-kind="Class">StockEditor</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/App/app.ts#L9">App/app.ts:9</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getorder" class="tsd-anchor"></a>
-					<h3>get<wbr>Order</h3>
+					<a name="promptmainmenu" class="tsd-anchor"></a>
+					<h3>prompt<wbr>Main<wbr>Menu</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Order<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></li>
+						<li class="tsd-signature tsd-kind-icon">prompt<wbr>Main<wbr>Menu<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/Command/command_order.ts#L22">Command/command_order.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/App/app.ts#L22">App/app.ts:22</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Getter del atributo order</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h4>
-							<p>Un Menú o un BasicPlate</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getquantity" class="tsd-anchor"></a>
-					<h3>get<wbr>Quantity</h3>
+					<a name="run" class="tsd-anchor"></a>
+					<h3>run</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Quantity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/Command/command_order.ts#L30">Command/command_order.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/559496b/src/App/app.ts#L18">App/app.ts:18</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Getter del atributo quantity</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>Un valor numérico</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -201,7 +197,7 @@
 						<a href="../modules.html">Exports</a>
 					</li>
 					<li class="current tsd-kind-module">
-						<a href="../modules/command_command_order.html">Command/command_<wbr>order</a>
+						<a href="../modules/app_app.html">App/app</a>
 					</li>
 				</ul>
 			</nav>
@@ -210,16 +206,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="command_command_order.commandorder.html" class="tsd-kind-icon">Command<wbr>Order</a>
+						<a href="app_app.app.html" class="tsd-kind-icon">App</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="command_command_order.commandorder.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="app_app.app.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="app_app.app.html#stock" class="tsd-kind-icon">stock</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="app_app.app.html#stockeditor" class="tsd-kind-icon">stock<wbr>Editor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="command_command_order.commandorder.html#getorder" class="tsd-kind-icon">get<wbr>Order</a>
+								<a href="app_app.app.html#promptmainmenu" class="tsd-kind-icon">prompt<wbr>Main<wbr>Menu</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="command_command_order.commandorder.html#getquantity" class="tsd-kind-icon">get<wbr>Quantity</a>
+								<a href="app_app.app.html#run" class="tsd-kind-icon">run</a>
 							</li>
 						</ul>
 					</li>
@@ -244,6 +246,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 			</ul>
 		</div>
 	</div>
