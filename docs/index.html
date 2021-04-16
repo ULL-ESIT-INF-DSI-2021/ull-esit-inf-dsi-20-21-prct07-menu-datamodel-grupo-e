@@ -66,20 +66,46 @@
 				<a href="#objetivos" id="objetivos" style="color: inherit; text-decoration: none;">
 					<h2><strong>Objetivos</strong></h2>
 				</a>
-				<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
-					<h2><strong>Introducción</strong></h2>
-				</a>
+				<ul>
+					<li>Desarrollar un modelo de datos con programación orientada a objetos.</li>
+					<li>Aprender a utilizar los módulos <code>Inquierer.js</code> y <code>Lowdb</code>.</li>
+					<li>Emplear los <em>issues</em> de <em>Github</em> en el repositorio para dudas, tareas..</li>
+					<li>Incluir la documentación al proyecto mediante <em>TypeDoc</em>.</li>
+					<li>Adoptar una metodología de desarrollo dirigido por pruebas.</li>
+					<li>Utilizar una herramienta de cubrimiento de código en el proyecto, como <em>Coveralls</em>.</li>
+					<li>Utilizar y comprobar <em>Github Workflows</em>.
+						<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
+							<h2><strong>Introducción</strong></h2>
+						</a>
+						En esta práctia tenemos que desarrollar el modelo de datos que permite el diseño de un sistema de menús, para ello
+					explicaremos la estrucutura y la solución adoptada desglosada en varios apartados.</li>
+				</ul>
 				<a href="#foods" id="foods" style="color: inherit; text-decoration: none;">
 					<h2><strong>Foods</strong></h2>
 				</a>
+				<p>Consideramos un alimento dentro del sistema de menú, disponemos de una clase <code>BasicFood</code>, y una serie de subclases
+				que la extienden, solo modifican el comportamiento de la clase abstracta en la información.</p>
 				<a href="#basicfood" id="basicfood" style="color: inherit; text-decoration: none;">
 					<h3><strong>BasicFood</strong></h3>
 				</a>
 				<ul>
+					<li>Los atributos consisten en <code>name</code>, nombre del alimento, <code>origin</code>, origen o país del alimento, <code>priceByKg</code>, precio del alimento en euros,
+					y <code>macronutrients</code>, objeto de la clase <code>Ingredient</code>.</li>
 					<li>Los atributos son <code>protected</code> para que las clases descendientes puedan acceder a ellos sin tener que recurrir a getters y setters.</li>
 					<li>Íbamos a incluir un <code>ammount</code> en la clase pero decidimos crear una nueva clase llamada <code>Ingredient</code> que se encargue de almacenar un alimento y su cantidad a utilizar, a modo de intermediaria entre los alimentos y el plato.</li>
-					<li></li>
+					<li>Dispone de una serie de Getters para los artibutos <code>name</code>, <code>origin</code>, <code>priceByKg</code> y <code>Macronutrients</code> así como sus respectivos setters.</li>
+					<li>También dispone de un método que obtiene la información del alimento</li>
 				</ul>
+				<a href="#cereal-fruit-rich_protein_food-y-vegetable" id="cereal-fruit-rich_protein_food-y-vegetable" style="color: inherit; text-decoration: none;">
+					<h2><strong>Cereal, Fruit, Rich_Protein_Food y Vegetable</strong></h2>
+				</a>
+				<ul>
+					<li>Las clases <code>Cereal</code>,<code>Fruits</code>,<code>Rich_Protein_Foods</code> y <code>Vegetable</code> disponen de los mismos atributos.</li>
+					<li>El método <code>get_info()</code> es diferente en cada uno de ellos.</li>
+				</ul>
+				<a href="#plate" id="plate" style="color: inherit; text-decoration: none;">
+					<h2>Plate</h2>
+				</a>
 				<a href="#conclusiones" id="conclusiones" style="color: inherit; text-decoration: none;">
 					<h2><strong>Conclusiones</strong></h2>
 				</a>
