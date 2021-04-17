@@ -69,7 +69,6 @@ export class CommandMaker {
 
   }
 
-
   async promptShowPlates(platesHolder: PlatesHolder) {
     console.clear();
     let quit = false;
