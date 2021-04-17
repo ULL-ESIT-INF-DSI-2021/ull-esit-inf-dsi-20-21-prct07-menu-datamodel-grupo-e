@@ -68,7 +68,7 @@ describe('Carta tests', () => {
   });
 
   it('Retrieves ALL plates', () => {
-    expect(carta.getAllPlates()).to.deep.equalInAnyOrder(
+    expect(carta.getPlates()).to.deep.equalInAnyOrder(
         [
           new StarterPlate('Entrante', new Ingredient(new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()), 1)),
           new FirstPlate('PrimerPlato2', new Ingredient(new Cereal('Avena', 'Madrid', 3, new Macronutrients()), 2)),

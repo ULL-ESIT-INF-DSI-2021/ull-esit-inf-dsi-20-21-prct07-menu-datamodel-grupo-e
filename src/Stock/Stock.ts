@@ -8,7 +8,7 @@ import { BasicPlate, Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate 
 import { Menu } from '../Menu';
 import { Carta } from '../Carta';
 import { Parser } from '../Parser';
-import { FoodsHolder, PlatesHolder } from '../Interfaces';
+import { CartasHolder, FoodsHolder, MenusHolder, PlatesHolder } from '../Interfaces';
 
 type StockScheme = {
   stock: {
@@ -19,7 +19,7 @@ type StockScheme = {
   }
 }
 
-export class Stock implements FoodsHolder, PlatesHolder {
+export class Stock implements FoodsHolder, PlatesHolder, CartasHolder, MenusHolder {
   private parser: Parser;
 
   private database: lowdb.LowdbSync<StockScheme>;
@@ -78,6 +78,13 @@ export class Stock implements FoodsHolder, PlatesHolder {
       this.foods.splice(indexFood, 1);
       this.storeFoods();
     };
+  }
+
+  searchFoodByName(foodName: string): BasicFood {
+    const result = this.foods.find((food) => food.getName() === foodName);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar un alimento llamado ${foodName}`);
   }
 
   storeFoods() {
@@ -174,7 +181,7 @@ export class Stock implements FoodsHolder, PlatesHolder {
     if (this.database.has('stock.cartas').value()) {
       this.database.get('stock.cartas').value().forEach((carta: JsonCarta) => {
         this.cartas.push(new Carta(carta.name,
-            [...carta.menus.map((carta) => this.parser.parseMenu(carta))],
+            [...carta.menus.map((carta) => this.parser.parseMenu(carta, false))],
             [...carta.singlePlates.map((plate) => this.parser.parsePlate(plate))]));
       });
     } else {
@@ -209,6 +216,13 @@ export class Stock implements FoodsHolder, PlatesHolder {
   async displayFoods() {
     this.foods.forEach((food) => console.log(food.getName()));
 
+  }
+
+  searchCartaByName(cartaName: string): Carta {
+    const result = this.cartas.find((carta) => carta.getName() === cartaName);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar una carta llamado ${cartaName}`);
   }
 }
 

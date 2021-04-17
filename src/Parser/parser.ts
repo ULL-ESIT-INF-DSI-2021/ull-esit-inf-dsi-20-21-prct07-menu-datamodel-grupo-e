@@ -99,7 +99,7 @@ export class Parser {
     const object: JsonCarta = {
       name: newCarta.getName(),
       menus: newCarta.getMenus().map((menu) => this.parseJsonMenu(menu)),
-      singlePlates: newCarta.getAllPlates().map((plate) => this.parseJsonPlate(plate)),
+      singlePlates: newCarta.getPlates().map((plate) => this.parseJsonPlate(plate)),
     };
 
     return object;
