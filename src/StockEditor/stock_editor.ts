@@ -175,7 +175,6 @@ export class StockEditor {
       answers.foods.forEach((food: JsonFood) => foodsReceiver.addFood(this.parser.parseFood(food)));
     };
 
-    // Donde poner los await? Aquí o fuera del promptAddFood?
     await inquirer.prompt(prompt).then(action);
   }
 
