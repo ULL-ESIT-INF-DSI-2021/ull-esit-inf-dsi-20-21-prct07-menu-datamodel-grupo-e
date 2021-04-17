@@ -21,9 +21,10 @@ export class CommandMaker {
     console.clear();
     const choices = {
       addPlates: "Añadir Platos".blue,
-      deletePlates: "Eliminar Platos",
-      addMenu: "Agregar Menú",
-      showCommand: "Mostrar Comanda",
+      deletePlates: "Eliminar Platos".blue,
+      editPlates: "Editar Cantidad de plato".blue,
+      addMenu: "Agregar Menú".red,
+      showCommand: "Mostrar Comanda".yellow,
       quit: "Volver"
     };
 
@@ -49,8 +50,12 @@ export class CommandMaker {
         case choices.deletePlates:
           await this.promptdeletePlates();
           break;
+        case choices.editPlates:
+          await this.promptEditAmmountPlates();
+          break;
         case choices.addMenu:
           await this.promptShowMenus(this.stock);
+          break;
         case choices.quit:
           quit = true;
           break;
@@ -158,7 +163,7 @@ export class CommandMaker {
       console.log(`- ${order.getOrder().getName()}\n    Cantidad:  ${order.getQuantity()}\n    Precio: ${(order.getPrice() * order.getQuantity()).toFixed(2)} €`);
     });
     console.log(`----------------------------------------------`);
-    console.log(`    Precio total de la comanda: ${this.command.getPrice()}`);
+    console.log(`    Precio total de la comanda: ${this.command.getPrice().toFixed(2)} €`);
     const action = async (answers: any) => {
 
     };
@@ -227,7 +232,7 @@ export class CommandMaker {
 
   async promptShowMenu(menu :Menu) {
     console.clear();
-    let quit = false;
+
     const prompt: inquirer.QuestionCollection<any> = {
       type: 'list',
       name: 'choices',
@@ -237,10 +242,18 @@ export class CommandMaker {
     console.log(`Nombre del menú: ${menu.getName()}`);
     console.log(`Platos del menú: `);
     menu.getPlates().forEach((plate) => console.log(`- ${plate.getName()}`));
+
+    console.log("Composición nutricional");
+    const nutricionalcomposition = menu.getNutritionalComposition();
+    console.log(`- Lípidos: ${nutricionalcomposition.lipids.toFixed(2)}`);
+    console.log(`- Carbohidratos: ${nutricionalcomposition.carbohydrates.toFixed(2)}`);
+    console.log(`- Proteínas: ${nutricionalcomposition.proteins.toFixed(2)}`);
+
+    console.log(`Precio del plato: `);
+    console.log(`- ` + menu.getPrice().toFixed(2) + '€');
     const action = async (answers: any) => {
       switch (answers['menu']) {
         case 'Volver':
-          quit = true;
           break;
       
         default:
@@ -258,7 +271,52 @@ export class CommandMaker {
     };
 
     await inquirer.prompt(prompt).then(action);
-    if (quit) return;
+
   }
+
+  async promptEditAmmountPlates() {
+    console.clear();
+    let quit = false;
+    const orders :CommandOrder[] = this.command.getOrders();
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'list',
+      name: 'plate',
+      message: 'Selecciona el plato',
+      choices: orders.map((plate) => plate.getPlate().getName()).concat(['Volver'])
+    };
+
+    const action = async (answers: any) => {
+      switch (answers['plate']) {
+        case 'Volver':
+          quit = true;
+          break;
+      
+        default:
+          await this.promptEditAmmountPlate(answers['plate']);
+          break;
+      }
+    };
+
+    await inquirer.prompt(prompt).then(action);
+    if (quit) return;
+    await this.promptEditAmmountPlates();
+  }
+
+  async promptEditAmmountPlate(plateName :string) {
+    const prompt :inquirer.QuestionCollection<any> = {
+      type: 'input',
+      name: 'ammount',
+      message: 'Cantidad del plato: '
+    };
+    
+    console.log(`Plato actual: ${plateName}`);
+
+    const action = (answer :any) => {
+      this.command.searchOrderByName(plateName)?.setQuantity(Number(answer['ammount']));
+    };
+
+    await inquirer.prompt(prompt).then(action);
+  };
+
 };
 

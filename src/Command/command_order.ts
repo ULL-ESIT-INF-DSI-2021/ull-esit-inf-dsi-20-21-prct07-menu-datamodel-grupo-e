@@ -25,4 +25,8 @@ export class CommandOrder {
   oneMoreQuantity() {
     this.quantity = this.quantity + 1;
   }
+
+  setQuantity(ammount :number) {
+    this.quantity = ammount;
+  }
 };
