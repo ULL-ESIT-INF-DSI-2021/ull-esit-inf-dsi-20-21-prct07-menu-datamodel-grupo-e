@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsc-watch --onSuccess \"node dist/App/app.js\"",
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=lcov",
     "doc": "typedoc"
