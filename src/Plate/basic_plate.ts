@@ -74,7 +74,7 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
    * @returns suma de los precios de cada ingrediente
    */
   getPrice(): number {
-    return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price);
+    return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price, 0);
   }
 
   /**
