@@ -1,11 +1,12 @@
 import { FoodGroup, Macronutrients } from "../Food";
+import { Nameable, PlatesHolder } from "../Interfaces";
 import { BasicPlate, StarterPlate } from "../Plate";
 import { PlateType } from "../Plate/basic_plate";
 import { Dessert } from "../Plate/dessert";
 import { FirstPlate } from "../Plate/first_plate";
 import { SecondPlate } from "../Plate/second_plate";
 
-export class Menu {
+export class Menu implements PlatesHolder, Nameable {
 
   private plates: BasicPlate[];
 
@@ -98,7 +99,12 @@ export class Menu {
 
   private removePlateByIndex(index: number) {
     this.plates.splice(index, 1);
-  }
+  }  
 
+  searchPlateByName(plateName: string) {
+    const result = this.getPlates().find((plate) => plate.getName() === plateName);
+    if (result) return result;
   
+    throw new Error(`No se ha podido encontrar un plato llamado ${plateName}`);
+  }
 };

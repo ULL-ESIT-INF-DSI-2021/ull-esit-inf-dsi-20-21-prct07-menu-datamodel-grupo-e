@@ -7,6 +7,14 @@ export class Command {
 
   }
 
+  searchOrderByName(plateName :string) {
+    return this.orders.find((order) => order.getOrder().getName() === plateName);
+  }
+
+  getPrice() {
+    return this.orders.reduce((total, order) => total + (order.getPrice() * order.getQuantity()), 0);
+  }
+
   getOrders(): CommandOrder[] {
     return this.orders;
   }

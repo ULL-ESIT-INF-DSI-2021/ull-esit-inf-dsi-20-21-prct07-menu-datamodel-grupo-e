@@ -6,6 +6,9 @@ export class CommandOrder {
     
   }
 
+  getPrice() {
+    return this.order.getPrice();
+  }
 
   getOrder(): Menu | BasicPlate {
     return this.order;
@@ -13,5 +16,9 @@ export class CommandOrder {
 
   getQuantity(): number {
     return this.quantity;
+  }
+
+  oneMoreQuantity() {
+    this.quantity = this.quantity + 1;
   }
 };

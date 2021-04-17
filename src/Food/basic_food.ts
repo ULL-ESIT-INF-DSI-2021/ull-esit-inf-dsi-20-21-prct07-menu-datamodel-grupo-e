@@ -1,3 +1,4 @@
+import { Nameable } from "../Interfaces";
 import { Macronutrients } from "./macronutrients";
 /**
  * Objeto de tipo FoodGroup que 
@@ -10,7 +11,7 @@ export enum FoodGroup {
   Cereals = 'Cereales.',
   Fruits = 'Frutas.'
 }
-export abstract class BasicFood {
+export abstract class BasicFood implements Nameable {
   /**
    * Constructor de la clase BasicFood
    * @param name Nombre del alimento

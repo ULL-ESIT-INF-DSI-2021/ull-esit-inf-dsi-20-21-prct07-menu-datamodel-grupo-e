@@ -1,5 +1,4 @@
 /* eslint-disable spaced-comment */
-import * as inquirer from 'inquirer';
 import 'colors';
 import {JsonFood, JsonPlate, JsonMenu, JsonCarta, JsonIngredient} from './jsonObjects';
 import lowdb = require('lowdb');
@@ -8,8 +7,8 @@ import { BasicFood, Cereal, FoodGroup, Fruit, RichProteinFood } from '../Food';
 import { BasicPlate, Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate } from '../Plate';
 import { Menu } from '../Menu';
 import { Carta } from '../Carta';
-import { PlateType } from '../Plate/basic_plate';
 import { Parser } from '../Parser';
+import { FoodsHolder, PlatesHolder } from '../Interfaces';
 
 type StockScheme = {
   stock: {
@@ -20,7 +19,7 @@ type StockScheme = {
   }
 }
 
-export class Stock {
+export class Stock implements FoodsHolder, PlatesHolder {
   private parser: Parser;
 
   private database: lowdb.LowdbSync<StockScheme>;
@@ -63,8 +62,7 @@ export class Stock {
     const result = this.getFoods().find((food) => food.getName() === name);
     if (result) return result;
 
-    throw new Error(`No se ha podido encontrar un alimento llamado ${name}`);
-    
+    throw new Error(`No se ha podido encontrar un alimento llamado ${name}`); 
   }
 
   addFood(newFood: BasicFood) {

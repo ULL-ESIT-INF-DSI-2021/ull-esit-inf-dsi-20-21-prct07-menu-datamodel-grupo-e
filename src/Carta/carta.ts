@@ -1,9 +1,14 @@
+import { Nameable } from "../Interfaces";
 import { Menu } from "../Menu";
 import { BasicPlate } from "../Plate";
 
-export class Carta {
+export class Carta implements Nameable {
   constructor(private name: string, private menus: Menu[], private singlePlates: BasicPlate[]) {
 
+  }
+
+  setName(newName: string) {
+    this.name = newName;
   }
 
   getName(): string {
