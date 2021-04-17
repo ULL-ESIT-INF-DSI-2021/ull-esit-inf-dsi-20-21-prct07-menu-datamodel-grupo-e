@@ -17,10 +17,16 @@ export class StockEditor {
     inquirer.registerPrompt('recursive', require('inquirer-recursive'));
   }
 
+  /**
+   * Arranca el editor de inventario
+   */
   async run() {
     await this.promptMainMenu();
   }
 
+  /**
+   * Ofrece al usuario todas las opciones de edición del Stock
+   */
   async promptMainMenu() {
 
     const choices = {
@@ -68,7 +74,7 @@ export class StockEditor {
 
         // Plate options
         case choices.addPlate:
-          await this.promptNewPlatesFor(this.stock);
+          await this.promptNewPlateFor(this.stock);
           break;
         case choices.removePlate:
           await this.promptRemovePlatesFrom(this.stock);
@@ -93,7 +99,7 @@ export class StockEditor {
           await this.promptNewCartaFor(this.stock);
           break;
         case choices.removeCarta:
-          await this.promptRemoveCartaFrom(this.stock);
+          await this.promptRemoveCartasFrom(this.stock);
           break;
         case choices.modifyCarta:
           await this.promptModifyCartaFrom(this.stock);
@@ -110,6 +116,10 @@ export class StockEditor {
   };
 
   // FoodsHolders
+  /**
+   * Permite al usuario introducir alimentos y almacenarlos en `foodsReceiver`
+   * @param foodsReceiver Objeto que implementa la interfaz `FoodsHolder`
+   */
   async promptNewFoodsFor(foodsReceiver: FoodsHolder) {
 
     const prompt = [
@@ -169,6 +179,26 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+   * Permite al usuario elegir alimentos del stock y almacenarlos en `foodsReceiver`
+   * @param foodsReceiver Objeto que implementa la interfaz `FoodsHolder`
+   */
+  async promptExistentFoodsFor(foodsReceiver: FoodsHolder) {
+    const choices = this.stock.getFoods().map((food) => food.getName());
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'list',
+      name: 'foodNames',
+      message: 'Seleccione los alimentos a añadir:',
+      choices: choices,
+    };
+    const action = (answers: any) => answers.foodNames.forEach((foodName: string) => foodsReceiver.addFood(this.stock.searchFoodByName(foodName)));
+    await inquirer.prompt(prompt).then(action);
+  }
+ 
+  /**
+   * Permite al usuario eliminar alimentos del objeto `foodsHolder`
+   * @param foodsHolder Objeto que implementa la interfaz `FoodsHolder`
+   */
   async promptRemoveFoodsFrom(foodsHolder: FoodsHolder) {
 
     const foodNames = foodsHolder.getFoods().map((food) => food.getName());
@@ -192,7 +222,13 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
   
+  /**
+   * Permite al usuario editar un alimento almacenado en foodsHolder
+   * @param foodsHolder Objeto que implementa la interfaz `FoodsHolder`
+   */
   async promptModifyFoodFrom(foodsHolder: FoodsHolder) {
+    let quit = false;
+
     // Elegir el alimento a modificar
     let foodToEdit: BasicFood;
     let oldFoodName: string;
@@ -201,11 +237,18 @@ export class StockEditor {
         {
           type: 'list',
           name: 'foodName',
-          choices: foodsHolder.getFoods().map((food) => food.getName()),
+          choices: foodsHolder.getFoods().map((food) => food.getName()).concat(['Volver']),
         }).then((answers: any) => {
-      foodToEdit = clone(foodsHolder.searchFoodByName(answers.foodName));
-      oldFoodName = foodToEdit.getName();
+      if (answers.foodName === 'Volver') {
+        quit = true;
+      } else {
+        foodToEdit = clone(foodsHolder.searchFoodByName(answers.foodName));
+        oldFoodName = foodToEdit.getName();
+      }
     });
+
+    // Si el usuario selecciona la opción 'Volver' se termina la función
+    if (quit) return;
 
     // Elegir el tipo de modificación
     const choices = {
@@ -240,24 +283,15 @@ export class StockEditor {
     };
 
     await inquirer.prompt(prompt).then(action);
-
   }
 
-  async promptExistentFoodsFor(foodsReceiver: FoodsHolder) {
-    const choices = this.stock.getFoods().map((food) => food.getName());
-    const prompt: inquirer.QuestionCollection<any> = {
-      type: 'list',
-      name: 'foodNames',
-      message: 'Seleccione los alimentos a añadir:',
-      choices: choices,
-    };
-    const action = (answers: any) => answers.foodNames.forEach((foodName: string) => foodsReceiver.addFood(this.stock.searchFoodByName(foodName)));
-    await inquirer.prompt(prompt).then(action);
-  }
- 
 
   // PlatesHolders
-  async promptNewPlatesFor(platesReceiver: PlatesHolder) {
+  /**
+   * Permite al usuario introducir un nuevo plato y almacenarlos en `plateReceiver`
+   * @param plateReceiver Objeto que implementa la interfaz `PlatesHolder`
+   */
+  async promptNewPlateFor(plateReceiver: PlatesHolder) {
     let choices: string[] = Object.values(PlateType);
     choices = choices.concat('Volver');
 
@@ -272,11 +306,12 @@ export class StockEditor {
         type: 'input',
         name: 'name',
         message: 'Nombre del plato?',
-        when: (answers: any) => answers['type'] !== 'Volver',
+        when: (answers: any) => answers['type'] !== 'Volver', // Este prompt solo aparece cuando el usuario no ha seleccionado la opción volver
       },
     ];
 
     const action = async (answers: any) => {
+      // Si el usuario ha seleccionado la opción volver la función termina
       if (answers['type'] === 'Volver') return;
 
       const jsonFood: JsonPlate = { name: answers['name'], type: answers['type'], ingredients: [] };
@@ -284,13 +319,17 @@ export class StockEditor {
 
       await this.promptNewIngredientsFor(newPlate);
 
-      platesReceiver.addPlate(newPlate);
+      plateReceiver.addPlate(newPlate);
     };
 
     await inquirer.prompt(prompt).then(action);
 
   }
 
+  /**
+  * Permite al usuario seleccionar platos almacenados en Sotck y almacenarlos en `platesReceiver`
+  * @param platesReceiver Objeto que implementa la interfaz `PlatesHolder`
+  */
   async promptExistentPlatesFor(platesReceiver: PlatesHolder) {
     const choices = this.stock.getPlates().map((plate) => plate.getName());
     const prompt: inquirer.QuestionCollection<any> = {
@@ -306,6 +345,10 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+  * Permite al usuario eliminar platos almacenados en `platesHolder`
+  * @param platesHolder Objeto que implementa la interfaz `PlatesHolder`
+  */
   async promptRemovePlatesFrom(platesHolder: PlatesHolder) {
     const choices = platesHolder.getPlates().map((plate) => plate.getName());
 
@@ -323,21 +366,13 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
-  async promptNewOriginFor(originHolder: OriginHolder) {
-    const prompt: inquirer.QuestionCollection<any> = {
-      type: 'input',
-      name: 'newOrigin',
-      message: `Nuevo nombre (${originHolder.getOrigin()}):`,
-    };
-
-    const action = (answers: any) => {
-      originHolder.setOrigin(answers.newOrigin);
-    };
-
-    await inquirer.prompt(prompt).then(action);
-  }
-
+  /**
+  * Permite al usuario modificar un plato almacenado en `platesHolder`
+  * @param platesHolder Objeto que implementa la interfaz `PlatesHolder`
+  */
   async promptModifyPlateFrom(platesHolder: PlatesHolder) {
+    let quit = false;
+
     // Elegir el plato a modificar
     let plateToEdit: BasicPlate;
     let oldPlateName: string;
@@ -346,11 +381,18 @@ export class StockEditor {
         {
           type: 'list',
           name: 'plateName',
-          choices: platesHolder.getPlates().map((plate) => plate.getName()),
+          choices: platesHolder.getPlates().map((plate) => plate.getName()).concat(['Volver']),
         }).then((answers: any) => {
-      plateToEdit = clone(platesHolder.searchPlateByName(answers.plateName));
-      oldPlateName = plateToEdit.getName();
+      if (answers.plateName === 'Volver') {
+        quit = true;
+      } else {
+        plateToEdit = clone(platesHolder.searchPlateByName(answers.plateName));
+        oldPlateName = plateToEdit.getName();
+      }
     });
+
+    // Si el usuario eligió la opción 'Volver' se termina la función
+    if (quit) return;
 
     // Elegir el tipo de modificación
     const choices = {
@@ -385,10 +427,33 @@ export class StockEditor {
 
     await inquirer.prompt(prompt).then(action);
   }
+  
+  // OriginHolder
+  /**
+  * Permite al usuario cambiar el origen de `originHolder`
+  * @param originHolder Objeto que implementa la interfaz `OriginHolder`
+  */
+  async promptNewOriginFor(originHolder: OriginHolder) {
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'input',
+      name: 'newOrigin',
+      default: originHolder.getOrigin(),
+      message: `Nuevo nombre (${originHolder.getOrigin()}):`,
+    };
 
+    const action = (answers: any) => {
+      originHolder.setOrigin(answers.newOrigin);
+    };
+
+    await inquirer.prompt(prompt).then(action);
+  }
 
   // MenusHolders
-  async promptNewMenuFor(menusReceiver: MenusHolder) {
+  /**
+  * Permite al usuario añadir un nuevo menú a `menuReceiver`
+  * @param menuReceiver Objeto que implementa la interfaz `MenusHolder`
+  */
+  async promptNewMenuFor(menuReceiver: MenusHolder) {
     
     let goodMenuConfig = true;
     do {
@@ -410,10 +475,9 @@ export class StockEditor {
     
         const action = (answers: any) => {
           const plates = answers['plates'].map((plateName: string) => this.stock.searchPlateByName(plateName));
-          menusReceiver.addMenu(new Menu(answers['menuName'], plates));
+          menuReceiver.addMenu(new Menu(answers['menuName'], plates));
         };
     
-        // Donde poner los await? Aquí o fuera del promptAddFood?
         await inquirer.prompt(prompt).then(action);
       } catch (error) {
         // Nos aseguramos de que el menú tenga una configuración adecuada
@@ -424,6 +488,10 @@ export class StockEditor {
     } while (!goodMenuConfig);
   }
 
+  /**
+   * Permite al usuario añadir una serie de menús almacenados en Stock a `menusReceiver`
+   * @param menusReceiver Objeto que implementa la interfaz `MenusHolder`
+   */
   async promptExistentMenusFor(menusReceiver: MenusHolder) {
     const menuNames = this.stock.getMenus().map((menu) => menu.getName());
     const prompt: inquirer.QuestionCollection<any> = {
@@ -440,6 +508,10 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+   * Permite al usuario eliminar una serie de menús almacenados en `menusHolder`
+   * @param menusHolder Objeto que implementa la interfaz `MenusHolder`
+   */
   async promptRemoveMenusFrom(menusHolder: MenusHolder) {
     const menuNames = menusHolder.getMenus().map((Menu) => Menu.getName());
 
@@ -462,9 +534,13 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+   * Permite al usuario editar un menú almacenado en `menusHolder`
+   * @param menusHolder Objeto que implementa la interfaz `MenusHolder`
+   */
   async promptModifyMenuFrom(menusHolder: MenusHolder) {
 
-    // Elegir el menú
+    // Elegir el menú a editar
     let menuToEdit: Menu;
     let oldMenuName: string;
     await inquirer.prompt(
@@ -496,6 +572,7 @@ export class StockEditor {
       }
     ];
 
+    // Realizar la modificación
     const action = async (answers: any) => {
       switch (answers.choice) {
         case choices.changeName:
@@ -505,7 +582,7 @@ export class StockEditor {
           await this.promptExistentPlatesFor(menuToEdit);
           break;
         case choices.addNewPlate:
-          await this.promptNewPlatesFor(menuToEdit);
+          await this.promptNewPlateFor(menuToEdit);
           break;
         case choices.removePlates:
           await this.promptRemovePlatesFrom(menuToEdit);
@@ -519,6 +596,10 @@ export class StockEditor {
 
 
   // Nameables
+  /**
+   * Permite al usuario introducir asignar un nuevo nombre a `nameable`
+   * @param nameable Objeto que implementa la interfaz `Nameable`
+   */
   async promptNewNameFor(nameable: Nameable) {
     const prompt: inquirer.QuestionCollection<any> = {
       type: 'input',
@@ -534,11 +615,15 @@ export class StockEditor {
   }
 
   // IngredientsHolders
-  async promptNewIngredientsFor(plate: BasicPlate) {
+  /**
+   * Permite al usuario introducir una serie de nuevos ingredientes (a partir de los alimentos presentes en el Stock) a `ingredientsReceiver`
+   * @param ingredientsReceiver Objeto que implementa la interfaz `IngredientsHolder` 
+   */
+  async promptNewIngredientsFor(ingredientsReceiver: IngredientsHolder) {
     const prompt: inquirer.QuestionCollection<any> = [
       {
         type: 'recursive',
-        message: `Ingrese los ingredientes para el plato ${plate.getName()}`,
+        message: `Ingrese los ingredientes:`,
         name: 'ingredients',
         prompts: [
           {
@@ -564,13 +649,17 @@ export class StockEditor {
 
     const action = (answers: any) => {
       answers['ingredients'].forEach((ingredient: { foodName: string, ammount: number }) => {
-        plate.addIngredient(new Ingredient(this.stock.searchFoodByname(ingredient.foodName), ingredient.ammount));
+        ingredientsReceiver.addIngredient(new Ingredient(this.stock.searchFoodByname(ingredient.foodName), ingredient.ammount));
       });
     };
 
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+   * Permite al usuario eliminar una serie de ingredientes de `ingredientsHolder`
+   * @param ingredientsHolder Objeto que implementa la interfaz `IngredientesHolder`
+   */
   async promptRemoveIngredientsFrom(ingredientsHolder: IngredientsHolder) {
     const ingredients = ingredientsHolder.getIngredients().map((ing) => ing.getFood().getName());
 
@@ -594,6 +683,10 @@ export class StockEditor {
   }
 
   // PriceByKgHolders
+  /**
+   * Permite al usuario asignar un nuevo precio a `priceHolder`
+   * @param priceHolder Objeto que implementa la interfaz `PriceByKgHolder`
+   */
   async promptNewPriceByKgFor(priceHolder: PriceByKgHolder) {
     const prompt: inquirer.QuestionCollection<any> = {
       type: 'input',
@@ -609,7 +702,11 @@ export class StockEditor {
   }
 
   // CartasHolders
-  async promptNewCartaFor(cartasReceiver: CartasHolder) {
+  /**
+   * Permite al usuario añadir una nueva carta a `cartaReceiver`
+   * @param cartaReceiver Objeto que implementa la interfaz `CartasHolder`
+   */
+  async promptNewCartaFor(cartaReceiver: CartasHolder) {
     
     const newCarta = new Carta('', [], []);
     
@@ -643,16 +740,20 @@ export class StockEditor {
           await this.promptExistentPlatesFor(newCarta);
           break;
         case choices.addNewPlaes:
-          await this.promptNewPlatesFor(newCarta);
+          await this.promptNewPlateFor(newCarta);
       }
 
-      cartasReceiver.addCarta(newCarta);
+      cartaReceiver.addCarta(newCarta);
     };
 
     await inquirer.prompt(prompt).then(action);
 
   }
 
+  /**
+   * Permite al usuario añadir una serie de cartas almacenadas en Stock a `cartasReceiver`
+   * @param cartasReceiver Objeto que implementa la interfaz `CartasHolder`
+   */
   async promptExistentCartaFor(cartasReceiver: CartasHolder) {
     const cartasNames = this.stock.getCartas().map((carta) => carta.getName());
     const prompt: inquirer.QuestionCollection<any> = {
@@ -669,7 +770,11 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
-  async promptRemoveCartaFrom(cartasHolder: CartasHolder) {
+  /**
+   * Permite al usuario eliminar una serie de cartas almacenadas en `cartasHolder`
+   * @param cartasHolder Objeto que implementa la interfaz `CartasHolder`
+   */
+  async promptRemoveCartasFrom(cartasHolder: CartasHolder) {
     const cartaNames = cartasHolder.getCartas().map((carta) => carta.getName());
 
     const prompt: inquirer.QuestionCollection<any> = {
@@ -686,6 +791,10 @@ export class StockEditor {
     await inquirer.prompt(prompt).then(action);
   }
 
+  /**
+   * Permite al usuario modificar una carta de `cartasHolder`
+   * @param cartasHolder Objeto que implementa la interfaz `CartasHolder`
+   */
   async promptModifyCartaFrom(cartasHolder: CartasHolder) {
     let cartaToEdit: Carta;
     let oldCartaName: string;
@@ -736,7 +845,7 @@ export class StockEditor {
           await this.promptExistentPlatesFor(cartaToEdit);
           break;
         case choices.addNewPlate:
-          await this.promptNewPlatesFor(cartaToEdit);
+          await this.promptNewPlateFor(cartaToEdit);
           break;
         case choices.removePlates:
           await this.promptRemovePlatesFrom(cartaToEdit);
