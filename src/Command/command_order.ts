@@ -6,6 +6,10 @@ export class CommandOrder {
     
   }
 
+  getPlate() {
+    return this.order;
+  }
+
   getPrice() {
     return this.order.getPrice();
   }

@@ -30,5 +30,14 @@ export class Command {
   getPlates(): BasicPlate[] {
     return this.orders.filter((order) => order instanceof BasicPlate).map((order) => order.getOrder()) as BasicPlate[];
   }
+
+  removePlate(plateName: string) {
+    this.orders.forEach((order, index) => order.getPlate().getName() === plateName ? this.removePlateByIndex(index) : true);
+  }
+
+  private removePlateByIndex(index: number) {
+    this.orders.splice(index, 1);
+  } 
+
 };
 

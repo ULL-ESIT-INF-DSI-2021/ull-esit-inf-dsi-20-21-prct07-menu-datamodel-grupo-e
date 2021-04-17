@@ -524,9 +524,186 @@
           }
         ],
         "type": "Entrante"
+      },
+      {
+        "name": "Arroz con champiñones",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Arroz blanco",
+              "origin": "China",
+              "priceByKg": 5.7,
+              "macronutrients": {
+                "lipids": 0.9,
+                "carbohydrates": 86,
+                "proteins": 7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 800
+          },
+          {
+            "jsonFood": {
+              "name": "Champiñon",
+              "origin": "España",
+              "priceByKg": 5,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 4,
+                "proteins": 1.8
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Nata",
+              "origin": "España",
+              "priceByKg": 15,
+              "macronutrients": {
+                "lipids": 48.2,
+                "carbohydrates": 2,
+                "proteins": 1.5
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Flan",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Flan de huevo",
+              "origin": "España",
+              "priceByKg": 5,
+              "macronutrients": {
+                "lipids": 2.3,
+                "carbohydrates": 21.6,
+                "proteins": 4.9
+              },
+              "type": "Frutas."
+            },
+            "ammount": 600
+          }
+        ],
+        "type": "Postre"
       }
     ],
-    "menus": [],
+    "menus": [
+      {
+        "name": "Menú Básico",
+        "price": 10.56,
+        "jsonPlates": [
+          {
+            "name": "Tapa Queso blanco con Guayaba",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Queso blanco",
+                  "origin": "España",
+                  "priceByKg": 10,
+                  "macronutrients": {
+                    "lipids": 2.6,
+                    "carbohydrates": 5,
+                    "proteins": 10
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Dulce guayabo",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 0.5,
+                    "carbohydrates": 0,
+                    "proteins": 0
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Entrante"
+          },
+          {
+            "name": "Arroz con champiñones",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Arroz blanco",
+                  "origin": "China",
+                  "priceByKg": 5.7,
+                  "macronutrients": {
+                    "lipids": 0.9,
+                    "carbohydrates": 86,
+                    "proteins": 7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 800
+              },
+              {
+                "jsonFood": {
+                  "name": "Champiñon",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 4,
+                    "proteins": 1.8
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 200
+              },
+              {
+                "jsonFood": {
+                  "name": "Nata",
+                  "origin": "España",
+                  "priceByKg": 15,
+                  "macronutrients": {
+                    "lipids": 48.2,
+                    "carbohydrates": 2,
+                    "proteins": 1.5
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Flan",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Flan de huevo",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 2.3,
+                    "carbohydrates": 21.6,
+                    "proteins": 4.9
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 600
+              }
+            ],
+            "type": "Postre"
+          }
+        ]
+      }
+    ],
     "cartas": []
   }
 }
