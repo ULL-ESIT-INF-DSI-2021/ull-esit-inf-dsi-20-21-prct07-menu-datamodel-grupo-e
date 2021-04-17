@@ -1,5 +1,5 @@
 import { Carta } from "../Carta";
-import { BasicFood, FoodGroup, Fruit, Cereal, RichProteinFood } from "../Food";
+import { BasicFood, FoodGroup, Fruit, Cereal, RichProteinFood, Dairy } from "../Food";
 import { Menu } from "../Menu";
 import { BasicPlate, Dessert, FirstPlate, Ingredient, PlateType, SecondPlate, StarterPlate } from "../Plate";
 import { JsonCarta, JsonFood, JsonIngredient, JsonMenu, JsonPlate } from "../Stock";
@@ -13,15 +13,12 @@ export class Parser {
     switch (food.type) {
       case FoodGroup.Fruits:
         return new Fruit(food.name, food.origin, food.priceByKg, food.macronutrients);
-        break;
       case FoodGroup.Cereals:
         return new Cereal(food.name, food.origin, food.priceByKg, food.macronutrients);
-        break;
-      // case FoodGroup.Dairy:
-      //   this.foods.push(new Dairy(food.name, food.origin, food.price, food.macronutrients));
+      case FoodGroup.Dairy:
+        return new Dairy(food.name, food.origin, food.priceByKg, food.macronutrients);
       case FoodGroup.proteinRich:
         return new RichProteinFood(food.name, food.origin, food.priceByKg, food.macronutrients);
-        break;
       default:
         return new Fruit(food.name, food.origin, food.priceByKg, food.macronutrients);
     }

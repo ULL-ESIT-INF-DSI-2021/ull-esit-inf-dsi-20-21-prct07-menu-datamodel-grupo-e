@@ -4,7 +4,9 @@ import { BasicPlate } from "../Plate";
 
 export class Carta implements Nameable, MenusHolder, PlatesHolder {
   constructor(private name: string, private menus: Menu[], private singlePlates: BasicPlate[]) {
-
+    this.menus.forEach((menu) => {
+      menu.getPlates().forEach((plate) => this.addPlate(plate));
+    });
   }
 
   setName(newName: string) {
@@ -44,8 +46,7 @@ export class Carta implements Nameable, MenusHolder, PlatesHolder {
   
   addPlate(newPlate: BasicPlate) {
     // Lo añade solo si no hay ya un plato con el mismo nombre
-    console.log('AQUIIIII---->', this.singlePlates);
-    if (this.singlePlates.filter((plate) => plate.getName() === newPlate.getName()).length === 0) {
+    if (this.singlePlates.filter((plate) => plate.getType() === newPlate.getType() && plate.getName() === newPlate.getName()).length === 0) {
       this.singlePlates.push(newPlate);
     }
   }
