@@ -3,7 +3,7 @@ import { BasicPlate } from "../Plate";
 import { CommandOrder } from "./command_order";
 
 /**
- * Clase comanda, gestiona un connjunto de 
+ * Clase comanda, gestiona un conjunto de 
  * "comandas" individuales
  */
 export class Command {

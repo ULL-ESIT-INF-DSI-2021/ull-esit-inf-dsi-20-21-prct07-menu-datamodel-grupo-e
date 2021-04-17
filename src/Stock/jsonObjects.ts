@@ -14,7 +14,7 @@ export type JsonFood = {
 };
 
 /**
- * Objeto de ripo Ingredient en formato JSON
+ * Objeto de tipo Ingredient en formato JSON
  */
 export type JsonIngredient = {
   jsonFood :JsonFood,
