@@ -15,6 +15,9 @@
 * #### [**Parser**](./#parser-1)
 * #### [**CommandMaker**](./#commandmaker-1) 
 * #### [**App**](./#app-1)
+* #### [**Ejemplos de uso**](./#ejemplos-de-uso-1) 
+  * ##### [**Editar el inventario**](./editar-el-inventario-1)
+  * ##### [**Crear una comanda**](./#crear-una-comanda-1)
 ## **Objetivos**
 * Desarrollar un modelo de datos con programación orientada a objetos.
 * Aprender a utilizar los módulos `inquirerjs` y `lowdb`.
