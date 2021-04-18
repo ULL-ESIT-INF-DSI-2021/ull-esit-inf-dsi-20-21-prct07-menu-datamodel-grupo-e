@@ -152,6 +152,4 @@ Esta clase representa el mas alto nivel de nuestro proyecto, inicializando nuest
 
 
 
-## **Prueba Final**
 
-## **Conclusiones**
