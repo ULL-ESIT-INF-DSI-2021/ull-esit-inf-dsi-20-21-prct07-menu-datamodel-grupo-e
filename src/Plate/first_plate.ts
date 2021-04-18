@@ -8,8 +8,8 @@ import { Ingredient } from "./ingredient";
 export class FirstPlate extends BasicPlate {
   /**
    * Constructor de la clase FirstPlate
-   * @param name Nombre del primer plato
-   * @param ingredients Ingredientes (vector)
+   * @param {string} name Nombre del primer plato
+   * @param {Ingredient[]} ingredients Ingredientes (vector)
    */
   constructor(name: string, ...ingredients: Ingredient[]) {
     super(name, ingredients);
@@ -17,7 +17,7 @@ export class FirstPlate extends BasicPlate {
 
   /**
    * Obtiene el tipo de plato al que pertenece
-   * @returns un objeto enumerable PlateType
+   * @returns {PlateType} un objeto enumerable PlateType
    */
   getType() {
     return PlateType.firstPlate;

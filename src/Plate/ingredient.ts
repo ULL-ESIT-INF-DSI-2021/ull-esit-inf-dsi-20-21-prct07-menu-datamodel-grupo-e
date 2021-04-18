@@ -1,25 +1,23 @@
 import { BasicFood, Macronutrients } from "../Food";
 
-
 /**
- * Clase ingrediente, hace de intermediario,
- * entre BasicFood y BasicPlate
+ * Clase encargada de almacenar un alimento y su cantidad
  */
 export class Ingredient {
   private nutritionalComposition: Macronutrients;
 
   /**
    * Constructor de la clase Ingredient
-   * @param food un alimento (BasicFood)
-   * @param ammount cantidad del alimento
+   * @param {BasicFood} food un alimento (BasicFood)
+   * @param {number} ammount cantidad del alimento
    */
   constructor(private food: BasicFood, private ammount: number) {
     this.nutritionalComposition = this.calculateNutritionalComposition();
   }
 
   /**
-   * Calcula la composición nutricional del alimento
-   * @returns objeto de tipo 'Macronutrients'
+   * Calcula la composición nutricional del alimento dada una cierta cantidad del mismo
+   * @returns {Macronutrients} objeto de tipo 'Macronutrients'
    */
   private calculateNutritionalComposition(): Macronutrients {
     const nutritionalComposition = new Macronutrients();
@@ -32,15 +30,15 @@ export class Ingredient {
 
   /**
    * Getter del atributo 'food'
-   * @returns el objeto de BasicFood
+   * @returns {BasicFood} el objeto de BasicFood
    */
   getFood(): BasicFood {
     return this.food;
   }
 
   /**
-   * Getter del atributo 'amount'
-   * @returns la cantidad del ingrediente
+   * Getter del atributo 'amount' (Cantidad de un alimento)
+   * @returns {number} la cantidad del ingrediente
    */
   getAmmount(): number {
     return this.ammount;
@@ -48,7 +46,7 @@ export class Ingredient {
 
   /**
    * Getter del precio en gramos
-   * @returns el precio del ingrediente
+   * @returns {number} el precio del ingrediente
    */
   getPrice(): number {
     return this.food.getPriceByKg() * (this.ammount / 1000);
@@ -56,7 +54,7 @@ export class Ingredient {
 
   /**
    * Getter del atributo 'nutritionalComposition'
-   * @returns composicion nutricional, objeto
+   * @returns {Macronutrients} composicion nutricional del alimento
    */
   getNutritionalComposition(): Macronutrients {
     return this.nutritionalComposition;

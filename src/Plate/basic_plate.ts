@@ -4,8 +4,7 @@ import { IngredientsHolder } from "../Interfaces/ingredients_holder";
 import { Ingredient } from "./ingredient";
 
 /**
- * Objeto de tipo PlateType,
- * es un enumerable
+ * Objeto de tipo PlateType representa los tipos de platos permitidos
  */
 export enum PlateType {
   starterPlate = 'Entrante',
@@ -14,26 +13,28 @@ export enum PlateType {
   dessert = 'Postre'
 };
 /**
- * Clase abstracta BasicPlate que engloba a 
- * start, first, second, y dessert plates
+ * Clase abstracta BasicPlate que engloba a start, first, second, y dessert plates
  */
 export abstract class BasicPlate implements Nameable, IngredientsHolder {
   
+  /**
+   * Composición nutricional de un alimento
+   */
   private nutritionalComposition: Macronutrients;
 
   /**
    * Constructor de la clase BasicPlate
-   * @param name Nombre del plato básico 
-   * @param ingredients Vector de ingredientes
+   * @param  {string} name Nombre del plato básico 
+   * @param {Ingredient[]} ingredients Vector de ingredientes
    */
   constructor(protected name: string, protected ingredients: Ingredient[] = []) {
     this.nutritionalComposition = this.calculateNutritionalComposition();  
   }
 
   /**
-   * Método privado al que se llama en el constructor
-   * calcula la composición nutricional
-   * @returns objeto de tipo Macronutrients
+   * Método auxiliar del constructor mediante el que se establecen los valores de
+   * distintos macronutrientes de cada alimento 
+   * @returns {Macronutrients} objeto de tipo Macronutrients
    */
   private calculateNutritionalComposition(): Macronutrients {
     const nutritionalComposition = new Macronutrients();
@@ -47,15 +48,16 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
   }
 
   /**
-   * Añade un nuevo ingrediente
-   * 
+   * Añadir un nuevo ingrediente al plato
+   * @param {Ingredient} ingredient 
    */
   addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
   }
 
   /**
-   * Cambia el nombre del plato
+   * Asignar un nombre al plato
+   * @param {string} newName 
    */
   setName(newName: string) {
     this.name = newName;
@@ -63,7 +65,7 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
   
   /**
    * Getter del atributo 'name'
-   * @returns nombre del plato
+   * @returns {string} nombre del plato
    */
   getName(): string {
     return this.name;
@@ -71,7 +73,7 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
   
   /**
    * Getter del precio total
-   * @returns suma de los precios de cada ingrediente
+   * @returns {number} suma de los precios de cada ingrediente
    */
   getPrice(): number {
     return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price, 0);
@@ -79,7 +81,7 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
 
   /**
    * Getter del atributo 'nutritionalComposition'
-   * @returns objeto de Macronutrients
+   * @returns {Macronutrients} Composición nutricional del plato
    */
   getNutritionalComposition(): Macronutrients {
     return this.nutritionalComposition;
@@ -87,7 +89,7 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
 
   /**
    * Getter del grupo de alimentos, (set)
-   * @returns un objeto set con los grupos
+   * @returns {FoodGroup[]} Grupo de productos que componen el plato
    */
   getFoodgroups(): FoodGroup[] {
     return [...new Set<FoodGroup>(this.ingredients.map((ingredient) => ingredient.getFood().getFoodGroup()))];
@@ -95,15 +97,14 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
 
   /**
    * Getter del atributo 'ingredients'
-   * @returns 
+   * @returns {Ingredient[]}
    */
   getIngredients(): Ingredient[] {
     return this.ingredients;
   }
   /**
-   * Getter del grupo predominante, calcula
-   * cuál es el tipo de alimento que más aparece
-   * @returns un objeto de tipo PlateType
+   * Getter del grupo predominante, calcula cuál es el tipo de alimento que más aparece
+   * @returns {FoodGroup} Grupo de comida predominante en el plato
    */
   getPredominantFoodGroup(): FoodGroup {
     const counter = new Map<FoodGroup, number>();
@@ -129,9 +130,17 @@ export abstract class BasicPlate implements Nameable, IngredientsHolder {
     return result;
   }
 
+  /**
+   * Eliminar del plato un ingrediente
+   * @param {string} ingredientFoodName
+   */
   removeIngredient(ingredientFoodName: string) {
     this.ingredients = this.ingredients.filter((ing) => ing.getFood().getName() !== ingredientFoodName);
   }
   
+  /**
+   * Método a desarrollar en las clases hijas para obtener el tipo de plato del que se trata
+   * @returns {PlateType} Tipo de plato
+   */
   abstract getType(): PlateType;
 };
