@@ -1,7 +1,7 @@
 import inquirer = require("inquirer");
 import { Stock } from "../Stock";
 import { StockEditor } from "../StockEditor";
-import * as clone from 'clone';
+import { CommandMaker } from "../Command/command_maker";
 
 
 /**
@@ -9,9 +9,10 @@ import * as clone from 'clone';
  * se ejecuta en relación al usuario
  */
 export class App {
-  
+
   private stockEditor: StockEditor;
   private stock: Stock;
+  private commandmaker :CommandMaker;
   // private commandMaker: CommandMaker;
 
   /**
@@ -23,14 +24,15 @@ export class App {
   constructor(databaseName: string) {
     this.stock = new Stock(databaseName);
     this.stockEditor = new StockEditor(this.stock);
+    this.commandmaker = new CommandMaker(this.stock);
   }
 
   /**
    * Método que se usa de intermediario con
    * otro método
    */
-  run() {
-    this.promptMainMenu();
+  async run() {
+    await this.promptMainMenu();
   }
 
   /**
@@ -42,6 +44,7 @@ export class App {
     const choices = {
       stockEditor: 'Editar inventario',
       commandMaker: 'Crear comanda',
+      exit: 'Salir',
     };
 
     const prompt = [
@@ -53,21 +56,33 @@ export class App {
       }
     ];
 
-    let outAnswers: any;
-    const action = (answers: any) => {
-      outAnswers = clone(answers);
+    let quit = false;
+    const action = async (answers: any) => {
+      // ------------------------------
+      console.clear();
+      // ------------------------------
+      switch (answers['choice']) {
+        case choices.stockEditor:
+          await this.stockEditor.run();
+          break;
+        case choices.commandMaker:
+          await this.commandmaker.run();
+          break;
+        case choices.exit:
+          quit = true;
+      }
     };
-    
+
     await inquirer.prompt(prompt).then(action);
-    
-    
-    switch (outAnswers['choice']) {
-      case choices.stockEditor:
-        this.stockEditor.run();
-        break;
-    }
+    if (quit) return;
+    await this.promptMainMenu();
   }
+
 };
+
+// const app = new App('./src/App/database.json');
+// const app = new App('./Databases/stock_database.json');
+// app.run();
 
 const app = new App('./src/App/database.json');
 app.run();

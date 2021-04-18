@@ -1,5 +1,4 @@
 /* eslint-disable spaced-comment */
-import * as inquirer from 'inquirer';
 import 'colors';
 import {JsonFood, JsonPlate, JsonMenu, JsonCarta, JsonIngredient} from './jsonObjects';
 import lowdb = require('lowdb');
@@ -8,8 +7,8 @@ import { BasicFood, Cereal, FoodGroup, Fruit, RichProteinFood } from '../Food';
 import { BasicPlate, Dessert, FirstPlate, Ingredient, SecondPlate, StarterPlate } from '../Plate';
 import { Menu } from '../Menu';
 import { Carta } from '../Carta';
-import { PlateType } from '../Plate/basic_plate';
 import { Parser } from '../Parser';
+import { CartasHolder, FoodsHolder, MenusHolder, PlatesHolder } from '../Interfaces';
 
 /**
  * Objeto que representa un almacén de varios
@@ -29,7 +28,7 @@ type StockScheme = {
  * es decir, que la gestiona, tiene objetos relacionados 
  * con la base de datos
  */
-export class Stock {
+sexport class Stock implements FoodsHolder, PlatesHolder, CartasHolder, MenusHolder {
   private parser: Parser;
 
   private database: lowdb.LowdbSync<StockScheme>;
@@ -97,8 +96,7 @@ export class Stock {
     const result = this.getFoods().find((food) => food.getName() === name);
     if (result) return result;
 
-    throw new Error(`No se ha podido encontrar un alimento llamado ${name}`);
-    
+    throw new Error(`No se ha podido encontrar un alimento llamado ${name}`); 
   }
 
   /**
@@ -117,7 +115,7 @@ export class Stock {
    * Método que sirve para eliminar un alimento según el nombre
    * @param foodName Una cadena de caracteres
    */
-  deleteFood(foodName :string) {
+  removeFood(foodName :string) {
     const indexFood = this.foods.findIndex((food) => food.getName() === foodName );
     if (indexFood != -1) {
       this.foods.splice(indexFood, 1);
@@ -125,8 +123,21 @@ export class Stock {
     };
   }
 
+
   /**
-   * Método que sirve para guardar un alimento en la base de datos
+   * Busca un alimento por su nombre. Si no lo encuentra lanza un error.
+   * @param {string} foodName 
+   * @returns {BasicFood} Alimento con el nombre especificado
+   */
+  searchFoodByName(foodName: string): BasicFood {
+    const result = this.foods.find((food) => food.getName() === foodName);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar un alimento llamado ${foodName}`);
+  }
+
+  /**
+   * Guarda todos los alimentos actuales en la base de datos.
    */
   storeFoods() {
     this.database.set('stock.foods', this.foods.map((food) => this.parser.parseJsonFood(food))).write();
@@ -147,9 +158,16 @@ export class Stock {
     }
   }
 
+  searchPlateByName(plateName: string) {
+    const result = this.getPlates().find((plate) => plate.getName() === plateName);
+    if (result) return result;
+    
+    throw new Error(`No se ha podido encontrar un plato llamado ${plateName}`);
+  }
+  
   /**
-   * Getter del atributo plates
-   * @returns Un objeto de tipo BasicPlate[]
+   * Devuelve los platos del inventario
+   * @returns {BasicPlate[]} Platos del inventario
    */
   getPlates() {
     return this.plates;
@@ -158,7 +176,7 @@ export class Stock {
   /**
    * Método que sirve para añadir un plato tanto a la base
    * de datos(método auxiliar) como al atributo interno plates
-   * @param newPlate 
+   * @param {BasicPlate} newPlate Plato a añadir
    */
   addPlate(newPlate: BasicPlate) {
     if (!this.plates.map((plate) => plate.getName()).includes(newPlate.getName())) {
@@ -168,17 +186,17 @@ export class Stock {
   }
 
   /**
-   * Método que guarda un plato en la base de datos
+   * Guarda todos los platos actuales en la base de datos
    */
   storePlates() {
     this.database.set('stock.plates', this.plates.map((plate) => this.parser.parseJsonPlate(plate))).write();
   }
   
   /**
-   * Método que elimina un plato en función de un nombre
-   * @param name Una cadena de caracteres
+   * Elimina un plato por su nombre
+   * @param {string} name Nombre del plato a eliminar.
    */
-  deletePlate(name: string) {
+  removePlate(name: string) {
     const plateIndex = this.plates.findIndex((plate) => plate.getName() === name);
     if (plateIndex >= 0) {
       this.plates.splice(plateIndex, 1);
@@ -190,68 +208,77 @@ export class Stock {
 
   /*****************************************MENUS*******************************************************/
   /**
-   * Método que sirve para cargar los menús disponibles en la 
-   * base de datos,hace uso de un método auxiliar
+   * Carga los menús que están en la base de datos
    */
   loadMenus() {
     if (this.database.has('stock.menus').value()) {
-      this.menus = this.database.get('stock.menus').value().map((menu: JsonMenu) => this.parser.parseMenu(menu));
+      // No se validan los platos que contiene el menú alojado en la base de datos
+      this.menus = this.database.get('stock.menus').value().map((menu: JsonMenu) => this.parser.parseMenu(menu, false));
     } else {
       this.storeMenus();
     }
   }
 
   /**
-   * Getter del atributo menus
-   * @returns Un objeto de tipo Menu[]
+   * Devuelve los menús del inventario
+   * @return {Menu[]} Menus del inventario
    */
   getMenus() {
     return this.menus;
   }
   
   /**
-   * Método que sirve para añadir un menú tanto a la base
-   * de datos como al atributo interno menus[]
-   * @param newMenu Un objeto de tipo Menu
+   * Añade un menú al inventario (y a la base de datos)
+   * @param {Menu} newMenu Menú a añadir
    */
   addMenu(newMenu: Menu) {
-    if (!this.menus.map((menu) => menu.getNameOfMenu()).includes(newMenu.getNameOfMenu())) {
+    if (!this.menus.map((menu) => menu.getName()).includes(newMenu.getName())) {
       this.menus.push(newMenu);
       this.storeMenus();
     }
   }
 
   /**
-   * Método que sirve para guardar un menú en la
-   * base de datos, y es llamada por addMenu()
+   * Guarda todos los menús actuales en la base de datos
    */
   storeMenus() {
     this.database.set('stock.menus', this.menus.map((menu) => this.parser.parseJsonMenu(menu))).write();
   }
 
   /**
-   * Método que sirve para eliminar un menú en función del nombre
-   * @param name Una cadena de caracteres
+   * Elimina un menú por su nombre
+   * @param {string} name Nombre del menú a eliminar
    */
-  deleteMenu(name: string) {
-    const menuIndex = this.menus.findIndex((menu) => menu.getNameOfMenu() === name);
+  removeMenu(name: string) {
+    const menuIndex = this.menus.findIndex((menu) => menu.getName() === name);
     if (menuIndex >= 0) {
       this.menus.splice(menuIndex, 1);
       this.storeMenus();
     }
   }
 
+  /**
+   * Busca un menú por su nombre. Si no lo encuentra lanza un error.
+   * @param {string} menuName Nombre del menú a buscar
+   * @returns {Menu} Menú con el nombre especificado
+   */
+  searchMenuByName(menuName: string) {
+    const result = this.getMenus().find((menu) => menu.getName() === menuName);
+    if (result) return result;
+
+    throw new Error(`No se ha podido encontrar un menú llamado ${menuName}`);
+  }
+
 
   /*****************************************COMANDAS*******************************************************/
   /**
-   * Método que inicializa las comandas en la base de datos,
-   * tenemos en cuenta que pueden ser platos o menús
+   * Carga en el inventario todas las cartas de la base de datos.
    */
   loadCartas() {
     if (this.database.has('stock.cartas').value()) {
       this.database.get('stock.cartas').value().forEach((carta: JsonCarta) => {
         this.cartas.push(new Carta(carta.name,
-            [...carta.menus.map((carta) => this.parser.parseMenu(carta))],
+            [...carta.menus.map((carta) => this.parser.parseMenu(carta, false))],
             [...carta.singlePlates.map((plate) => this.parser.parsePlate(plate))]));
       });
     } else {
@@ -260,18 +287,16 @@ export class Stock {
   }
 
   /**
-   * Getter del atributo cartas
-   * @returns Un objeto de tipo Carta[], que a su vez
-   * es un Menu[] o Plate[]
+   * Devuevle las cartas actuales del inventario
+   * @return {Carta[]} Cartas del inventario
    */
   getCartas() {
     return this.cartas;
   }
   
   /**
-   * Método que sirve para añadir una carta tanto a la base de datos
-   * como al atributo interno
-   * @param newCarta Un objeto de tipo Carta
+   * Añade una nueva carta al inventario (y a la base de datos)
+   * @param {Carta} newCarta Carta a añadir
    */
   addCarta(newCarta: Carta) {
     if (!this.cartas.map((carta) => carta.getName()).includes(newCarta.getName())) {
@@ -281,18 +306,17 @@ export class Stock {
   }
 
   /**
-   * Método que sirve para guardar una carta en concreto
+   * Guarda en la base de datos todas las cartas actuales del inventario
    */
   storeCartas() {
     this.database.set('stock.cartas', this.cartas.map((carta) => this.parser.parseJsonCarta(carta))).write();
   }
 
   /**
-   * Método que elimina una carta según el nombre, actualizando
-   * el atributo y modificando la base de datos
-   * @param name Una cadena de caracteres
+   * limina una carta por su nombre. 
+   * @param {string} name Nombre de la carta a eliminar.
    */
-  deleteCarta(name: string) {
+  removeCarta(name: string) {
     const cartaIndex = this.cartas.findIndex((carta) => carta.getName() === name);
     if (cartaIndex >= 0) {
       this.cartas.splice(cartaIndex, 1);
@@ -300,9 +324,16 @@ export class Stock {
     }
   }
 
-  async displayFoods() {
-    this.foods.forEach((food) => console.log(food.getName()));
+  /**
+   * Busca una carta por su nombre. Si no la encuentra lanza un error.
+   * @param {string} cartaName Nombre de la carta a buscar
+   * @returns {Carta} Carta con el nombre especificado
+   */
+  searchCartaByName(cartaName: string): Carta {
+    const result = this.cartas.find((carta) => carta.getName() === cartaName);
+    if (result) return result;
 
+    throw new Error(`No se ha podido encontrar una carta llamado ${cartaName}`);
   }
 }
 

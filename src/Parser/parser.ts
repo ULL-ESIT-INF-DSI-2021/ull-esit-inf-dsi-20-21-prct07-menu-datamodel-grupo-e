@@ -1,5 +1,5 @@
 import { Carta } from "../Carta";
-import { BasicFood, FoodGroup, Fruit, Cereal, RichProteinFood } from "../Food";
+import { BasicFood, FoodGroup, Fruit, Cereal, RichProteinFood, Dairy } from "../Food";
 import { Menu } from "../Menu";
 import { BasicPlate, Dessert, FirstPlate, Ingredient, PlateType, SecondPlate, StarterPlate } from "../Plate";
 import { JsonCarta, JsonFood, JsonIngredient, JsonMenu, JsonPlate } from "../Stock";
@@ -24,18 +24,15 @@ export class Parser {
   parseFood(food: JsonFood): BasicFood {
     switch (food.type) {
       case FoodGroup.Fruits:
-        return new Fruit(food.name, food.origin, food.price, food.macronutrients);
-        break;
+        return new Fruit(food.name, food.origin, food.priceByKg, food.macronutrients);
       case FoodGroup.Cereals:
-        return new Cereal(food.name, food.origin, food.price, food.macronutrients);
-        break;
-      // case FoodGroup.Dairy:
-      //   this.foods.push(new Dairy(food.name, food.origin, food.price, food.macronutrients));
+        return new Cereal(food.name, food.origin, food.priceByKg, food.macronutrients);
+      case FoodGroup.Dairy:
+        return new Dairy(food.name, food.origin, food.priceByKg, food.macronutrients);
       case FoodGroup.proteinRich:
-        return new RichProteinFood(food.name, food.origin, food.price, food.macronutrients);
-        break;
+        return new RichProteinFood(food.name, food.origin, food.priceByKg, food.macronutrients);
       default:
-        return new Fruit(food.name, food.origin, food.price, food.macronutrients);
+        return new Fruit(food.name, food.origin, food.priceByKg, food.macronutrients);
     }
   }
 
@@ -48,7 +45,7 @@ export class Parser {
     const object :JsonFood= {
       name: newFood.getName(),
       origin: newFood.getOrigin(),
-      price: newFood.getPriceByKg(),
+      priceByKg: newFood.getPriceByKg(),
       macronutrients: newFood.getMacronutrients(),
       type: newFood.getFoodGroup(),
     };
@@ -123,8 +120,8 @@ export class Parser {
    * @param menu Un objeto JSON Menu
    * @returns Un objeto de la clase Menu
    */
-  parseMenu(menu: JsonMenu): Menu {
-    return new Menu(menu.name, ...menu.jsonPlates.map((plate) => this.parsePlate(plate)));
+  parseMenu(menu: JsonMenu, validatePlates = true): Menu {
+    return new Menu(menu.name, menu.jsonPlates.map((plate) => this.parsePlate(plate)), validatePlates);
   }
   
   /**
@@ -134,7 +131,7 @@ export class Parser {
    */
   parseJsonMenu(newMenu: Menu): JsonMenu {
     const object: JsonMenu = {
-      name: newMenu.getNameOfMenu(),
+      name: newMenu.getName(),
       price: newMenu.getPrice(),
       jsonPlates: newMenu.getPlates().map((plate) => this.parseJsonPlate(plate)),
     };
@@ -151,7 +148,7 @@ export class Parser {
     const object: JsonCarta = {
       name: newCarta.getName(),
       menus: newCarta.getMenus().map((menu) => this.parseJsonMenu(menu)),
-      singlePlates: newCarta.getAllPlates().map((plate) => this.parseJsonPlate(plate)),
+      singlePlates: newCarta.getPlates().map((plate) => this.parseJsonPlate(plate)),
     };
 
     return object;

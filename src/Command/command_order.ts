@@ -8,17 +8,26 @@ import { BasicPlate } from "../Plate";
 export class CommandOrder {
   /**
    * Constructor de la clase CommandOrder
-   * @param order Objeto de tipo Menu o BasicPlate
-   * @param quantity Cantidad numérica
+   * @param {BasicPlate} order Plato de la orden
+   * @param {number} quantity Cantidad del plato
    */
-  constructor(private order: Menu | BasicPlate, private quantity: number) {
+  constructor(private order: BasicPlate, private quantity: number) {
     
   }
 
+  // Getters
   /**
-   * Getter del atributo order
-   * @returns Un Menú o un BasicPlate
+   * Devuelve el plato de la orden
+   * @returns 
    */
+  getPlate() {
+    return this.order;
+  }
+  
+  getPrice() {
+    return this.order.getPrice();
+  }
+  
   getOrder(): Menu | BasicPlate {
     return this.order;
   }
@@ -29,5 +38,13 @@ export class CommandOrder {
    */
   getQuantity(): number {
     return this.quantity;
+  }
+
+  oneMoreQuantity() {
+    this.quantity = this.quantity + 1;
+  }
+
+  setQuantity(ammount :number) {
+    this.quantity = ammount;
   }
 };

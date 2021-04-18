@@ -18,9 +18,18 @@ export class Command {
   }
 
   /**
-   * Getter del atributo order
-   * @returns Un vector de tipo CommandOrder
+   * Busca una orden (plato) por su nombre. Si no lo encuentra devuelve undefined
+   * @param plateName 
+   * @returns 
    */
+  searchOrderByName(plateName :string): CommandOrder | undefined {
+    return this.orders.find((order) => order.getOrder().getName() === plateName);
+  }
+
+  getPrice() {
+    return this.orders.reduce((total, order) => total + (order.getPrice() * order.getQuantity()), 0);
+  }
+
   getOrders(): CommandOrder[] {
     return this.orders;
   }
@@ -48,5 +57,14 @@ export class Command {
   getPlates(): BasicPlate[] {
     return this.orders.filter((order) => order instanceof BasicPlate).map((order) => order.getOrder()) as BasicPlate[];
   }
+
+  removePlate(plateName: string) {
+    this.orders.forEach((order, index) => order.getPlate().getName() === plateName ? this.removePlateByIndex(index) : true);
+  }
+
+  private removePlateByIndex(index: number) {
+    this.orders.splice(index, 1);
+  } 
+
 };
 

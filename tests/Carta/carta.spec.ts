@@ -11,44 +11,49 @@ chai.use(deepEqualInAnyOrder);
 
 describe('Carta tests', () => {
   const menu1 = new Menu('Menu 1',
-      new StarterPlate('Entrante', 
-          new Ingredient(
-              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new FirstPlate('PrimerPlato', 
-          new Ingredient(
-              new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new SecondPlate('SegundoPlato', 
-          new Ingredient(
-              new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
-              1
-          )
-      ),
+      [
+        new StarterPlate('Entrante', 
+            new Ingredient(
+                new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new FirstPlate('PrimerPlato', 
+            new Ingredient(
+                new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new SecondPlate('SegundoPlato', 
+            new Ingredient(
+                new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
+                1
+            )
+        ),
+
+      ]
   );
   const menu2 = new Menu('Menu 2',
-      new Dessert('Postre', 
-          new Ingredient(
-              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new FirstPlate('PrimerPlato2', 
-          new Ingredient(
-              new Cereal('Avena', 'Madrid', 3, new Macronutrients()),
-              2
-          )
-      ),
-      new SecondPlate('SegundoPlato2', 
-          new Ingredient(
-              new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
-              1
-          )
-      ),
+      [
+        new Dessert('Postre', 
+            new Ingredient(
+                new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new FirstPlate('PrimerPlato2', 
+            new Ingredient(
+                new Cereal('Avena', 'Madrid', 3, new Macronutrients()),
+                2
+            )
+        ),
+        new SecondPlate('SegundoPlato2', 
+            new Ingredient(
+                new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
+                1
+            )
+        ),  
+      ]
   );
 
   const singlePlates = [
@@ -63,7 +68,8 @@ describe('Carta tests', () => {
   });
 
   it('Retrieves ALL plates', () => {
-    expect(carta.getAllPlates()).to.deep.equalInAnyOrder(
+    console.log(carta.getPlates());
+    expect(carta.getPlates()).to.deep.equalInAnyOrder(
         [
           new StarterPlate('Entrante', new Ingredient(new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()), 1)),
           new FirstPlate('PrimerPlato2', new Ingredient(new Cereal('Avena', 'Madrid', 3, new Macronutrients()), 2)),

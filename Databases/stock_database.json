@@ -1,0 +1,2418 @@
+{
+  "stock": {
+    "foods": [
+      {
+        "name": "Arroz blanco",
+        "origin": "China",
+        "priceByKg": 5.7,
+        "macronutrients": {
+          "lipids": 0.9,
+          "carbohydrates": 86,
+          "proteins": 7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Avena",
+        "origin": "Asia",
+        "priceByKg": 2,
+        "macronutrients": {
+          "lipids": 7.1,
+          "carbohydrates": 59.8,
+          "proteins": 11.7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Base de pizza",
+        "origin": "Italia",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 7.4,
+          "carbohydrates": 43.9,
+          "proteins": 6.7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Canelones",
+        "origin": "Italia",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 2,
+          "carbohydrates": 74.8,
+          "proteins": 11.9
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Copos de maiz tostados",
+        "origin": "España",
+        "priceByKg": 8,
+        "macronutrients": {
+          "lipids": 0.9,
+          "carbohydrates": 84,
+          "proteins": 7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Espaguetis",
+        "origin": "Italia",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 1.8,
+          "carbohydrates": 74.1,
+          "proteins": 12
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Fideos",
+        "origin": "España",
+        "priceByKg": 2,
+        "macronutrients": {
+          "lipids": 1.5,
+          "carbohydrates": 78,
+          "proteins": 12.9
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Galletas cubiertas de chocolate",
+        "origin": "España",
+        "priceByKg": 15,
+        "macronutrients": {
+          "lipids": 27.6,
+          "carbohydrates": 62.4,
+          "proteins": 5.7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Galletas Maria",
+        "origin": "España",
+        "priceByKg": 6,
+        "macronutrients": {
+          "lipids": 8,
+          "carbohydrates": 76,
+          "proteins": 7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Harina de maiz",
+        "origin": "Canarias",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 2.7,
+          "carbohydrates": 76,
+          "proteins": 8.7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Batido de cacao",
+        "origin": "España",
+        "priceByKg": 4,
+        "macronutrients": {
+          "lipids": 4.3,
+          "carbohydrates": 10.9,
+          "proteins": 3.8
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Batido de Fresa",
+        "origin": "España",
+        "priceByKg": 4,
+        "macronutrients": {
+          "lipids": 1,
+          "carbohydrates": 11.2,
+          "proteins": 2.8
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Flan de huevo",
+        "origin": "España",
+        "priceByKg": 5,
+        "macronutrients": {
+          "lipids": 2.3,
+          "carbohydrates": 21.6,
+          "proteins": 4.9
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Helado cremoso",
+        "origin": "Reino Unido",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 9.2,
+          "carbohydrates": 26.2,
+          "proteins": 2.8
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Leche condensada entera",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 9.3,
+          "carbohydrates": 26,
+          "proteins": 8.8
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Nata",
+        "origin": "España",
+        "priceByKg": 15,
+        "macronutrients": {
+          "lipids": 48.2,
+          "carbohydrates": 2,
+          "proteins": 1.5
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Galletas",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 14,
+          "carbohydrates": 71.5,
+          "proteins": 7
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Cebolla",
+        "origin": "Canarias",
+        "priceByKg": 2.5,
+        "macronutrients": {
+          "lipids": 0,
+          "carbohydrates": 7,
+          "proteins": 1.2
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Champiñon",
+        "origin": "España",
+        "priceByKg": 5,
+        "macronutrients": {
+          "lipids": 0.3,
+          "carbohydrates": 4,
+          "proteins": 1.8
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Lechuga",
+        "origin": "España",
+        "priceByKg": 2,
+        "macronutrients": {
+          "lipids": 0.2,
+          "carbohydrates": 1.4,
+          "proteins": 1.34
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Pimiento verde",
+        "origin": "Canarias",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 0.2,
+          "carbohydrates": 0,
+          "proteins": 0
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Tomate",
+        "origin": "Canarias",
+        "priceByKg": 1.5,
+        "macronutrients": {
+          "lipids": 0.11,
+          "carbohydrates": 3.5,
+          "proteins": 1
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Garbanzos",
+        "origin": "España",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 5.4,
+          "carbohydrates": 49.6,
+          "proteins": 21.3
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Lentejas",
+        "origin": "España",
+        "priceByKg": 2.5,
+        "macronutrients": {
+          "lipids": 1.9,
+          "carbohydrates": 48.8,
+          "proteins": 24.3
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Crema cacahuete",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 50.9,
+          "carbohydrates": 11.2,
+          "proteins": 25.5
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Manzana",
+        "origin": "España",
+        "priceByKg": 2.6,
+        "macronutrients": {
+          "lipids": 0,
+          "carbohydrates": 12,
+          "proteins": 0.3
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Platano",
+        "origin": "Canarias",
+        "priceByKg": 2.5,
+        "macronutrients": {
+          "lipids": 0.3,
+          "carbohydrates": 20,
+          "proteins": 1.2
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Beicon",
+        "origin": "Reino Unido",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 26.1,
+          "carbohydrates": 0.5,
+          "proteins": 16
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Chuleta",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 2.65,
+          "carbohydrates": 0,
+          "proteins": 20
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Pechuga",
+        "origin": "España",
+        "priceByKg": 6,
+        "macronutrients": {
+          "lipids": 1.4,
+          "carbohydrates": 0,
+          "proteins": 21.9
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Atun",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 12,
+          "carbohydrates": 0,
+          "proteins": 23
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Chicharro",
+        "origin": "España",
+        "priceByKg": 6,
+        "macronutrients": {
+          "lipids": 6.8,
+          "carbohydrates": 0,
+          "proteins": 15.7
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Limon",
+        "origin": "Canarias",
+        "priceByKg": 1.5,
+        "macronutrients": {
+          "lipids": 0.4,
+          "carbohydrates": 9,
+          "proteins": 0.7
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Solomillo",
+        "origin": "España",
+        "priceByKg": 15,
+        "macronutrients": {
+          "lipids": 5.1,
+          "carbohydrates": 0,
+          "proteins": 21
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Bistec de ternera",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 5.4,
+          "carbohydrates": 0,
+          "proteins": 20.7
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Jamon iberico",
+        "origin": "España",
+        "priceByKg": 30,
+        "macronutrients": {
+          "lipids": 14.7,
+          "carbohydrates": 0,
+          "proteins": 30.5
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Salchichas Frankfurt",
+        "origin": "Alemania",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 20,
+          "carbohydrates": 3,
+          "proteins": 12
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Queso blanco",
+        "origin": "España",
+        "priceByKg": 10,
+        "macronutrients": {
+          "lipids": 2.6,
+          "carbohydrates": 5,
+          "proteins": 10
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Dulce guayabo",
+        "origin": "España",
+        "priceByKg": 5,
+        "macronutrients": {
+          "lipids": 0.5,
+          "carbohydrates": 0,
+          "proteins": 0
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Pan",
+        "origin": "España",
+        "priceByKg": 3,
+        "macronutrients": {
+          "lipids": 2.5,
+          "carbohydrates": 59.2,
+          "proteins": 10.1
+        },
+        "type": "Cereales."
+      },
+      {
+        "name": "Huevo de gallina",
+        "origin": "España",
+        "priceByKg": 3.09,
+        "macronutrients": {
+          "lipids": 11.1,
+          "carbohydrates": 0.7,
+          "proteins": 12.5
+        },
+        "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+      },
+      {
+        "name": "Ajo",
+        "origin": "China",
+        "priceByKg": 1.05,
+        "macronutrients": {
+          "lipids": 0.3,
+          "carbohydrates": 23,
+          "proteins": 5.3
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Apio",
+        "origin": "India",
+        "priceByKg": 1.98,
+        "macronutrients": {
+          "lipids": 0.2,
+          "carbohydrates": 1.3,
+          "proteins": 1.3
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Brecol",
+        "origin": "Italia",
+        "priceByKg": 2.7,
+        "macronutrients": {
+          "lipids": 0.9,
+          "carbohydrates": 1.8,
+          "proteins": 4.4
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Calabaza",
+        "origin": "Rusia",
+        "priceByKg": 1.39,
+        "macronutrients": {
+          "lipids": 0.2,
+          "carbohydrates": 2.2,
+          "proteins": 0.7
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Papas",
+        "origin": "España",
+        "priceByKg": 0.45,
+        "macronutrients": {
+          "lipids": 0.2,
+          "carbohydrates": 18,
+          "proteins": 2.5
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Ciruela",
+        "origin": "Francia",
+        "priceByKg": 0.74,
+        "macronutrients": {
+          "lipids": 0.2,
+          "carbohydrates": 11,
+          "proteins": 0.6
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Kiwi",
+        "origin": "India",
+        "priceByKg": 2.89,
+        "macronutrients": {
+          "lipids": 0.5,
+          "carbohydrates": 10.6,
+          "proteins": 1.1
+        },
+        "type": "Frutas."
+      },
+      {
+        "name": "Sandia",
+        "origin": "Noruega",
+        "priceByKg": 0.49,
+        "macronutrients": {
+          "lipids": 0.1,
+          "carbohydrates": 4.5,
+          "proteins": 0.4
+        },
+        "type": "Frutas."
+      }
+    ],
+    "plates": [
+      {
+        "name": "Tapa Queso blanco con Guayaba",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Queso blanco",
+              "origin": "España",
+              "priceByKg": 10,
+              "macronutrients": {
+                "lipids": 2.6,
+                "carbohydrates": 5,
+                "proteins": 10
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Dulce guayabo",
+              "origin": "España",
+              "priceByKg": 5,
+              "macronutrients": {
+                "lipids": 0.5,
+                "carbohydrates": 0,
+                "proteins": 0
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Entrante"
+      },
+      {
+        "name": "Tapa iberica",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Queso blanco",
+              "origin": "España",
+              "priceByKg": 10,
+              "macronutrients": {
+                "lipids": 2.6,
+                "carbohydrates": 5,
+                "proteins": 10
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Jamon iberico",
+              "origin": "España",
+              "priceByKg": 30,
+              "macronutrients": {
+                "lipids": 14.7,
+                "carbohydrates": 0,
+                "proteins": 30.5
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Pan",
+              "origin": "España",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 2.5,
+                "carbohydrates": 59.2,
+                "proteins": 10.1
+              },
+              "type": "Cereales."
+            },
+            "ammount": 200
+          }
+        ],
+        "type": "Entrante"
+      },
+      {
+        "name": "Arroz con champiñones",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Arroz blanco",
+              "origin": "China",
+              "priceByKg": 5.7,
+              "macronutrients": {
+                "lipids": 0.9,
+                "carbohydrates": 86,
+                "proteins": 7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 800
+          },
+          {
+            "jsonFood": {
+              "name": "Champiñon",
+              "origin": "España",
+              "priceByKg": 5,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 4,
+                "proteins": 1.8
+              },
+              "type": "Frutas."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Nata",
+              "origin": "España",
+              "priceByKg": 15,
+              "macronutrients": {
+                "lipids": 48.2,
+                "carbohydrates": 2,
+                "proteins": 1.5
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Flan",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Flan de huevo",
+              "origin": "España",
+              "priceByKg": 5,
+              "macronutrients": {
+                "lipids": 2.3,
+                "carbohydrates": 21.6,
+                "proteins": 4.9
+              },
+              "type": "Frutas."
+            },
+            "ammount": 600
+          }
+        ],
+        "type": "Postre"
+      },
+      {
+        "name": "Cocktail de frutas",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Manzana",
+              "origin": "España",
+              "priceByKg": 2.6,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 12,
+                "proteins": 0.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Platano",
+              "origin": "Canarias",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 20,
+                "proteins": 1.2
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Kiwi",
+              "origin": "India",
+              "priceByKg": 2.89,
+              "macronutrients": {
+                "lipids": 0.5,
+                "carbohydrates": 10.6,
+                "proteins": 1.1
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Sandia",
+              "origin": "Noruega",
+              "priceByKg": 0.49,
+              "macronutrients": {
+                "lipids": 0.1,
+                "carbohydrates": 4.5,
+                "proteins": 0.4
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Postre"
+      },
+      {
+        "name": "Chicharros",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Papas",
+              "origin": "España",
+              "priceByKg": 0.45,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 18,
+                "proteins": 2.5
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Chicharro",
+              "origin": "España",
+              "priceByKg": 6,
+              "macronutrients": {
+                "lipids": 6.8,
+                "carbohydrates": 0,
+                "proteins": 15.7
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 120
+          },
+          {
+            "jsonFood": {
+              "name": "Ajo",
+              "origin": "China",
+              "priceByKg": 1.05,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 23,
+                "proteins": 5.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 20
+          },
+          {
+            "jsonFood": {
+              "name": "Lechuga",
+              "origin": "España",
+              "priceByKg": 2,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 1.4,
+                "proteins": 1.34
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Cebolla",
+              "origin": "Canarias",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 7,
+                "proteins": 1.2
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Pan",
+              "origin": "España",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 2.5,
+                "carbohydrates": 59.2,
+                "proteins": 10.1
+              },
+              "type": "Cereales."
+            },
+            "ammount": 30
+          }
+        ],
+        "type": "Segundo plato"
+      },
+      {
+        "name": "Potaje",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Papas",
+              "origin": "España",
+              "priceByKg": 0.45,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 18,
+                "proteins": 2.5
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Calabaza",
+              "origin": "Rusia",
+              "priceByKg": 1.39,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 2.2,
+                "proteins": 0.7
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Apio",
+              "origin": "India",
+              "priceByKg": 1.98,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 1.3,
+                "proteins": 1.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Ajo",
+              "origin": "China",
+              "priceByKg": 1.05,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 23,
+                "proteins": 5.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          }
+        ],
+        "type": "Entrante"
+      },
+      {
+        "name": "Tapa Queso blanco",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Pan",
+              "origin": "España",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 2.5,
+                "carbohydrates": 59.2,
+                "proteins": 10.1
+              },
+              "type": "Cereales."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Queso blanco",
+              "origin": "España",
+              "priceByKg": 10,
+              "macronutrients": {
+                "lipids": 2.6,
+                "carbohydrates": 5,
+                "proteins": 10
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Entrante"
+      },
+      {
+        "name": "Lentejas compuestas",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Lentejas",
+              "origin": "España",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 1.9,
+                "carbohydrates": 48.8,
+                "proteins": 24.3
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Cebolla",
+              "origin": "Canarias",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 7,
+                "proteins": 1.2
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Ajo",
+              "origin": "China",
+              "priceByKg": 1.05,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 23,
+                "proteins": 5.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Solomillo",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Solomillo",
+              "origin": "España",
+              "priceByKg": 15,
+              "macronutrients": {
+                "lipids": 5.1,
+                "carbohydrates": 0,
+                "proteins": 21
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 210
+          },
+          {
+            "jsonFood": {
+              "name": "Lechuga",
+              "origin": "España",
+              "priceByKg": 2,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 1.4,
+                "proteins": 1.34
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Arroz blanco",
+              "origin": "China",
+              "priceByKg": 5.7,
+              "macronutrients": {
+                "lipids": 0.9,
+                "carbohydrates": 86,
+                "proteins": 7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 100
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Pizza Especial",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Base de pizza",
+              "origin": "Italia",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 7.4,
+                "carbohydrates": 43.9,
+                "proteins": 6.7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Huevo de gallina",
+              "origin": "España",
+              "priceByKg": 3.09,
+              "macronutrients": {
+                "lipids": 11.1,
+                "carbohydrates": 0.7,
+                "proteins": 12.5
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 60
+          },
+          {
+            "jsonFood": {
+              "name": "Jamon iberico",
+              "origin": "España",
+              "priceByKg": 30,
+              "macronutrients": {
+                "lipids": 14.7,
+                "carbohydrates": 0,
+                "proteins": 30.5
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 60
+          },
+          {
+            "jsonFood": {
+              "name": "Cebolla",
+              "origin": "Canarias",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 7,
+                "proteins": 1.2
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Champiñon",
+              "origin": "España",
+              "priceByKg": 5,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 4,
+                "proteins": 1.8
+              },
+              "type": "Frutas."
+            },
+            "ammount": 80
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Galletas de manzana",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Harina de maiz",
+              "origin": "Canarias",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 2.7,
+                "carbohydrates": 76,
+                "proteins": 8.7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 100
+          },
+          {
+            "jsonFood": {
+              "name": "Leche condensada entera",
+              "origin": "España",
+              "priceByKg": 10,
+              "macronutrients": {
+                "lipids": 9.3,
+                "carbohydrates": 26,
+                "proteins": 8.8
+              },
+              "type": "Frutas."
+            },
+            "ammount": 40
+          },
+          {
+            "jsonFood": {
+              "name": "Manzana",
+              "origin": "España",
+              "priceByKg": 2.6,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 12,
+                "proteins": 0.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 70
+          }
+        ],
+        "type": "Postre"
+      },
+      {
+        "name": "Ensalada",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Cebolla",
+              "origin": "Canarias",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 7,
+                "proteins": 1.2
+              },
+              "type": "Frutas."
+            },
+            "ammount": 30
+          },
+          {
+            "jsonFood": {
+              "name": "Lechuga",
+              "origin": "España",
+              "priceByKg": 2,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 1.4,
+                "proteins": 1.34
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Tomate",
+              "origin": "Canarias",
+              "priceByKg": 1.5,
+              "macronutrients": {
+                "lipids": 0.11,
+                "carbohydrates": 3.5,
+                "proteins": 1
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Segundo plato"
+      },
+      {
+        "name": "Pure de calabaza",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Calabaza",
+              "origin": "Rusia",
+              "priceByKg": 1.39,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 2.2,
+                "proteins": 0.7
+              },
+              "type": "Frutas."
+            },
+            "ammount": 150
+          }
+        ],
+        "type": "Primer plato"
+      },
+      {
+        "name": "Tarta de limon",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Galletas Maria",
+              "origin": "España",
+              "priceByKg": 6,
+              "macronutrients": {
+                "lipids": 8,
+                "carbohydrates": 76,
+                "proteins": 7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Nata",
+              "origin": "España",
+              "priceByKg": 15,
+              "macronutrients": {
+                "lipids": 48.2,
+                "carbohydrates": 2,
+                "proteins": 1.5
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Limon",
+              "origin": "Canarias",
+              "priceByKg": 1.5,
+              "macronutrients": {
+                "lipids": 0.4,
+                "carbohydrates": 9,
+                "proteins": 0.7
+              },
+              "type": "Frutas."
+            },
+            "ammount": 30
+          },
+          {
+            "jsonFood": {
+              "name": "Harina de maiz",
+              "origin": "Canarias",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 2.7,
+                "carbohydrates": 76,
+                "proteins": 8.7
+              },
+              "type": "Cereales."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Postre"
+      },
+      {
+        "name": "Espaguetis Ibérico",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Espaguetis",
+              "origin": "Italia",
+              "priceByKg": 3,
+              "macronutrients": {
+                "lipids": 1.8,
+                "carbohydrates": 74.1,
+                "proteins": 12
+              },
+              "type": "Cereales."
+            },
+            "ammount": 150
+          },
+          {
+            "jsonFood": {
+              "name": "Jamon iberico",
+              "origin": "España",
+              "priceByKg": 30,
+              "macronutrients": {
+                "lipids": 14.7,
+                "carbohydrates": 0,
+                "proteins": 30.5
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 150
+          }
+        ],
+        "type": "Segundo plato"
+      },
+      {
+        "name": "Papas fritas",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Papas",
+              "origin": "España",
+              "priceByKg": 0.45,
+              "macronutrients": {
+                "lipids": 0.2,
+                "carbohydrates": 18,
+                "proteins": 2.5
+              },
+              "type": "Frutas."
+            },
+            "ammount": 100
+          }
+        ],
+        "type": "Entrante"
+      },
+      {
+        "name": "Sopa",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Fideos",
+              "origin": "España",
+              "priceByKg": 2,
+              "macronutrients": {
+                "lipids": 1.5,
+                "carbohydrates": 78,
+                "proteins": 12.9
+              },
+              "type": "Cereales."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Cebolla",
+              "origin": "Canarias",
+              "priceByKg": 2.5,
+              "macronutrients": {
+                "lipids": 0,
+                "carbohydrates": 7,
+                "proteins": 1.2
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          },
+          {
+            "jsonFood": {
+              "name": "Ajo",
+              "origin": "China",
+              "priceByKg": 1.05,
+              "macronutrients": {
+                "lipids": 0.3,
+                "carbohydrates": 23,
+                "proteins": 5.3
+              },
+              "type": "Frutas."
+            },
+            "ammount": 20
+          }
+        ],
+        "type": "Segundo plato"
+      },
+      {
+        "name": "Pechuga al limon",
+        "ingredients": [
+          {
+            "jsonFood": {
+              "name": "Pechuga",
+              "origin": "España",
+              "priceByKg": 6,
+              "macronutrients": {
+                "lipids": 1.4,
+                "carbohydrates": 0,
+                "proteins": 21.9
+              },
+              "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+            },
+            "ammount": 200
+          },
+          {
+            "jsonFood": {
+              "name": "Limon",
+              "origin": "Canarias",
+              "priceByKg": 1.5,
+              "macronutrients": {
+                "lipids": 0.4,
+                "carbohydrates": 9,
+                "proteins": 0.7
+              },
+              "type": "Frutas."
+            },
+            "ammount": 50
+          }
+        ],
+        "type": "Segundo plato"
+      }
+    ],
+    "menus": [
+      {
+        "name": "Menú Básico",
+        "price": 10.56,
+        "jsonPlates": [
+          {
+            "name": "Tapa Queso blanco con Guayaba",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Queso blanco",
+                  "origin": "España",
+                  "priceByKg": 10,
+                  "macronutrients": {
+                    "lipids": 2.6,
+                    "carbohydrates": 5,
+                    "proteins": 10
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Dulce guayabo",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 0.5,
+                    "carbohydrates": 0,
+                    "proteins": 0
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Entrante"
+          },
+          {
+            "name": "Arroz con champiñones",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Arroz blanco",
+                  "origin": "China",
+                  "priceByKg": 5.7,
+                  "macronutrients": {
+                    "lipids": 0.9,
+                    "carbohydrates": 86,
+                    "proteins": 7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 800
+              },
+              {
+                "jsonFood": {
+                  "name": "Champiñon",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 4,
+                    "proteins": 1.8
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 200
+              },
+              {
+                "jsonFood": {
+                  "name": "Nata",
+                  "origin": "España",
+                  "priceByKg": 15,
+                  "macronutrients": {
+                    "lipids": 48.2,
+                    "carbohydrates": 2,
+                    "proteins": 1.5
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Flan",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Flan de huevo",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 2.3,
+                    "carbohydrates": 21.6,
+                    "proteins": 4.9
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 600
+              }
+            ],
+            "type": "Postre"
+          }
+        ]
+      },
+      {
+        "name": "Menú tropical",
+        "price": 8.6214,
+        "jsonPlates": [
+          {
+            "name": "Tapa iberica",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Queso blanco",
+                  "origin": "España",
+                  "priceByKg": 10,
+                  "macronutrients": {
+                    "lipids": 2.6,
+                    "carbohydrates": 5,
+                    "proteins": 10
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Jamon iberico",
+                  "origin": "España",
+                  "priceByKg": 30,
+                  "macronutrients": {
+                    "lipids": 14.7,
+                    "carbohydrates": 0,
+                    "proteins": 30.5
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Pan",
+                  "origin": "España",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.5,
+                    "carbohydrates": 59.2,
+                    "proteins": 10.1
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 200
+              }
+            ],
+            "type": "Entrante"
+          },
+          {
+            "name": "Potaje",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Papas",
+                  "origin": "España",
+                  "priceByKg": 0.45,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 18,
+                    "proteins": 2.5
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Calabaza",
+                  "origin": "Rusia",
+                  "priceByKg": 1.39,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 2.2,
+                    "proteins": 0.7
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Apio",
+                  "origin": "India",
+                  "priceByKg": 1.98,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 1.3,
+                    "proteins": 1.3
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Ajo",
+                  "origin": "China",
+                  "priceByKg": 1.05,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 23,
+                    "proteins": 5.3
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              }
+            ],
+            "type": "Entrante"
+          },
+          {
+            "name": "Pizza Especial",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Base de pizza",
+                  "origin": "Italia",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 7.4,
+                    "carbohydrates": 43.9,
+                    "proteins": 6.7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 200
+              },
+              {
+                "jsonFood": {
+                  "name": "Huevo de gallina",
+                  "origin": "España",
+                  "priceByKg": 3.09,
+                  "macronutrients": {
+                    "lipids": 11.1,
+                    "carbohydrates": 0.7,
+                    "proteins": 12.5
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 60
+              },
+              {
+                "jsonFood": {
+                  "name": "Jamon iberico",
+                  "origin": "España",
+                  "priceByKg": 30,
+                  "macronutrients": {
+                    "lipids": 14.7,
+                    "carbohydrates": 0,
+                    "proteins": 30.5
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 60
+              },
+              {
+                "jsonFood": {
+                  "name": "Cebolla",
+                  "origin": "Canarias",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 7,
+                    "proteins": 1.2
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Champiñon",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 4,
+                    "proteins": 1.8
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 80
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Cocktail de frutas",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Manzana",
+                  "origin": "España",
+                  "priceByKg": 2.6,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 12,
+                    "proteins": 0.3
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Platano",
+                  "origin": "Canarias",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 20,
+                    "proteins": 1.2
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Kiwi",
+                  "origin": "India",
+                  "priceByKg": 2.89,
+                  "macronutrients": {
+                    "lipids": 0.5,
+                    "carbohydrates": 10.6,
+                    "proteins": 1.1
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Sandia",
+                  "origin": "Noruega",
+                  "priceByKg": 0.49,
+                  "macronutrients": {
+                    "lipids": 0.1,
+                    "carbohydrates": 4.5,
+                    "proteins": 0.4
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Postre"
+          }
+        ]
+      },
+      {
+        "name": "Menu fiesta",
+        "price": 6.843500000000001,
+        "jsonPlates": [
+          {
+            "name": "Lentejas compuestas",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Lentejas",
+                  "origin": "España",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 1.9,
+                    "carbohydrates": 48.8,
+                    "proteins": 24.3
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 200
+              },
+              {
+                "jsonFood": {
+                  "name": "Cebolla",
+                  "origin": "Canarias",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 7,
+                    "proteins": 1.2
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Ajo",
+                  "origin": "China",
+                  "priceByKg": 1.05,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 23,
+                    "proteins": 5.3
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Solomillo",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Solomillo",
+                  "origin": "España",
+                  "priceByKg": 15,
+                  "macronutrients": {
+                    "lipids": 5.1,
+                    "carbohydrates": 0,
+                    "proteins": 21
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 210
+              },
+              {
+                "jsonFood": {
+                  "name": "Lechuga",
+                  "origin": "España",
+                  "priceByKg": 2,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 1.4,
+                    "proteins": 1.34
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Arroz blanco",
+                  "origin": "China",
+                  "priceByKg": 5.7,
+                  "macronutrients": {
+                    "lipids": 0.9,
+                    "carbohydrates": 86,
+                    "proteins": 7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 100
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Chicharros",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Papas",
+                  "origin": "España",
+                  "priceByKg": 0.45,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 18,
+                    "proteins": 2.5
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Chicharro",
+                  "origin": "España",
+                  "priceByKg": 6,
+                  "macronutrients": {
+                    "lipids": 6.8,
+                    "carbohydrates": 0,
+                    "proteins": 15.7
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 120
+              },
+              {
+                "jsonFood": {
+                  "name": "Ajo",
+                  "origin": "China",
+                  "priceByKg": 1.05,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 23,
+                    "proteins": 5.3
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 20
+              },
+              {
+                "jsonFood": {
+                  "name": "Lechuga",
+                  "origin": "España",
+                  "priceByKg": 2,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 1.4,
+                    "proteins": 1.34
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Cebolla",
+                  "origin": "Canarias",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 7,
+                    "proteins": 1.2
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Pan",
+                  "origin": "España",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.5,
+                    "carbohydrates": 59.2,
+                    "proteins": 10.1
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 30
+              }
+            ],
+            "type": "Segundo plato"
+          },
+          {
+            "name": "Tarta de limon",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Galletas Maria",
+                  "origin": "España",
+                  "priceByKg": 6,
+                  "macronutrients": {
+                    "lipids": 8,
+                    "carbohydrates": 76,
+                    "proteins": 7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Nata",
+                  "origin": "España",
+                  "priceByKg": 15,
+                  "macronutrients": {
+                    "lipids": 48.2,
+                    "carbohydrates": 2,
+                    "proteins": 1.5
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Limon",
+                  "origin": "Canarias",
+                  "priceByKg": 1.5,
+                  "macronutrients": {
+                    "lipids": 0.4,
+                    "carbohydrates": 9,
+                    "proteins": 0.7
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 30
+              },
+              {
+                "jsonFood": {
+                  "name": "Harina de maiz",
+                  "origin": "Canarias",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.7,
+                    "carbohydrates": 76,
+                    "proteins": 8.7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Postre"
+          }
+        ]
+      },
+      {
+        "name": "Menu vegetariano",
+        "price": 2.5035,
+        "jsonPlates": [
+          {
+            "name": "Tapa Queso blanco",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Pan",
+                  "origin": "España",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.5,
+                    "carbohydrates": 59.2,
+                    "proteins": 10.1
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Queso blanco",
+                  "origin": "España",
+                  "priceByKg": 10,
+                  "macronutrients": {
+                    "lipids": 2.6,
+                    "carbohydrates": 5,
+                    "proteins": 10
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Entrante"
+          },
+          {
+            "name": "Pure de calabaza",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Calabaza",
+                  "origin": "Rusia",
+                  "priceByKg": 1.39,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 2.2,
+                    "proteins": 0.7
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 150
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Ensalada",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Cebolla",
+                  "origin": "Canarias",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 7,
+                    "proteins": 1.2
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 30
+              },
+              {
+                "jsonFood": {
+                  "name": "Lechuga",
+                  "origin": "España",
+                  "priceByKg": 2,
+                  "macronutrients": {
+                    "lipids": 0.2,
+                    "carbohydrates": 1.4,
+                    "proteins": 1.34
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Tomate",
+                  "origin": "Canarias",
+                  "priceByKg": 1.5,
+                  "macronutrients": {
+                    "lipids": 0.11,
+                    "carbohydrates": 3.5,
+                    "proteins": 1
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Segundo plato"
+          },
+          {
+            "name": "Tarta de limon",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Galletas Maria",
+                  "origin": "España",
+                  "priceByKg": 6,
+                  "macronutrients": {
+                    "lipids": 8,
+                    "carbohydrates": 76,
+                    "proteins": 7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Nata",
+                  "origin": "España",
+                  "priceByKg": 15,
+                  "macronutrients": {
+                    "lipids": 48.2,
+                    "carbohydrates": 2,
+                    "proteins": 1.5
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Limon",
+                  "origin": "Canarias",
+                  "priceByKg": 1.5,
+                  "macronutrients": {
+                    "lipids": 0.4,
+                    "carbohydrates": 9,
+                    "proteins": 0.7
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 30
+              },
+              {
+                "jsonFood": {
+                  "name": "Harina de maiz",
+                  "origin": "Canarias",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.7,
+                    "carbohydrates": 76,
+                    "proteins": 8.7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Postre"
+          }
+        ]
+      },
+      {
+        "name": "Menu casero",
+        "price": 9.7424,
+        "jsonPlates": [
+          {
+            "name": "Tapa Queso blanco",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Pan",
+                  "origin": "España",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.5,
+                    "carbohydrates": 59.2,
+                    "proteins": 10.1
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Queso blanco",
+                  "origin": "España",
+                  "priceByKg": 10,
+                  "macronutrients": {
+                    "lipids": 2.6,
+                    "carbohydrates": 5,
+                    "proteins": 10
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              }
+            ],
+            "type": "Entrante"
+          },
+          {
+            "name": "Pizza Especial",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Base de pizza",
+                  "origin": "Italia",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 7.4,
+                    "carbohydrates": 43.9,
+                    "proteins": 6.7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 200
+              },
+              {
+                "jsonFood": {
+                  "name": "Huevo de gallina",
+                  "origin": "España",
+                  "priceByKg": 3.09,
+                  "macronutrients": {
+                    "lipids": 11.1,
+                    "carbohydrates": 0.7,
+                    "proteins": 12.5
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 60
+              },
+              {
+                "jsonFood": {
+                  "name": "Jamon iberico",
+                  "origin": "España",
+                  "priceByKg": 30,
+                  "macronutrients": {
+                    "lipids": 14.7,
+                    "carbohydrates": 0,
+                    "proteins": 30.5
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 60
+              },
+              {
+                "jsonFood": {
+                  "name": "Cebolla",
+                  "origin": "Canarias",
+                  "priceByKg": 2.5,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 7,
+                    "proteins": 1.2
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 50
+              },
+              {
+                "jsonFood": {
+                  "name": "Champiñon",
+                  "origin": "España",
+                  "priceByKg": 5,
+                  "macronutrients": {
+                    "lipids": 0.3,
+                    "carbohydrates": 4,
+                    "proteins": 1.8
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 80
+              }
+            ],
+            "type": "Primer plato"
+          },
+          {
+            "name": "Espaguetis Ibérico",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Espaguetis",
+                  "origin": "Italia",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 1.8,
+                    "carbohydrates": 74.1,
+                    "proteins": 12
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 150
+              },
+              {
+                "jsonFood": {
+                  "name": "Jamon iberico",
+                  "origin": "España",
+                  "priceByKg": 30,
+                  "macronutrients": {
+                    "lipids": 14.7,
+                    "carbohydrates": 0,
+                    "proteins": 30.5
+                  },
+                  "type": "Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres."
+                },
+                "ammount": 150
+              }
+            ],
+            "type": "Segundo plato"
+          },
+          {
+            "name": "Galletas de manzana",
+            "ingredients": [
+              {
+                "jsonFood": {
+                  "name": "Harina de maiz",
+                  "origin": "Canarias",
+                  "priceByKg": 3,
+                  "macronutrients": {
+                    "lipids": 2.7,
+                    "carbohydrates": 76,
+                    "proteins": 8.7
+                  },
+                  "type": "Cereales."
+                },
+                "ammount": 100
+              },
+              {
+                "jsonFood": {
+                  "name": "Leche condensada entera",
+                  "origin": "España",
+                  "priceByKg": 10,
+                  "macronutrients": {
+                    "lipids": 9.3,
+                    "carbohydrates": 26,
+                    "proteins": 8.8
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 40
+              },
+              {
+                "jsonFood": {
+                  "name": "Manzana",
+                  "origin": "España",
+                  "priceByKg": 2.6,
+                  "macronutrients": {
+                    "lipids": 0,
+                    "carbohydrates": 12,
+                    "proteins": 0.3
+                  },
+                  "type": "Frutas."
+                },
+                "ammount": 70
+              }
+            ],
+            "type": "Postre"
+          }
+        ]
+      }
+    ],
+    "cartas": []
+  }
+}

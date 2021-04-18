@@ -33,12 +33,12 @@ describe('Stock Food tests', () => {
     expect(newStock.getFoods()).to.be.eql([apple]);
   });
 
-  it('Deletes a food element', () => {
-    stock.deleteFood('manzana');
+  it('removes a food element', () => {
+    stock.removeFood('manzana');
     expect(stock.getFoods()).to.be.eql([]);
   });
 
-  it('Deletes food element from database', () => {
+  it('removes food element from database', () => {
     const newStock = new Stock('./tests/Stock/database_test.json');
     expect(newStock.getFoods()).to.be.eql([]);
   });
@@ -65,12 +65,12 @@ describe('Stock plates tests', () => {
     expect(newStock.getPlates()).to.be.eql([applePie]);
   });
 
-  it('Deletes a plate element', () => {
-    stock.deletePlate('Pie de manzana');
+  it('removes a plate element', () => {
+    stock.removePlate('Pie de manzana');
     expect(stock.getPlates()).to.be.eql([]);
   });
 
-  it('Deletes plate element from database', () => {
+  it('removes plate element from database', () => {
     const newStock = new Stock('./tests/Stock/database_test.json');
     expect(newStock.getPlates()).to.be.eql([]);
   });
@@ -97,7 +97,7 @@ describe('Stock menu test', () => {
     )
   ];
 
-  const menu = new Menu('Grill lovers', ...plates);
+  const menu = new Menu('Grill lovers', plates);
 
   it('Add a menu', () => {
     stock.addMenu(menu);
@@ -114,12 +114,12 @@ describe('Stock menu test', () => {
     expect(newStock.getMenus()).to.be.eql([menu]);
   });
 
-  it('Deletes a menu element', () => {
-    stock.deleteMenu('Grill lovers');
+  it('removes a menu element', () => {
+    stock.removeMenu('Grill lovers');
     expect(stock.getMenus()).to.be.eql([]);
   });
 
-  it('Deletes menu element from database', () => {
+  it('removes menu element from database', () => {
     const newStock = new Stock('./tests/Stock/database_test.json');
     expect(newStock.getMenus()).to.be.eql([]);
   });
@@ -129,44 +129,48 @@ describe('Stock menu test', () => {
 describe('Stock Carta test', () => {
 
   const menu1 = new Menu('Menu 1',
-      new StarterPlate('Entrante', 
-          new Ingredient(
-              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new FirstPlate('PrimerPlato', 
-          new Ingredient(
-              new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new SecondPlate('SegundoPlato', 
-          new Ingredient(
-              new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
-              1
-          )
-      ),
+      [
+        new StarterPlate('Entrante', 
+            new Ingredient(
+                new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new FirstPlate('PrimerPlato', 
+            new Ingredient(
+                new Vegetable('Zanahora', 'Galicia', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new SecondPlate('SegundoPlato', 
+            new Ingredient(
+                new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
+                1
+            )
+        ),
+      ]
   );
   const menu2 = new Menu('Menu 2',
-      new Dessert('Postre', 
-          new Ingredient(
-              new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
-              1
-          )
-      ),
-      new FirstPlate('PrimerPlato2', 
-          new Ingredient(
-              new Cereal('Avena', 'Madrid', 3, new Macronutrients()),
-              2
-          )
-      ),
-      new SecondPlate('SegundoPlato2', 
-          new Ingredient(
-              new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
-              1
-          )
-      ),
+      [
+        new Dessert('Postre', 
+            new Ingredient(
+                new Fruit('Pera', 'Tacoronte', 3, new Macronutrients()),
+                1
+            )
+        ),
+        new FirstPlate('PrimerPlato2', 
+            new Ingredient(
+                new Cereal('Avena', 'Madrid', 3, new Macronutrients()),
+                2
+            )
+        ),
+        new SecondPlate('SegundoPlato2', 
+            new Ingredient(
+                new RichProteinFood('Costillas', 'Brasil', 12, new Macronutrients()),
+                1
+            )
+        ),
+      ]
   );
 
   const singlePlates = [
@@ -192,12 +196,12 @@ describe('Stock Carta test', () => {
     expect(newStock.getCartas()).to.deep.equalInAnyOrder([carta]);
   });
 
-  it('Deletes a carta element', () => {
-    stock.deleteCarta('carta1');
+  it('removes a carta element', () => {
+    stock.removeCarta('carta1');
     expect(stock.getCartas()).to.be.eql([]);
   });
 
-  it('Deletes carta element from database', () => {
+  it('removes carta element from database', () => {
     const newStock = new Stock('./tests/Stock/database_test.json');
     expect(newStock.getCartas()).to.be.eql([]);
   });

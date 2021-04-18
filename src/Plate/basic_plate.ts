@@ -1,4 +1,6 @@
 import { FoodGroup, Macronutrients } from "../Food";
+import { Nameable } from "../Interfaces";
+import { IngredientsHolder } from "../Interfaces/ingredients_holder";
 import { Ingredient } from "./ingredient";
 
 /**
@@ -15,7 +17,7 @@ export enum PlateType {
  * Clase abstracta BasicPlate que engloba a 
  * start, first, second, y dessert plates
  */
-export abstract class BasicPlate {
+export abstract class BasicPlate implements Nameable, IngredientsHolder {
   
   private nutritionalComposition: Macronutrients;
 
@@ -53,6 +55,13 @@ export abstract class BasicPlate {
   }
 
   /**
+   * Cambia el nombre del plato
+   */
+  setName(newName: string) {
+    this.name = newName;
+  }
+  
+  /**
    * Getter del atributo 'name'
    * @returns nombre del plato
    */
@@ -65,7 +74,7 @@ export abstract class BasicPlate {
    * @returns suma de los precios de cada ingrediente
    */
   getPrice(): number {
-    return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price);
+    return this.ingredients.map((ingredient) => ingredient.getPrice()).reduce((total, price) => total + price, 0);
   }
 
   /**
@@ -120,5 +129,9 @@ export abstract class BasicPlate {
     return result;
   }
 
+  removeIngredient(ingredientFoodName: string) {
+    this.ingredients = this.ingredients.filter((ing) => ing.getFood().getName() !== ingredientFoodName);
+  }
+  
   abstract getType(): PlateType;
 };

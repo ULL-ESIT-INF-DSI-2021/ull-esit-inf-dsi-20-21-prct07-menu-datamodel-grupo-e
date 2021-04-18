@@ -1,3 +1,4 @@
+import { Nameable, OriginHolder, OriginType, PriceByKgHolder } from "../Interfaces";
 import { Macronutrients } from "./macronutrients";
 /**
  * Objeto de tipo FoodGroup que 
@@ -10,7 +11,7 @@ export enum FoodGroup {
   Cereals = 'Cereales.',
   Fruits = 'Frutas.'
 }
-export abstract class BasicFood {
+export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHolder {
   /**
    * Constructor de la clase BasicFood
    * @param name Nombre del alimento
@@ -35,7 +36,7 @@ export abstract class BasicFood {
    * Getter del atributo 'origin'
    * @returns origen del alimento (país, ciudad...)
    */
-  getOrigin(): string {
+  getOrigin(): OriginType {
     return this.origin;
   }
 
@@ -67,7 +68,7 @@ export abstract class BasicFood {
    * Setter del atributo 'origin'
    * @param newOrigin nuevo origen
    */
-  setOrigin(newOrigin: string) {
+  setOrigin(newOrigin: OriginType) {
     this.origin = newOrigin;
   }
 

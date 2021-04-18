@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "tsc-watch --onSuccess \"node dist/App/app.js\"",
     "test": "mocha",
     "coverage": "nyc npm test && nyc report --reporter=lcov",
     "doc": "typedoc"
@@ -30,6 +31,7 @@
     "@typescript-eslint/parser": "^4.21.0",
     "chai": "^4.3.4",
     "clone": "^2.1.2",
+    "colors": "^1.4.0",
     "deep-equal-in-any-order": "^1.1.4",
     "eslint": "^7.23.0",
     "eslint-config-google": "^0.14.0",

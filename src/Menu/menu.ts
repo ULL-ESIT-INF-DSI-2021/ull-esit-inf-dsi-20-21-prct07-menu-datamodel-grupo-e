@@ -1,4 +1,5 @@
 import { FoodGroup, Macronutrients } from "../Food";
+import { Nameable, PlatesHolder } from "../Interfaces";
 import { BasicPlate, StarterPlate } from "../Plate";
 import { PlateType } from "../Plate/basic_plate";
 import { Dessert } from "../Plate/dessert";
@@ -10,29 +11,36 @@ import { SecondPlate } from "../Plate/second_plate";
  * platos variable,tiene un atributo que es
  * un vector de BasicPlate[]
  */
-export class Menu {
-
-  private plates: BasicPlate[];
-
-  /**
-   * El constructor inicializa el vector
-   * interno de platos
-   * @param name nombre
-   * @param plates_ un conjunto de platos
-   */
-  constructor(private name: string, ...plates_: BasicPlate[]) {
-    if (!this.platesAreValid(plates_)) {
+export class Menu implements PlatesHolder, Nameable {
+    
+    private plates: BasicPlate[];
+    
+    /**
+     * El constructor inicializa el vector
+     * interno de platos
+     * @param name nombre
+     * @param plates_ un conjunto de platos
+     */
+  constructor(private name: string, plates_: BasicPlate[], validatePlates = true) {
+    if (validatePlates && !this.platesAreValid(plates_)) {
       throw new Error('Bad Menu configuration');
     }
 
     this.plates = plates_;
   }
 
+  
+  // Setters
+  setName(newName: string) {
+    this.name = newName;
+  }
+  
+  // Getters
   /**
    * Método que obtiene el nombre del menú
    * @returns Una cadena de caracteres
    */
-  getNameOfMenu() {
+  getName() {
     return this.name;
   }
 
@@ -126,7 +134,6 @@ export class Menu {
     if (plates.length > 4 || plates.length < 3) return false;
 
     const uniqPlateTypes = [...new Set<PlateType>(plates.map((plate) => plate.getType()))];
-    
     if (uniqPlateTypes.length < 3) return false;
 
     return true;
@@ -135,6 +142,7 @@ export class Menu {
   /**
    * Método que sirve para añadir un plato
    * @param newPlate El plato añadido
+   * Posible nuevo comportamiento: si ya existe uno con el mismo nombre es sustituido.
    */
   addPlate(newPlate: BasicPlate) {
     const setNameofPlates = new Set();
@@ -160,7 +168,12 @@ export class Menu {
    */
   private removePlateByIndex(index: number) {
     this.plates.splice(index, 1);
-  }
+  }  
 
+  searchPlateByName(plateName: string) {
+    const result = this.getPlates().find((plate) => plate.getName() === plateName);
+    if (result) return result;
   
+    throw new Error(`No se ha podido encontrar un plato llamado ${plateName}`);
+  }
 };
