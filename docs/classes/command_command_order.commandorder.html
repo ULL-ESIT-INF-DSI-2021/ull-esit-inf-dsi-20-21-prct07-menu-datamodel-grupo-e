@@ -98,7 +98,11 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#getorder" class="tsd-kind-icon">get<wbr>Order</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#getplate" class="tsd-kind-icon">get<wbr>Plate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#getprice" class="tsd-kind-icon">get<wbr>Price</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#getquantity" class="tsd-kind-icon">get<wbr>Quantity</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#onemorequantity" class="tsd-kind-icon">one<wbr>More<wbr>Quantity</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command_command_order.commandorder.html#setquantity" class="tsd-kind-icon">set<wbr>Quantity</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,13 +114,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<wbr>Order<span class="tsd-signature-symbol">(</span>order<span class="tsd-signature-symbol">: </span><a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a>, quantity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command_command_order.commandorder.html" class="tsd-signature-type" data-tsd-kind="Class">CommandOrder</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Command<wbr>Order<span class="tsd-signature-symbol">(</span>order<span class="tsd-signature-symbol">: </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a>, quantity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command_command_order.commandorder.html" class="tsd-signature-type" data-tsd-kind="Class">CommandOrder</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/26b85ea/src/Command/command_order.ts#L8">Command/command_order.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L8">Command/command_order.ts:8</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -127,15 +131,15 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>order: <a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h5>
+									<h5>order: <a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Objeto de tipo Menu o BasicPlate</p>
+										<p>Plato de la orden</p>
 									</div>
 								</li>
 								<li>
 									<h5>quantity: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Cantidad numérica</p>
+										<p>Cantidad del plato</p>
 									</div>
 								</li>
 							</ul>
@@ -156,16 +160,49 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/26b85ea/src/Command/command_order.ts#L22">Command/command_order.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L31">Command/command_order.ts:31</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getplate" class="tsd-anchor"></a>
+					<h3>get<wbr>Plate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Plate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L23">Command/command_order.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Getter del atributo order</p>
+									<p>Devuelve el plato de la orden</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="menu_menu.menu.html" class="tsd-signature-type" data-tsd-kind="Class">Menu</a><span class="tsd-signature-symbol"> | </span><a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h4>
-							<p>Un Menú o un BasicPlate</p>
+							<h4 class="tsd-returns-title">Returns <a href="plate_basic_plate.basicplate.html" class="tsd-signature-type" data-tsd-kind="Class">BasicPlate</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getprice" class="tsd-anchor"></a>
+					<h3>get<wbr>Price</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Price<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L27">Command/command_order.ts:27</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -179,7 +216,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/26b85ea/src/Command/command_order.ts#L30">Command/command_order.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L39">Command/command_order.ts:39</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -189,6 +226,46 @@
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 							<p>Un valor numérico</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onemorequantity" class="tsd-anchor"></a>
+					<h3>one<wbr>More<wbr>Quantity</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">one<wbr>More<wbr>Quantity<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L43">Command/command_order.ts:43</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setquantity" class="tsd-anchor"></a>
+					<h3>set<wbr>Quantity</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Quantity<span class="tsd-signature-symbol">(</span>ammount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/blob/0acd66a/src/Command/command_order.ts#L47">Command/command_order.ts:47</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ammount: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -219,7 +296,19 @@
 								<a href="command_command_order.commandorder.html#getorder" class="tsd-kind-icon">get<wbr>Order</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="command_command_order.commandorder.html#getplate" class="tsd-kind-icon">get<wbr>Plate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="command_command_order.commandorder.html#getprice" class="tsd-kind-icon">get<wbr>Price</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="command_command_order.commandorder.html#getquantity" class="tsd-kind-icon">get<wbr>Quantity</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="command_command_order.commandorder.html#onemorequantity" class="tsd-kind-icon">one<wbr>More<wbr>Quantity</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="command_command_order.commandorder.html#setquantity" class="tsd-kind-icon">set<wbr>Quantity</a>
 							</li>
 						</ul>
 					</li>
@@ -244,6 +333,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 		</div>
 	</div>

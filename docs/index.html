@@ -63,6 +63,12 @@
 				<a href="#ver-en-github" id="ver-en-github" style="color: inherit; text-decoration: none;">
 					<h1><a href="https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e"><strong>Ver en Github</strong></a></h1>
 				</a>
+				<a href="#informe-práctica-7" id="informe-práctica-7" style="color: inherit; text-decoration: none;">
+					<h1>Informe Práctica 7</h1>
+				</a>
+				<a href="#modelo-de-datos-de-un-sistema-que-permite-el-diseño-de-menús" id="modelo-de-datos-de-un-sistema-que-permite-el-diseño-de-menús" style="color: inherit; text-decoration: none;">
+					<h1>Modelo de datos de un sistema que permite el diseño de menús</h1>
+				</a>
 				<a href="#objetivos" id="objetivos" style="color: inherit; text-decoration: none;">
 					<h2><strong>Objetivos</strong></h2>
 				</a>
@@ -73,15 +79,16 @@
 					<li>Incluir la documentación al proyecto mediante <em>TypeDoc</em>.</li>
 					<li>Adoptar una metodología de desarrollo dirigido por pruebas.</li>
 					<li>Utilizar una herramienta de cubrimiento de código en el proyecto, como <em>Coveralls</em>.</li>
-					<li>Utilizar y comprobar <em>Github Workflows</em>.
-						<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
-							<h2><strong>Introducción</strong></h2>
-						</a>
-						En esta práctia tenemos que desarrollar el modelo de datos que permite el diseño de un sistema de menús, para ello
-					explicaremos la estrucutura y la solución adoptada desglosada en varios apartados.</li>
+					<li>Utilizar y comprobar <em>Github Workflows</em>. </li>
+					<li>Tratar de respetar los principios SOLID de diseño orientado a objetos.</li>
 				</ul>
+				<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
+					<h2><strong>Introducción</strong></h2>
+				</a>
+				<p>En esta práctica tenemos que desarrollar el modelo de datos que permite el diseño de un sistema de menús, para ello
+				explicaremos la estructura y la solución adoptada desglosada en varios apartados.</p>
 				<a href="#foods" id="foods" style="color: inherit; text-decoration: none;">
-					<h2><strong>Foods</strong></h2>
+					<h2><strong><a href="src/Food/">Foods</a></strong></h2>
 				</a>
 				<p>Consideramos un alimento dentro del sistema de menú, disponemos de una clase <code>BasicFood</code>, y una serie de subclases
 				que la extienden, solo modifican el comportamiento de la clase abstracta en la información.</p>
@@ -93,18 +100,125 @@
 					y <code>macronutrients</code>, objeto de la clase <code>Ingredient</code>.</li>
 					<li>Los atributos son <code>protected</code> para que las clases descendientes puedan acceder a ellos sin tener que recurrir a getters y setters.</li>
 					<li>Íbamos a incluir un <code>ammount</code> en la clase pero decidimos crear una nueva clase llamada <code>Ingredient</code> que se encargue de almacenar un alimento y su cantidad a utilizar, a modo de intermediaria entre los alimentos y el plato.</li>
-					<li>Dispone de una serie de Getters para los artibutos <code>name</code>, <code>origin</code>, <code>priceByKg</code> y <code>Macronutrients</code> así como sus respectivos setters.</li>
+					<li>Dispone de una serie de Getters para los atributos <code>name</code>, <code>origin</code>, <code>priceByKg</code> y <code>Macronutrients</code> así como sus respectivos setters.</li>
 					<li>También dispone de un método que obtiene la información del alimento</li>
 				</ul>
 				<a href="#cereal-fruit-rich_protein_food-y-vegetable" id="cereal-fruit-rich_protein_food-y-vegetable" style="color: inherit; text-decoration: none;">
-					<h2><strong>Cereal, Fruit, Rich_Protein_Food y Vegetable</strong></h2>
+					<h4><strong>Cereal, Fruit, Rich_Protein_Food y Vegetable</strong></h4>
 				</a>
 				<ul>
 					<li>Las clases <code>Cereal</code>,<code>Fruits</code>,<code>Rich_Protein_Foods</code> y <code>Vegetable</code> disponen de los mismos atributos.</li>
 					<li>El método <code>get_info()</code> es diferente en cada uno de ellos.</li>
 				</ul>
-				<a href="#plate" id="plate" style="color: inherit; text-decoration: none;">
-					<h2>Plate</h2>
+				<a href="#plates" id="plates" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/Plate/">Plates</a></strong></h2>
+				</a>
+				<p>Consideramos que un plato representa a un conjunto de alimentos, y existen distintos tipos de platos, para abordarlos, seguimos la mimsa estructura
+				que en <em>Food</em>, disponemos de una clase abstracta <strong>Basic Plate</strong> y de ella derivan <strong>Starter Plate</strong>, <strong>First Plate</strong>, <strong>Second Plate</strong> y <strong>Dessert</strong>.</p>
+				<a href="#basic-plate" id="basic-plate" style="color: inherit; text-decoration: none;">
+					<h3><strong>Basic Plate</strong></h3>
+				</a>
+				<ul>
+					<li>Dispone de una serie de aributos internos, también protegidos para garantizar el acceso por las subclases, <code>nutritionalComposition</code>, que es un
+					objeto de la clase <code>Macronutrients</code>, <code>name</code>, que es simplemente un nombre, y un vector de alimentos, <code>ingredients</code>.</li>
+					<li>Desde el constructor se hace una llamada a un método privado <code>CalculateNutritionalComposition</code>, que como su nombre indica, es el que calcula la
+					composición nutricional, es decir, en cada uno de los ingredientes que conforman a un plato en sí.</li>
+					<li>Un método de la clase que es importante, es <code>addIngredient</code>, que permite añadir un ingrediente a un plato en específico, internamente al atributo
+					que conforma el vector de alimentos.</li>
+					<li>Dispone de una serie de Getters que acceden a los atributos <code>name</code>, <code>nutritionalComposition</code> e <code>ingredients</code>.</li>
+					<li>Como requisitos del sistema de menú, tenemos un método que calcula el grupo de alimento predominante, <code>getPredominantFoodGroup</code>, en base a los
+						ingredientes y sus tipos, aprovechándose de el tipo de dato que comentamos anteriormente, también tenemos otro método que calcula el precio, <code>getPrice</code>,
+					total de los ingredientes.</li>
+				</ul>
+				<a href="#starter_plate-first_plate-second_plate-y-desser" id="starter_plate-first_plate-second_plate-y-desser" style="color: inherit; text-decoration: none;">
+					<h3><strong>Starter_Plate, First_Plate, Second_Plate y Desser</strong></h3>
+				</a>
+				<ul>
+					<li>Las clases <code>Starter_Plate</code>, <code>First_Plate</code>, <code>Second_Plate</code> y <code>Dessert</code>, disponen de los mismos atributos.</li>
+					<li>El método <code>getType()</code> es diferente en cada uno de ellos, es el único método abstracto en <code>BasicPlate()</code>, y tiene que ser
+					implementado en cada una de las subclases, y para ello se basa en un objeto que reporta el tipo(como string), en la clase <code>BasicPlate()</code>.</li>
+				</ul>
+				<a href="#menu" id="menu" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/Menu/">Menu</a></strong></h2>
+				</a>
+				<p>La clase <code>Menu</code> interactúa directamente con <code>Plate</code>, ya que se basa en un conjunto de objetos de ese tipo, representados como un vector.
+				Cada objeto de la clase <code>Menu</code> se identifica con un atributo <code>name</code>, y con dicho vector, así como un método que lo obtiene y lo retorna, <code>getNameofMenu()</code></p>
+				<ul>
+					<li><p>Dispone de una serie de métodos que obtienen los distintos tipos de plato, y uno más general, <code>getPlates()</code>, qe obtiene todos los tipos.</p>
+					</li>
+					<li><p><code>getPrice()</code> obtiene el precio total, del conjunto de platos en cuestión, y también nos encontramos con <code>getNutritionalComposition()</code>, que devuelve
+						un objeto de tipo <code>Macronutrients</code>.</p>
+					</li>
+					<li><p>Como requisito de la práctica se pide que no puede haber más de 4 platos, o tiene que haber por lo menos 3 platos y que sean de cada tipo, <code>platesAreValid()</code>
+						cumple con ese cometido.</p>
+					</li>
+					<li><p>También contamos con métodos que eliminan un plato, <code>removePlate()</code>, y añaden otro, <code>addPlate()</code>.</p>
+					</li>
+					<li><p>Por último, necesitamos listar los grupos de alimentos del plato, con <code>listFoodGroup()</code>.</p>
+						<a href="#carta" id="carta" style="color: inherit; text-decoration: none;">
+							<h2><strong><a href="src/Carta/">Carta</a></strong></h2>
+						</a>
+						<p>La clase <code>Carta</code> es otro de los elementos más importante en el modelo de datos que estamos diseñando, una carta representa a un conjunto de
+							menús, que bien podrían ser prediseñados por el propio restaurante, o también, sería posible contar con una serie de platos individuales y que el
+						cliente pudiera elegir entre alguno de ellos y complementarlo con algún otro plato, formando un menú personalizado.</p>
+					</li>
+					<li><p>La clase <code>Carta</code> dispone de tres atributos, un identificador, <code>nombre</code>, un conjunto de menús, <code>menus</code>, que en sí es un vector, y <code>singlePlates</code>, que
+						constituye un conjunto de platos individuales, es decir un objeto de la clase <code>BasicPlate[]</code>.</p>
+					</li>
+					<li><p>Todos los atributos consideremos que deben ser privados.</p>
+					</li>
+					<li><p>Tenemos tres métodos, <code>getName()</code>, <code>getMenus()</code> y <code>getAllPlates()</code>, que funcionan como <em>getters</em> para obtener el nombre, el menú y los platos
+						individuales.</p>
+					</li>
+					<li><p>Como aclaración, <code>getAllPlates()</code> añade los platos individuales al menú internamente.</p>
+					</li>
+				</ul>
+				<a href="#comanda" id="comanda" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/Command/">Comanda</a></strong></h2>
+				</a>
+				<p>La clase <strong>comanda</strong> tiene como función principal almacenar una comanda individual por cada cliente nuevo del restaurante. Para conseguir el funcionamiento requerido se ha definido una clase dos clases:  </p>
+				<ul>
+					<li><strong>Command_order</strong>
+					Esta clase <code>command_order</code> tiene como objetivo el establecer la cantidad de un plato un un menu que desee el cliente, para ello mediante su constructor se inicializan sus atributos privados <code>order: BasicPlate | menu</code> y <code>quantity: number</code>, mediante los cuales podremos establecer las cantidades de un determinado plato o de un menu. Además esta clase cuanta con sus getters para acceder a los atributos nombrados anteriormente desde la clase <code>command</code>.  </li>
+					<li><strong>Command</strong>
+					Esta clase <code>command</code> es la encargada de gestionar un conjunto de comandas individuales, para ello su constructor inicializa un <code>private orders: commandorders[]</code> en donde se almacenará cada una de las comandas individuales.<br>Además de disponer de los getters para obtener los platos de cada comanda o los menús, también dispone de un método para agregar una nueva comanda <code>addOrders(newOrder: command_order)</code>.</li>
+				</ul>
+				<a href="#stock" id="stock" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/Stock/">Stock</a></strong></h2>
+				</a>
+				<p>Esta clase es la encargada de interactuar con la base de datos, representando de esta manera el stock de productos del que dispondrá nuestro restaurante. Para su desarrollo se ha creado una clase <code>stock</code>, esta cuenta con un atributo para almacenar comida, platos, menús y cartas además de una base de datos <code>database: lowdb.LowdbSync&lt;StockScheme&gt;</code> y un <code>parse: Parser</code>. Mediante el constructor de esta clase se inicializa la base de datos mediante el uso de un método auxiliar <code>setDatabase(databaseName: string)</code> el cual hace uso del módulo lowdb para inicializar la base de datos con un determinado nombre y cargar en ella los datos correspondientes a los diversos productos.</p>
+				<p>Por cada tipo de producto, es decir, Food, Plate, Menu y Carta se han desarrollado los siguientes métodos necesarios para interactuar con la base de datos(Es en este punto donde se ha hecho uso de <strong>Lowdb</strong>): </p>
+				<ul>
+					<li><code>loadTipoProducto()</code> --&gt; Método encargado de cargar en la base de datos los productos.</li>
+					<li><code>getTipoProducto()</code> --&gt; Getter para obtener lo que hay de ese tipo de producto en la base de datos.</li>
+					<li><code>searchTipoProductoByname(name: string)</code> --&gt; Buscar un producto en la base de datos por su nombre.</li>
+					<li><code>deleteTipoProducto(TipoProductoName: string)</code> --&gt; Eliminar de la base de datos un determinado producto.</li>
+					<li><code>addTipoProducto(newTipoProducto: TipoProducto)</code> --&gt; Añadir un producto.</li>
+					<li><code>storeTipoProducto()</code></li>
+				</ul>
+				<p><strong>JsonObjects</strong><br>  Fichero que almacena los diversos tipos de datos de tipo JSON que será capaz de almacenar la base de datos. Un tipo de objeto sería el siguiente: </p>
+				<pre><code class="language-typescript"><span style="color: #D73A49">export</span><span style="color: #24292E"> </span><span style="color: #D73A49">type</span><span style="color: #24292E"> </span><span style="color: #6F42C1">JsonFood</span><span style="color: #24292E"> </span><span style="color: #D73A49">=</span><span style="color: #24292E"> {</span>
+<span style="color: #24292E">  </span><span style="color: #E36209">name</span><span style="color: #D73A49">:</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">,</span>
+<span style="color: #24292E">  </span><span style="color: #E36209">origin</span><span style="color: #D73A49">:</span><span style="color: #24292E"> </span><span style="color: #005CC5">string</span><span style="color: #24292E">,</span>
+<span style="color: #24292E">  </span><span style="color: #E36209">price</span><span style="color: #24292E"> </span><span style="color: #D73A49">:</span><span style="color: #005CC5">number</span><span style="color: #24292E">,</span>
+<span style="color: #24292E">  </span><span style="color: #E36209">macronutrients</span><span style="color: #24292E"> </span><span style="color: #D73A49">:</span><span style="color: #6F42C1">Macronutrients</span><span style="color: #24292E">,</span>
+<span style="color: #24292E">  </span><span style="color: #E36209">type</span><span style="color: #24292E"> </span><span style="color: #D73A49">:</span><span style="color: #6F42C1">FoodGroup</span>
+<span style="color: #24292E">};</span>
+</code></pre>
+				<a href="#stock-editor" id="stock-editor" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/StockEditor/">Stock editor</a></strong></h2>
+				</a>
+				<p>Esta clase <code>stockEditor</code> será la encargada de modificar la base de datos del stock del restaurante mediante el uso del módulo <code>inquirer</code>.<br>Para ello se ha desarrollado dicha clase, la cual mediante su constructor recibe un stock (en nuestro caso del del restaurante), y define un método principal <code>promtMainMenu()</code> el cual mediante inquirer nos permitirá seleccionar desde la terminar opciones como añadir alimentos, quitar alimento, etc. Es este punto cuando se selecciona una de las opciones cuando se hace uso de otros métodos de tipo prompt desarrollados en esta clase para añadir alimentos, por ejemplo para llevar a cabo la acción anterior se invocaría desde el promptMainMenu() el método <code>promptAddFood</code> el cual nos solicita cada uno de los datos necesarios para añadir una comida a la base de datos, de esta manera se definen los prompt necesarios para cada uno de los productos que almacenará la base de datos.  </p>
+				<p>Destacar que esta clase nos facilita mucho la tarea de administrar la base de datos, permitiendonos añadir o eliminar cualquier tipo de producto desde la misma terminal sin necesidad de modificar a mano el ficharero de tipo <code>json</code>.  </p>
+				<a href="#parser" id="parser" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/Parser/">Parser</a></strong></h2>
+				</a>
+				<a href="#app" id="app" style="color: inherit; text-decoration: none;">
+					<h2><strong><a href="src/App/">App</a></strong></h2>
+				</a>
+				<p>Por último se encuentra la clase <code>App</code>, esta representa al programa principal.<br>Esta clase representa el mas alto nivel de nuestro proyecto, inicializando nuestra base de datos (stock), y dando un método <code>promptMainMenu()</code>, el cual mediante el uso de inquirer nos permite seleccionar desde la consola tareas como editar el inventario o general una comanda.</p>
+				<a href="#prueba-final" id="prueba-final" style="color: inherit; text-decoration: none;">
+					<h2><strong>Prueba Final</strong></h2>
 				</a>
 				<a href="#conclusiones" id="conclusiones" style="color: inherit; text-decoration: none;">
 					<h2><strong>Conclusiones</strong></h2>
@@ -136,6 +250,9 @@
 						<a href="modules/command_command.html">Command/command</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/command_command_maker.html">Command/command_<wbr>maker</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/command_command_order.html">Command/command_<wbr>order</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -148,6 +265,9 @@
 						<a href="modules/food_cereal.html">Food/cereal</a>
 					</li>
 					<li class=" tsd-kind-module">
+						<a href="modules/food_dairy.html">Food/dairy</a>
+					</li>
+					<li class=" tsd-kind-module">
 						<a href="modules/food_fruit.html">Food/fruit</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -158,6 +278,33 @@
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/food_vegetable.html">Food/vegetable</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces.html">Interfaces</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_cartas_holder.html">Interfaces/cartas_<wbr>holder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_foods_holder.html">Interfaces/foods_<wbr>holder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_ingredients_holder.html">Interfaces/ingredients_<wbr>holder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_menus_holder.html">Interfaces/menus_<wbr>holder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_nameable.html">Interfaces/nameable</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_origin_holder.html">Interfaces/origin_<wbr>holder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_plates_holder.html">Interfaces/plates_<wbr>holder</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/interfaces_price_by_kg_holder.html">Interfaces/price_<wbr>by_<wbr>kg_<wbr>holder</a>
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/menu.html">Menu</a>
@@ -225,6 +372,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
