@@ -255,7 +255,7 @@ export class CommandMaker {
       type: 'list',
       name: 'plate',
       message: 'Selecciona el plato',
-      choices: orders.map((plate) => plate.getPlate().getName()).concat(['Volver'])
+      choices: orders.map((plate) => plate.getOrder().getName()).concat(['Volver'])
     };
 
     const action = async (answers: any) => {
@@ -357,7 +357,7 @@ export class CommandMaker {
       type: 'list',
       name: 'plate',
       message: 'Selecciona el plato',
-      choices: orders.map((plate) => plate.getPlate().getName()).concat(['Volver'])
+      choices: orders.map((plate) => plate.getOrder().getName()).concat(['Volver'])
     };
 
     const action = async (answers: any) => {

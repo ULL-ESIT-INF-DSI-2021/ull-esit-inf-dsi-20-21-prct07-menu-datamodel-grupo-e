@@ -20,9 +20,10 @@ export class CommandOrder {
    * Devuelve el plato de la orden
    * @returns 
    */
-  getPlate() {
+  getOrder(): BasicPlate {
     return this.order;
   }
+
   
   /**
    * Devuelve el precio
@@ -32,9 +33,6 @@ export class CommandOrder {
     return this.order.getPrice() * this.quantity;
   }
   
-  getOrder(): BasicPlate {
-    return this.order;
-  }
 
   /**
    * Getter del atributo quantity
