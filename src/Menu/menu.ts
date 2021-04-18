@@ -13,13 +13,17 @@ import { SecondPlate } from "../Plate/second_plate";
  */
 export class Menu implements PlatesHolder, Nameable {
 
+  /**
+   * Atributo privado representa el conjunto de platos que forman un menu
+   */
   private plates: BasicPlate[];
 
   /**
    * El constructor inicializa el vector
    * interno de platos
-   * @param name nombre
-   * @param plates_ un conjunto de platos
+   * @param {string} name nombre
+   * @param {BasicPlate[]} plates_ un conjunto de platos
+   * @param {boolean} validatePlates
    */
   constructor(private name: string, plates_: BasicPlate[], validatePlates = true) {
     if (validatePlates && !this.platesAreValid(plates_)) {
@@ -30,7 +34,10 @@ export class Menu implements PlatesHolder, Nameable {
   }
 
 
-  // Setters
+  /**
+   * Asignar un nombre al menu
+   * @param {string} newName 
+   */
   setName(newName: string) {
     this.name = newName;
   }
@@ -38,52 +45,47 @@ export class Menu implements PlatesHolder, Nameable {
   // Getters
   /**
    * Método que obtiene el nombre del menú
-   * @returns Una cadena de caracteres
+   * @returns {string} Una cadena de caracteres
    */
   getName() {
     return this.name;
   }
 
   /**
-   * Método que lista los grupos de alimentos por
-   * orden de aparición
-   * @returns Un vector de platos
+   * Método que lista los grupos de alimentos por orden de aparición
+   * @returns {BasicPlate} Un vector de platos
    */
   getPlates(): BasicPlate[] {
     return this.getStarterPlates().concat(this.getFirsPlates()).concat(this.getSecondPlates()).concat(this.getDesserts());
   }
 
   /**
-   * Método que lista los posibles
-   * entrantes del menú
-   * @returns Un vector de StarterPlate
+   * Método que lista los posibles entrantes del menú
+   * @returns {StarterPlate} Un vector de StarterPlate
    */
   getStarterPlates(): StarterPlate[] {
     return this.plates.filter((plate) => plate instanceof StarterPlate);
   }
 
   /**
-   * Método que lista los posibles
-   * primeros platos del menú
-   * @returns Un vector de FirstPlate
+   * Método que lista los posibles primeros platos del menú
+   * @returns {FirstPlate[]} Un vector de FirstPlate
    */
   getFirsPlates(): FirstPlate[] {
     return this.plates.filter((plate) => plate instanceof FirstPlate);
   }
 
   /**
-   * Método que lista los posibles 
-   * segundos platos del menú
-   * @returns Un vector de SecondPlate
+   * Método que lista los posibles segundos platos del menú
+   * @returns {SecondPlate[]} Un vector de SecondPlate
    */
   getSecondPlates(): SecondPlate[] {
     return this.plates.filter((plate) => plate instanceof SecondPlate);
   }
 
   /**
-   * Método que lista los posibles 
-   * postres del menú
-   * @returns Un vector de Dessert
+   * Método que lista los posibles postres del menú
+   * @returns {Dessert[]} Un vector de Dessert
    */
   getDesserts(): Dessert[] {
     return this.plates.filter((plate) => plate instanceof Dessert);
@@ -91,7 +93,7 @@ export class Menu implements PlatesHolder, Nameable {
 
   /**
    * Método que calcula el precio total del menú en euros
-   * @returns Un valor numérico
+   * @returns {number} Precio del menu
    */
   getPrice(): number {
     return this.getPlates().reduce((total, plate) => total + plate.getPrice(), 0);
@@ -100,7 +102,7 @@ export class Menu implements PlatesHolder, Nameable {
   /**
    * Método que calcula la composición nutricional del menú
    * basándose en los platos que lo componen
-   * @returns Un objeto Macronutrients
+   * @returns {Macronutrients} Composición nutricional del menu
    */
   getNutritionalComposition(): Macronutrients {
     const nutritionalComposition = new Macronutrients();
@@ -115,7 +117,7 @@ export class Menu implements PlatesHolder, Nameable {
 
   /**
    * Método que calcula el listado de grupo de alimentos
-   * @returns Un vector de grupo de alimentos
+   * @returns {FoodGroup} Un vector de grupo de alimentos
    */
   listFoodGroups(): FoodGroup[] {
     if (this.getPlates()) {
@@ -127,8 +129,8 @@ export class Menu implements PlatesHolder, Nameable {
   /**
    * Un menú debe estar compuesto por un plato de cada
    * categoría o de al menos, tres de ellas
-   * @param plates Un vector de platos
-   * @returns Un valor verdadero o falso
+   * @param {BasicPlate} plates Un vector de platos
+   * @returns {boolean} True or false, dependiendo si el numero de platos del menu es válido
    */
   platesAreValid(plates: BasicPlate[]): boolean {
     if (plates.length > 4 || plates.length < 3) return false;
@@ -141,7 +143,7 @@ export class Menu implements PlatesHolder, Nameable {
 
   /**
    * Método que sirve para añadir un plato
-   * @param newPlate El plato añadido
+   * @param {BasicPlate} newPlate El plato añadido
    * Posible nuevo comportamiento: si ya existe uno con el mismo nombre es sustituido.
    */
   addPlate(newPlate: BasicPlate) {
@@ -156,7 +158,7 @@ export class Menu implements PlatesHolder, Nameable {
 
   /**
    * Método que elimina un plato por su nombre
-   * @param plateName El nombre del plato
+   * @param {string} plateName El nombre del plato
    */
   removePlate(plateName: string) {
     this.plates.forEach((plate, index) => plate.getName() === plateName ? this.removePlateByIndex(index) : true);
@@ -164,12 +166,17 @@ export class Menu implements PlatesHolder, Nameable {
 
   /**
    * Método que elimina un plato de acuerdo a su orden
-   * @param index Un valor numérico (índice)
+   * @param {number} index Un valor numérico (índice)
    */
   private removePlateByIndex(index: number) {
     this.plates.splice(index, 1);
   }
 
+  /**
+   * Buscar un determinado plato dentro de un menu por su nombre
+   * @param {string} plateName 
+   * @returns {BasicPlate} Plato encontrado
+   */
   searchPlateByName(plateName: string) {
     const result = this.getPlates().find((plate) => plate.getName() === plateName);
     if (result) return result;
