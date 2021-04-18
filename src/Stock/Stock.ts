@@ -28,7 +28,7 @@ type StockScheme = {
  * es decir, que la gestiona, tiene objetos relacionados 
  * con la base de datos
  */
-sexport class Stock implements FoodsHolder, PlatesHolder, CartasHolder, MenusHolder {
+export class Stock implements FoodsHolder, PlatesHolder, CartasHolder, MenusHolder {
   private parser: Parser;
 
   private database: lowdb.LowdbSync<StockScheme>;

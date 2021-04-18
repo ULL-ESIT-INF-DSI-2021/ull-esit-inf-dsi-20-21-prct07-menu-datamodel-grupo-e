@@ -30,19 +30,19 @@ describe('Command tests', () => {
       ]
   );
 
-  const command = new Command([new CommandOrder(menu1, 1)]);
+  const command = new Command([new CommandOrder(menu1.getPlates()[0], 1)]);
 
   it('Can be instanciated', () => {
     expect(command instanceof Command).to.be.true;
   });
 
   it('Retrieves orders', () => {
-    expect(command.getOrders()).to.be.eql([new CommandOrder(menu1, 1)]);
+    expect(command.getOrders()).to.be.eql([new CommandOrder(menu1.getPlates()[0], 1)]);
   });
 
   it('Adds a new order', () => {
-    command.addOrder(new CommandOrder(menu1, 2));
-    expect(command.getOrders()).to.be.eql([new CommandOrder(menu1, 1), new CommandOrder(menu1, 2)]);
+    command.addOrder(new CommandOrder(menu1.getPlates()[1], 2));
+    expect(command.getOrders()).to.be.eql([new CommandOrder(menu1.getPlates()[0], 1), new CommandOrder(menu1.getPlates()[1], 2)]);
   });
 
 });
