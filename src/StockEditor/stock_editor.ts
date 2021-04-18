@@ -109,7 +109,7 @@ export class StockEditor {
           break;
       }
     };
-
+    console.clear();
     await inquirer.prompt(prompt).then(action);
     if (quit) return;
     await this.promptMainMenu();

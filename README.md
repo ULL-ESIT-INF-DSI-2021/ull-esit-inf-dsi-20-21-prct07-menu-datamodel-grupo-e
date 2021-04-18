@@ -154,12 +154,12 @@ Esta clase representa el mas alto nivel de nuestro proyecto, inicializando nuest
 
 
 
-## [**Ejemplos de uso**]
+## **Ejemplos de uso**
 
-### [**Editar el inventario**]
+### **Editar el inventario**
+![StockEditor demo](media://stockeditor-demo.gif)
 
 
 
-
-### [**Crear una comanda**]
+### **Crear una comanda**
 
