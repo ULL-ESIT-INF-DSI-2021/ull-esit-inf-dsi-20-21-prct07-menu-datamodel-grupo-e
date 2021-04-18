@@ -24,11 +24,15 @@ export class CommandOrder {
     return this.order;
   }
   
+  /**
+   * Devuelve el precio
+   * @returns 
+   */
   getPrice() {
     return this.order.getPrice() * this.quantity;
   }
   
-  getOrder(): Menu | BasicPlate {
+  getOrder(): BasicPlate {
     return this.order;
   }
 

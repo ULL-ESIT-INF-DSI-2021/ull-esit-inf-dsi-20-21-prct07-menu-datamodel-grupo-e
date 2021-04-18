@@ -1,5 +1,5 @@
 {
-  "name": "Modelado de datos",
+  "name": "Modelo de datos de un sistema que permite el diseño de menús",
   "entryPoints": [
     "./src"
   ],
