@@ -25,11 +25,20 @@ export class Command {
   searchOrderByName(plateName :string): CommandOrder | undefined {
     return this.orders.find((order) => order.getOrder().getName() === plateName);
   }
-
+  
+  // Getter 
+  /**
+   * Devulve el precio
+   * @returns 
+   */
   getPrice() {
     return this.orders.reduce((total, order) => total + (order.getPrice() * order.getQuantity()), 0);
   }
 
+  /**
+   * Devulve las ordenes
+   * @returns Un objeto de tipo ComandOrder[], (vector)
+   */
   getOrders(): CommandOrder[] {
     return this.orders;
   }
@@ -50,10 +59,18 @@ export class Command {
     return this.orders.filter((order) => order instanceof BasicPlate).map((order) => order.getOrder()) as BasicPlate[];
   }
 
+  /**
+   * Elimina un plato de la comanda por nombre
+   * @param plateName Nombre del plato
+   */
   removePlate(plateName: string) {
     this.orders.forEach((order, index) => order.getPlate().getName() === plateName ? this.removePlateByIndex(index) : true);
   }
 
+  /**
+   * Elimina un plato de la comanda por indice
+   * @param index Indice del plato
+   */
   private removePlateByIndex(index: number) {
     this.orders.splice(index, 1);
   } 

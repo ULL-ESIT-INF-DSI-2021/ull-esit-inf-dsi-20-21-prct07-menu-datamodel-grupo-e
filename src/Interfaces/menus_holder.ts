@@ -1,5 +1,8 @@
 import { Menu } from "../Menu";
 
+/**
+ * Metodos para la clase `Menu`
+ */
 export interface MenusHolder {
   getMenus(): Menu[],
   addMenu(newMenu: Menu): unknown,
