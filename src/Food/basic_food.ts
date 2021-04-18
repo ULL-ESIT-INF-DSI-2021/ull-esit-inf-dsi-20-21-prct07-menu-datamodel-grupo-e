@@ -89,7 +89,12 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
   }
 
 
+  /**
+   * Devuelve el grupo al que pertenece el alimento
+   * @return {FoodGroup} Grupo al que pertenece el alimento
+   */
   abstract getFoodGroup(): FoodGroup;
+
   /**
    * Obtiene la información del alimento, cereal, fruit...
    * @returns Una cadena con la información (nombre, precio...)

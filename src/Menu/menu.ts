@@ -12,15 +12,15 @@ import { SecondPlate } from "../Plate/second_plate";
  * un vector de BasicPlate[]
  */
 export class Menu implements PlatesHolder, Nameable {
-    
-    private plates: BasicPlate[];
-    
-    /**
-     * El constructor inicializa el vector
-     * interno de platos
-     * @param name nombre
-     * @param plates_ un conjunto de platos
-     */
+
+  private plates: BasicPlate[];
+
+  /**
+   * El constructor inicializa el vector
+   * interno de platos
+   * @param name nombre
+   * @param plates_ un conjunto de platos
+   */
   constructor(private name: string, plates_: BasicPlate[], validatePlates = true) {
     if (validatePlates && !this.platesAreValid(plates_)) {
       throw new Error('Bad Menu configuration');
@@ -29,12 +29,12 @@ export class Menu implements PlatesHolder, Nameable {
     this.plates = plates_;
   }
 
-  
+
   // Setters
   setName(newName: string) {
     this.name = newName;
   }
-  
+
   // Getters
   /**
    * Método que obtiene el nombre del menú
@@ -109,7 +109,7 @@ export class Menu implements PlatesHolder, Nameable {
     nutritionalComposition.lipids = platesCompositions.reduce((lipids, composition) => lipids + composition.lipids, 0);
     nutritionalComposition.carbohydrates = platesCompositions.reduce((carbohydrates, composition) => carbohydrates + composition.carbohydrates, 0);
     nutritionalComposition.proteins = platesCompositions.reduce((proteins, composition) => proteins + composition.proteins, 0);
-    
+
     return nutritionalComposition;
   }
 
@@ -123,7 +123,7 @@ export class Menu implements PlatesHolder, Nameable {
     }
     return [];
   }
-  
+
   /**
    * Un menú debe estar compuesto por un plato de cada
    * categoría o de al menos, tres de ellas
@@ -147,7 +147,7 @@ export class Menu implements PlatesHolder, Nameable {
   addPlate(newPlate: BasicPlate) {
     const setNameofPlates = new Set();
     this.plates.forEach((plate) => setNameofPlates.add(plate.getName()));
-  
+
     if (!setNameofPlates.has(newPlate.getName())) {
       this.plates = this.plates.concat(newPlate);
       setNameofPlates.add(newPlate.getName());
@@ -168,12 +168,12 @@ export class Menu implements PlatesHolder, Nameable {
    */
   private removePlateByIndex(index: number) {
     this.plates.splice(index, 1);
-  }  
+  }
 
   searchPlateByName(plateName: string) {
     const result = this.getPlates().find((plate) => plate.getName() === plateName);
     if (result) return result;
-  
+
     throw new Error(`No se ha podido encontrar un plato llamado ${plateName}`);
   }
 };

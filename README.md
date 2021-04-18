@@ -2,61 +2,73 @@
 [![Tests](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/actions/workflows/node.js.yml)
 # [**Ver en Github**](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e)
 
-# Informe Práctica 7
-# Modelo de datos de un sistema que permite el diseño de menús
 
 ## **Objetivos**
 * Desarrollar un modelo de datos con programación orientada a objetos.
-* Aprender a utilizar los módulos `Inquierer.js` y `Lowdb`.
+* Aprender a utilizar los módulos `inquirerjs` y `lowdb`.
 * Emplear los *issues* de *Github* en el repositorio para dudas, tareas..
 * Incluir la documentación al proyecto mediante *TypeDoc*.
 * Adoptar una metodología de desarrollo dirigido por pruebas.
-* Utilizar una herramienta de cubrimiento de código en el proyecto, como *Coveralls*.
-* Utilizar y comprobar *Github Workflows*. 
+* Utilizar **Coveralls** como herramienta de cubrimiento de código.
+* Utilizar y comprobar *Github Workflows*: **Coveralls** y testing mediante **Mocha** y **Chai**.
 * Tratar de respetar los principios SOLID de diseño orientado a objetos.
 
 ## **Introducción**
 En esta práctica desarrollaremos el modelo de datos que permite el diseño de un sistema de menús para un restaurante. Utilizando el lenguaje TypeScript y diversos módulos como `inquirer`, `lowdb`, `clone`, etc... Crearemos una aplicación interactiva que permita gestionar alimentos, platos, menús y cartas de un restaurante.
 
+
 ## **[Foods](src/Food/)**
-En este apartado abordaremos las clases y detalles referentes al manejo y presentación de los alimentos dentro de nuestra aplicación.
-### **Clase abstracta BasicFood**
-Representa un alimento básico, por lo que consta de una clase abstracta que define los atributos y métodos comunes a todos los alimentos:
+En este apartado abordaremos las clases y detalles referentes al manejo y representación de los alimentos dentro de nuestra aplicación.
 
-*  `name`, nombre del alimento, `origin`, origen o país del alimento, `priceByKg`, precio del alimento en euros,
-  y `macronutrients`, objeto de la clase `Macronutrients` que representa la composición nutricional de un alimento (lípidos, carbohidratos y proteínas por cada 100g).
-* Todos los atributos son `protected` para que las clases descendientes puedan acceder a ellos sin tener que recurrir a getters y setters.
-* Íbamos a incluir un `ammount` en la clase pero decidimos crear una nueva clase llamada `Ingredient` que se encargue de almacenar un alimento y su cantidad a utilizar, a modo de intermediaria entre los alimentos y el plato.
-* Dispone de una serie de Getters para los atributos `name`, `origin`, `priceByKg` y `Macronutrients` así como sus respectivos setters.
-* El método `getFoodGroup` es abstracto y se encarga de indicar el tipo del alimento. Este tipo puede ser cualquiera de los siguientes: 
-  *   Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres.
-  *   Verduras y hortalizas.
-  *   Leche y derivados.
-  *   Cereales.
-  *   Frutas.
+Para representar los alimentos hemos creado una jerarquía de clases que tiene como padre la clase abstracta `BasicFood`. Esta clase define los atributos comunes a todos los alimentos: nombre, origen, precio por kilogramo y macronutrientes (cantidad en gramos por cada 100g del alimento); así como los métodos también comunes a todos los alimentos: setters y getters de los atributos. Todos los atributos se definen como `protected` para permitir el acceso a las clases hijas sin necesidad de recurrir a los setters y getters.
 
-#### **Cereal, Fruit, Rich_Protein_Food y Vegetable**
-* Las clases `Cereal`,`Fruits`,`Rich_Protein_Foods`, `Dairy` y `Vegetable` extienden a `BasicFood`, y representan implementaciones específicas correspondientes a cada uno de los grupos antes mencionados.
+*Nota: Se define un método abstracto llamado `getType` que se encarga de retornar un dato de tipo `FoodGroup`. Este tipo de datos representa los grupos a los que puede pertenecer un alimento: `Carnes, pescados, huevos, tofu, frutos secos`, `semillas y legumbres`, `Verduras y hortalizas`, `Leche y derivados`, `Cereales`, `Frutas`* 
+
+Una vez definida `BasicFood`, pasamos a desarrollar las clases que la extienden, es decir, aquellos grupos específicos de alimentos, quedando una estructura como esta:
+
+![Diagrama de Alimentos](media://foods-diag.svg)
+
+
+### **Macronutrients**
+Esta clase define los atributos que conformarán los macronutrientes de un alimento: lípidos, carbohidratos y proteínas. A pesar de que no tiene ningún método, hemos optado por que sea una clase en vez de una interfaz para positibilitar la creación de la misma con valores por defecto.  
+
+![Clase Macronutrients](media://macronutrients-diag.svg)
 
 ## **[Plates](src/Plate/)**
-Consideramos que un plato puede ser `Entrante`, `Primer plato`, `Segundo plato` o `Postre`. Por lo que desarrollamos una clase asbtracta `BasicPlate` que será extendida por las clases que representan cada uno de los platos específicos (`Starter_Plate`, `First_Plate`, `Second_Plate` y `Dessert`).
 
-Además, un plato está formado por un vector de objetos de tipo `Ingredient`, cada uno de los cuales tiene como atributos un `BasicFood` y una cantidad en gramos de dicho alimento.
+Una vez tenemos las clases que se encargan de representa los alimentos pasaremos a desarrollar las que representarán los platos del restaurante.
 
-De esta forma, cada ingrediente es responsable de calcular su composición nutricional teniendo en cuenta la composición nutriticonal del alimento que lo compone (por cada 100g) y la cantidad en gramos de dicho alimento, así como su propio precio.
+*Nota: un plato puede ser de uno de cuatro tipos: entrante, primer plato, segundo plato o postre*
 
-* El método `getType()` es abstracto y devuelve el tipo de plato específico.
+Inicialmente consideramos que un plato estuviese formado por un conjunto de instancias de `BasicFood`. Sin embargo, de esta forma, para calcular valores que dependen de la cantidad presente de ese alimento (composición nutricional, precio) sería necesario incluir el atributo `quantity` y los métodos correspondientes a la clase `BasicFood` o a la clase `BasicPlate`, lo que rompería el principio **Single responsability**, por ellos decidimos desarrollar una nueva clase llamada `Ingredient` que almacena un alimento junto a su cantidad en gramos y se encarga de calcular su composición nutricional y precio.
+
+Así, un objeto de la clase `BasicPlate` almacenaría un nombre, un conjunto de elementos `Ingredient` y su composición nutricional (`Macronutrients`), que es calculada en el constructor.
+
+Luego, añadimos las clases que implementan cada uno de los tipos de plato:  
+
+![Diagrama de Platos](media://plates-diag.svg)
+
 
 
 ## **[Menu](src/Menu/)**
-La clase `Menu` interactúa directamente con `Plate`, ya que se basa en un conjunto de objetos de ese tipo, representados como un vector.
-Cada objeto de la clase `Menu` se identifica con un atributo `name`, y con dicho vector.
+El siguiente paso es desarrollar la clase que representará un menú del restaurante. Un menú estará formado por un nombre y conjunto de platos.
 
-* Dispone de una serie de métodos que obtienen los distintos tipos de plato, y uno más general, `getPlates()`, qe obtiene los platos de todos los tipos en orden de aparición: entrantes, primeros platos, segundos platos y postres.
-* `getPrice()` obtiene el precio total del conjunto de platos en cuestión, y también nos encontramos con `getNutritionalComposition()`, que devuelve la composición nutricional, resultado de la suma de las composiciones nutricionales de los ingredientes.
-* Como requisito de la práctica se pide que no puede haber más de 4 platos, o tiene que haber por lo menos 3 platos y que sean de cada tipo. El método `platesAreValid()` es el encargado de ello: recibe un vector de platos y devuelve un booleano que verifica la validez del conjunto. Dado que existe la opción de editar un menú desde la consola hemos optado por añadir un booleano al constructor de un menú que indique si deseamos validar los platos que estamos introduciendo en el mismo. De esta forma damos libertad al usuario de editar un menú ya guardado y que al cargarlo de la base de datos sea creado correctamente.
-* También contamos con métodos para añadir y eliminar platos:  `addPlate()`, `removePlate()`
-* Por último, podemos listar los grupos de alimentos del plato, con `listFoodGroup()`.
+### **Validación de platos**
+En principio, un menú debe estar formado por no más de 4 platos, o al menos  3 tipos diferentes. Por esta razón, la clase `Menu` implementa un método `validatePlates` que recibe un conjunto de platos y devuelve un booleano indicando la validez del conjunto. 
+
+Al constructor se le pasa además un booleano que indica si se quiere validar el conjunto de platos que se le está pasando. En caso de que sea verdadero se validarán los platos que se están pasando al constructor, y si el conjunto es inválido lanzará un error.
+
+Dispone de un método por cada tipo de plato para obtener un subconjunto específico, por ejemplo `getFirstPlates` y también un `getPlates` que devuelve todos los platos en orden de aparición (entrantes, primeros platos, segundos platos y postres).
+
+Se puede acceder también al precio del menú y a la composición nutricional del mismo. Estos dos valores se calculan sumando los respectivos valores de cada uno de los platos.
+
+*Nota: En realidad el precio representaría el coste del menú, es decir, lo que cuesta cada uno de los platos*
+
+Además, se puede añadir y eliminar platos con  `addPlate()` y `removePlate()` respectivamente.
+
+Por último, podemos listar los grupos de alimentos del plato, con `listFoodGroup`.
+
+![Diagrama de menú](media://menu-diag.svg)
 ## **[Carta](src/Carta/)**
 La clase `Carta` consta de un conjunto de `Menús` y un conjunto de platos individuales. Consideramos que el conjunto de platos individuales tiene siempre (como mínimo) todos los platos presentes en los menús de la carta, de modo que un usuario pueda pedir un plato de cualquiera de ellos. Esto lo hacemos mediante la comprobación de que no haya dos platos con igual nombre e igual tipo en el conjunto de platos individuales en el método `addPlate`. Además, cada vez que se añade un menú, se añaden todos sus platos al conjunto de platos individuales.
 
