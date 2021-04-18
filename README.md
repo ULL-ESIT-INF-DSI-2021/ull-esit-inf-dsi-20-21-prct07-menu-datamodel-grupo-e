@@ -151,5 +151,12 @@ Esta clase representa el mas alto nivel de nuestro proyecto, inicializando nuest
 
 
 
+## [**Ejemplos de uso**]
 
+### [**Editar el inventario**]
+
+
+
+
+### [**Crear una comanda**]
 
