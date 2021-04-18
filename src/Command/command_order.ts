@@ -25,7 +25,7 @@ export class CommandOrder {
   }
   
   getPrice() {
-    return this.order.getPrice();
+    return this.order.getPrice() * this.quantity;
   }
   
   getOrder(): Menu | BasicPlate {
