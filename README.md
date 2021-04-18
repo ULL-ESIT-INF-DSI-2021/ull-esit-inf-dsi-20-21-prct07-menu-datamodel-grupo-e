@@ -28,7 +28,7 @@
 ## **Introducción**
 En esta práctica desarrollaremos el modelo de datos que permite el diseño de un sistema de menús para un restaurante. Utilizando el lenguaje TypeScript y diversos módulos como `inquirer`, `lowdb`, `clone`, etc... Crearemos una aplicación interactiva que permita gestionar alimentos, platos, menús y cartas de un restaurante.
 
-
+![Diagrama a alto nivel](media://high-level-diag.png)
 ## **[Foods](./classes/food_basic_food.basicfood.html)**
 En este apartado abordaremos las clases y detalles referentes al manejo y representación de los alimentos dentro de nuestra aplicación.
 
