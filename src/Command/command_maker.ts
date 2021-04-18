@@ -5,18 +5,111 @@ import {BasicPlate} from '../Plate/index';
 import {Menu} from '../Menu/index';
 import * as inquirer from 'inquirer';
 import 'colors';
-import { PlatesHolder } from '../Interfaces';
+import { PlatesHolder, CartasHolder } from '../Interfaces';
 import { MenusHolder } from '../Interfaces';
+import { Carta } from "../Carta/carta";
 
+/**
+ * Clase CommandMaker que gestiona la 
+ * comanda del cliente
+ */
 export class CommandMaker {
   private command :Command = new Command([]);
   constructor(private stock :Stock) { }
-
+  private carte :Carta;
+  private carteSelected :boolean;
   
+  /**
+   * Inicia la comanda
+   */
   async run() {
-    await this.promptMainMenu();
+    await this.promptCarteMenu();
   }
 
+  /**
+   * Muestra la carta
+   * @returns 
+   */
+  async promptCarteMenu() {
+    console.clear();
+    this.carteSelected = false;
+    let quit = false;
+
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'list',
+      name: 'carte',
+      message: 'Selecciona la Carta',
+      choices: this.stock.getCartas().map((carta) => carta.getName()).concat([`Volver`])
+    };
+
+    const action = async (answers: any) => {
+      switch (answers['carte']) {
+        case `Volver`:
+          quit = true;
+          break;
+        default:
+          await this.promptShowCarte(answers[`carte`]);
+          break;
+      }
+    };
+
+    await inquirer.prompt(prompt).then(action);
+    if (quit) return;
+    if (this.carteSelected) {
+      await this.promptMainMenu();
+    } {
+      await this.promptCarteMenu();
+    }
+  }
+
+  /**
+   * Muestra la informacion de la carta
+   * @param {String} carteName 
+   */
+  async promptShowCarte(carteName :string) {
+    const Carte = this.stock.searchCartaByName(carteName);
+    console.log(`Nombre de la Carta: ${Carte.getName()}`);
+    console.log('Menús: ');
+    Carte.getMenus().forEach((Menu) => {
+      console.log(`- ${Menu.getName()}`);
+    });
+
+    console.log("Platos del menú");
+    Carte.getPlates().forEach((Plate) => {
+      console.log(`- ${Plate.getName()}`);
+    });
+
+    const choices = {
+      AddMenu: "Agregar Menú",
+      Back: "Volver"
+    };
+
+    const prompt: inquirer.QuestionCollection<any> = [
+      {
+        type: 'list',
+        name: 'choice',
+        choices: Object.values(choices)
+      }
+    ];
+    const action = async (answers: any) => {
+      switch (answers['choice']) {
+        case choices.AddMenu:
+          this.carte = this.stock.searchCartaByName(carteName);
+          this.carteSelected = true;
+          break;
+        case choices.Back:
+          break;
+      }
+    };
+
+    await inquirer.prompt(prompt).then(action);
+
+  };
+
+  /**
+   * Muestra las opciones disponibles
+   * @returns 
+   */
   async promptMainMenu() {
     console.clear();
     const choices = {
@@ -42,7 +135,7 @@ export class CommandMaker {
       switch (answers['choice']) {
         // Command Options
         case choices.addPlates:
-          await this.promptShowPlates(this.stock);
+          await this.promptShowPlates(this.carte);
           break;
         case choices.showCommand:
           await this.showCommand();
@@ -54,7 +147,7 @@ export class CommandMaker {
           await this.promptEditAmmountPlates();
           break;
         case choices.addMenu:
-          await this.promptShowMenus(this.stock);
+          await this.promptShowMenus(this.carte);
           break;
         case choices.quit:
           quit = true;
@@ -69,6 +162,11 @@ export class CommandMaker {
 
   }
 
+  /**
+   * Muestra los platos
+   * @param {PlatesHolder} platesHolder 
+   * @returns 
+   */
   async promptShowPlates(platesHolder: PlatesHolder) {
     console.clear();
     let quit = false;
@@ -96,6 +194,10 @@ export class CommandMaker {
     await this.promptShowPlates(platesHolder);
   }
 
+  /**
+   * Muestra informacion del plato a añadir
+   * @param {String} PlateName Nombre del plato
+   */
   async promptAddPlate(PlateName :string) {
     const Plate :BasicPlate = this.stock.searchPlateByName(PlateName);
     
@@ -146,7 +248,10 @@ export class CommandMaker {
 
   };
 
-
+  /**
+   * Muestra la informacion de la comanda
+   * @returns 
+   */
   async showCommand() {
     const prompt: inquirer.QuestionCollection<any> = [
       {
@@ -159,7 +264,7 @@ export class CommandMaker {
     console.log('Comanda:');
     const orders :CommandOrder[] = this.command.getOrders();
     orders.forEach((order) => {
-      console.log(`- ${order.getOrder().getName()}\n    Cantidad:  ${order.getQuantity()}\n    Precio: ${(order.getPrice() * order.getQuantity()).toFixed(2)} €`);
+      console.log(`- ${order.getOrder().getName()}\n    Cantidad:  ${order.getQuantity()}\n    Precio: ${order.getPrice().toFixed(2)} €`);
     });
     console.log(`----------------------------------------------`);
     console.log(`    Precio total de la comanda: ${this.command.getPrice().toFixed(2)} €`);
@@ -171,6 +276,10 @@ export class CommandMaker {
     return;
   }
 
+  /**
+   * Elimina un plato de la comanda
+   * @returns 
+   */
   async promptdeletePlates() {
     console.clear();
     const orders :CommandOrder[] = this.command.getOrders();
@@ -179,7 +288,7 @@ export class CommandMaker {
       type: 'list',
       name: 'plate',
       message: 'Selecciona el plato',
-      choices: orders.map((plate) => plate.getPlate().getName()).concat(['Volver'])
+      choices: orders.map((plate) => plate.getOrder().getName()).concat(['Volver'])
     };
 
     const action = async (answers: any) => {
@@ -199,7 +308,11 @@ export class CommandMaker {
     await this.promptdeletePlates();
   }
 
-
+  /**
+   * Muestra los menus disponibles
+   * @param {MenusHolder} menuHolder 
+   * @returns 
+   */
   async promptShowMenus(menuHolder: MenusHolder) {
     console.clear();
     let quit = false;
@@ -229,6 +342,10 @@ export class CommandMaker {
   
   };
 
+  /**
+   * Muestra la informacion del menu seleccionado
+   * @param {Menu} menu Menu seleccionado
+   */
   async promptShowMenu(menu :Menu) {
     console.clear();
 
@@ -273,6 +390,11 @@ export class CommandMaker {
 
   }
 
+  /**
+   * Muestra los platos de los que se puede 
+   * editar la cantidad
+   * @returns 
+   */
   async promptEditAmmountPlates() {
     console.clear();
     let quit = false;
@@ -281,7 +403,7 @@ export class CommandMaker {
       type: 'list',
       name: 'plate',
       message: 'Selecciona el plato',
-      choices: orders.map((plate) => plate.getPlate().getName()).concat(['Volver'])
+      choices: orders.map((plate) => plate.getOrder().getName()).concat(['Volver'])
     };
 
     const action = async (answers: any) => {
@@ -301,6 +423,10 @@ export class CommandMaker {
     await this.promptEditAmmountPlates();
   }
 
+  /**
+   * Edita la cantidad de el plato seleccionado
+   * @param {String} plateName Nombre del plato
+   */
   async promptEditAmmountPlate(plateName :string) {
     const prompt :inquirer.QuestionCollection<any> = {
       type: 'input',

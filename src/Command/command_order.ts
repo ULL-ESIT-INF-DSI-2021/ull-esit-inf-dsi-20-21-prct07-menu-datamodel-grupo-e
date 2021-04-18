@@ -18,36 +18,41 @@ export class CommandOrder {
   // Getters
   /**
    * Devuelve el plato de la orden
-   * @returns 
+   * @returns {BasicPlate}
    */
-  getPlate() {
-    return this.order;
-  }
-  
-  /**
-   * Devuelve el precio
-   * @returns 
-   */
-  getPrice() {
-    return this.order.getPrice();
-  }
-  
   getOrder(): BasicPlate {
     return this.order;
   }
 
+  
+  /**
+   * Devuelve el precio
+   * @returns {number}
+   */
+  getPrice() {
+    return this.order.getPrice() * this.quantity;
+  }
+  
+
   /**
    * Getter del atributo quantity
-   * @returns Un valor numérico
+   * @returns {number}
    */
   getQuantity(): number {
     return this.quantity;
   }
 
+  /**
+   * Incremento en una unidad de la cantidad
+   */
   oneMoreQuantity() {
     this.quantity = this.quantity + 1;
   }
 
+  /**
+   * Setter del atributo quantity
+   * @param ammount valor numérico
+   */
   setQuantity(ammount :number) {
     this.quantity = ammount;
   }
