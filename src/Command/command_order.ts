@@ -29,7 +29,7 @@ export class CommandOrder {
    * @returns 
    */
   getPrice() {
-    return this.order.getPrice();
+    return this.order.getPrice() * this.quantity;
   }
   
   getOrder(): BasicPlate {

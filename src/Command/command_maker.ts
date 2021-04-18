@@ -5,17 +5,93 @@ import {BasicPlate} from '../Plate/index';
 import {Menu} from '../Menu/index';
 import * as inquirer from 'inquirer';
 import 'colors';
-import { PlatesHolder } from '../Interfaces';
+import { PlatesHolder, CartasHolder } from '../Interfaces';
 import { MenusHolder } from '../Interfaces';
+import { Carta } from "../Carta/carta";
 
 export class CommandMaker {
   private command :Command = new Command([]);
   constructor(private stock :Stock) { }
-
+  private carte :Carta;
+  private carteSelected :boolean;
   
   async run() {
-    await this.promptMainMenu();
+    await this.promptCarteMenu();
   }
+
+  async promptCarteMenu() {
+    console.clear();
+    this.carteSelected = false;
+    let quit = false;
+
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'list',
+      name: 'carte',
+      message: 'Selecciona la Carta',
+      choices: this.stock.getCartas().map((carta) => carta.getName()).concat([`Volver`])
+    };
+
+    const action = async (answers: any) => {
+      switch (answers['carte']) {
+        case `Volver`:
+          quit = true;
+          break;
+        default:
+          await this.promptShowCarte(answers[`carte`]);
+          break;
+      }
+    };
+
+    await inquirer.prompt(prompt).then(action);
+    if (quit) return;
+    if (this.carteSelected) {
+      await this.promptMainMenu();
+    } {
+      await this.promptCarteMenu();
+    }
+  }
+
+
+  async promptShowCarte(carteName :string) {
+    const Carte = this.stock.searchCartaByName(carteName);
+    console.log(`Nombre de la Carta: ${Carte.getName()}`);
+    console.log('Menús: ');
+    Carte.getMenus().forEach((Menu) => {
+      console.log(`- ${Menu.getName()}`);
+    });
+
+    console.log("Platos del menú");
+    Carte.getPlates().forEach((Plate) => {
+      console.log(`- ${Plate.getName()}`);
+    });
+
+    const choices = {
+      AddMenu: "Agregar Menú",
+      Back: "Volver"
+    };
+
+    const prompt: inquirer.QuestionCollection<any> = [
+      {
+        type: 'list',
+        name: 'choice',
+        choices: Object.values(choices)
+      }
+    ];
+    const action = async (answers: any) => {
+      switch (answers['choice']) {
+        case choices.AddMenu:
+          this.carte = this.stock.searchCartaByName(carteName);
+          this.carteSelected = true;
+          break;
+        case choices.Back:
+          break;
+      }
+    };
+
+    await inquirer.prompt(prompt).then(action);
+
+  };
+
 
   async promptMainMenu() {
     console.clear();
@@ -42,7 +118,7 @@ export class CommandMaker {
       switch (answers['choice']) {
         // Command Options
         case choices.addPlates:
-          await this.promptShowPlates(this.stock);
+          await this.promptShowPlates(this.carte);
           break;
         case choices.showCommand:
           await this.showCommand();
@@ -54,7 +130,7 @@ export class CommandMaker {
           await this.promptEditAmmountPlates();
           break;
         case choices.addMenu:
-          await this.promptShowMenus(this.stock);
+          await this.promptShowMenus(this.carte);
           break;
         case choices.quit:
           quit = true;
@@ -159,7 +235,7 @@ export class CommandMaker {
     console.log('Comanda:');
     const orders :CommandOrder[] = this.command.getOrders();
     orders.forEach((order) => {
-      console.log(`- ${order.getOrder().getName()}\n    Cantidad:  ${order.getQuantity()}\n    Precio: ${(order.getPrice() * order.getQuantity()).toFixed(2)} €`);
+      console.log(`- ${order.getOrder().getName()}\n    Cantidad:  ${order.getQuantity()}\n    Precio: ${order.getPrice().toFixed(2)} €`);
     });
     console.log(`----------------------------------------------`);
     console.log(`    Precio total de la comanda: ${this.command.getPrice().toFixed(2)} €`);
