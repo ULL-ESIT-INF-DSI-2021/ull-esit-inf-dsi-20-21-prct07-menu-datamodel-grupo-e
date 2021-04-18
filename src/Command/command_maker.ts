@@ -7,13 +7,35 @@ import * as inquirer from 'inquirer';
 import 'colors';
 import { PlatesHolder } from '../Interfaces';
 import { MenusHolder } from '../Interfaces';
+import { Carta } from "../Carta/carta";
 
 export class CommandMaker {
   private command :Command = new Command([]);
   constructor(private stock :Stock) { }
-
+  private carte :Carta;
   
   async run() {
+    await this.promptCarteMenu();
+  }
+
+  async promptCarteMenu() {
+    console.clear();
+    const prompt: inquirer.QuestionCollection<any> = {
+      type: 'list',
+      name: 'carte',
+      message: 'Selecciona la Carta',
+      choices: this.stock.getCartas().map((carta) => carta.getName())
+    };
+
+    const action = async (answers: any) => {
+      switch (answers['carte']) {
+        default:
+          this.carte = this.stock.searchCartaByName(answers['carte']);
+          break;
+      }
+    };
+
+    await inquirer.prompt(prompt).then(action);
     await this.promptMainMenu();
   }
 
@@ -42,7 +64,7 @@ export class CommandMaker {
       switch (answers['choice']) {
         // Command Options
         case choices.addPlates:
-          await this.promptShowPlates(this.stock);
+          await this.promptShowPlates(this.carte);
           break;
         case choices.showCommand:
           await this.showCommand();
@@ -54,7 +76,7 @@ export class CommandMaker {
           await this.promptEditAmmountPlates();
           break;
         case choices.addMenu:
-          await this.promptShowMenus(this.stock);
+          await this.promptShowMenus(this.carte);
           break;
         case choices.quit:
           quit = true;
