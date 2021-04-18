@@ -7,10 +7,10 @@ import { Macronutrients } from "./macronutrients";
 export class Fruit extends BasicFood {
   /**
    * Constructor de la clase Fruit
-   * @param name Nombre de la fruta
-   * @param origin Origen(país) de la fruta
-   * @param priceByKg Precio por kilogramo
-   * @param macronutrients Macronutrientes, (objeto de la clase Macronutrient)
+   * @param {string} name Nombre de la fruta
+   * @param {string} origin Origen(país) de la fruta
+   * @param {number} priceByKg Precio por kilogramo
+   * @param {Macronutrients} macronutrients Macronutrientes, (objeto de la clase Macronutrient)
    */
   constructor(name: string, origin: string, priceByKg: number, macronutrients: Macronutrients) {
     super(name, origin, priceByKg, macronutrients);
@@ -18,7 +18,7 @@ export class Fruit extends BasicFood {
 
   /**
    * Obtiene el grupo de alimento al que pertenece
-   * @returns Objeto de tipo FoodGroup(enumerable)
+   * @returns {FoodGroup} Objeto de tipo FoodGroup(enumerable)
    */
   getFoodGroup(): FoodGroup {
     return FoodGroup.Fruits;
@@ -26,7 +26,7 @@ export class Fruit extends BasicFood {
 
   /**
    * Obtiene la información del objeto Fruit
-   * @returns Una cadena con la información
+   * @returns {string} Una cadena con la información
    */
   getInfo() {
     return `Fruta\n` + super.getInfo();

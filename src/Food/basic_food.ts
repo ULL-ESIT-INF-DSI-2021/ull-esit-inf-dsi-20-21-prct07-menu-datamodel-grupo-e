@@ -1,8 +1,7 @@
 import { Nameable, OriginHolder, OriginType, PriceByKgHolder } from "../Interfaces";
 import { Macronutrients } from "./macronutrients";
 /**
- * Objeto de tipo FoodGroup que 
- * enumera los tipos de alimento
+ * Tipo de dato que representa los posibles tipos de alimentos
  */
 export enum FoodGroup {
   proteinRich = 'Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres.',
@@ -11,13 +10,17 @@ export enum FoodGroup {
   Cereals = 'Cereales.',
   Fruits = 'Frutas.'
 }
+
+/**
+ * Super clase BasicFood (Representa un alimento al mas alto nivel)
+ */
 export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHolder {
   /**
    * Constructor de la clase BasicFood
-   * @param name Nombre del alimento
-   * @param origin Origen del alimento (país, ciudad...)
-   * @param priceByKg Precio en € por cada kilogramo
-   * @param macronutrients Macronutrientes por cada 100 gramos del alimento
+   * @param {string} name Nombre del alimento
+   * @param {string} origin Origen del alimento (país, ciudad...)
+   * @param {number} priceByKg Precio en € por cada kilogramo
+   * @param {Macronutrients} macronutrients Macronutrientes por cada 100 gramos del alimento
    */
   constructor(protected name: string, protected origin: string, protected priceByKg: number,
       protected macronutrients: Macronutrients) {
@@ -26,7 +29,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Getter del atributo 'name'
-   * @returns nombre del alimento
+   * @returns {string} nombre del alimento
    */
   getName(): string {
     return this.name;
@@ -34,7 +37,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Getter del atributo 'origin'
-   * @returns origen del alimento (país, ciudad...)
+   * @returns {OriginType} origen del alimento (país, ciudad...)
    */
   getOrigin(): OriginType {
     return this.origin;
@@ -42,7 +45,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Getter del atributo 'macronutrients'
-   * @returns macronutrientes (lípidos, carbohidratos...)
+   * @returns {Macronutrients} macronutrientes (lípidos, carbohidratos...)
    */
   getMacronutrients(): Macronutrients {
     return this.macronutrients;
@@ -50,7 +53,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Getter del atributo 'prieceByKg'
-   * @returns precio en euro por kilogramo
+   * @returns {number} precio en euro por kilogramo
    */
   getPriceByKg(): number {
     return this.priceByKg;
@@ -58,7 +61,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Setter del atributo 'name'
-   * @param newName nuevo nombre
+   * @param {string} newName nuevo nombre
    */
   setName(newName: string) {
     this.name = newName;
@@ -66,7 +69,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Setter del atributo 'origin'
-   * @param newOrigin nuevo origen
+   * @param {OriginType} newOrigin nuevo origen
    */
   setOrigin(newOrigin: OriginType) {
     this.origin = newOrigin;
@@ -74,7 +77,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Setter del atributo 'prieceByKg'
-   * @param newPriceByKg precio por kg
+   * @param {number} newPriceByKg precio por kg
    */
   setPriceByKg(newPriceByKg: number) {
     this.priceByKg = newPriceByKg;
@@ -82,7 +85,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
   
   /**
    * Setter del atributo 'macronutrients'
-   * @param newMacronutrients macronutrients
+   * @param {Macronutrients} newMacronutrients macronutrients
    */
   setMacronutrients(newMacronutrients: Macronutrients) {
     this.macronutrients = newMacronutrients;
@@ -97,7 +100,7 @@ export abstract class BasicFood implements Nameable, OriginHolder, PriceByKgHold
 
   /**
    * Obtiene la información del alimento, cereal, fruit...
-   * @returns Una cadena con la información (nombre, precio...)
+   * @returns {string} Una cadena con la información (nombre, precio...)
    */
   getInfo(): string {
     return `Name: ${this.name}\n` +

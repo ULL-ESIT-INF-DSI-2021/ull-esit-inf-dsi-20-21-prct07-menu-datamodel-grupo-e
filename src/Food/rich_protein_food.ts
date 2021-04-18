@@ -8,10 +8,10 @@ import { Macronutrients } from "./macronutrients";
 export class RichProteinFood extends BasicFood {
   /**
    * Constructor de la clase RichProteinFood
-   * @param name Nombre del alimento rico en proteína
-   * @param origin Origen(país) del alimento
-   * @param priceByKg Precio por kilogramo
-   * @param macronutrients Macronutrientes (objeto de la clase Macronutrient)
+   * @param {string} name Nombre del alimento rico en proteína
+   * @param {string}  origin Origen(país) del alimento
+   * @param {number} priceByKg Precio por kilogramo
+   * @param {Macronutrients} macronutrients Macronutrientes (objeto de la clase Macronutrient)
    */
   constructor(name: string, origin: string, priceByKg: number, macronutrients: Macronutrients) {
     super(name, origin, priceByKg, macronutrients);
@@ -19,7 +19,7 @@ export class RichProteinFood extends BasicFood {
 
   /**
    * Obtiene el grupo de alimento al que pertenece
-   * @returns objeto de tipo FoodGroup(enumerable)
+   * @returns {FoodGroup} objeto de tipo FoodGroup(enumerable)
    */
   getFoodGroup(): FoodGroup {
     return FoodGroup.proteinRich;

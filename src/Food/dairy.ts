@@ -7,10 +7,10 @@ import { Macronutrients } from "./macronutrients";
 export class Dairy extends BasicFood {
   /**
    * Constructor de la clase Dairy (derivado de lácteo)
-   * @param name Nombre del lácteo
-   * @param origin Origen(país) del lácteo
-   * @param priceByKg Precio por Kilogramo
-   * @param macronutrients Macronutrientes, (objeto de la clase Macronutrients)
+   * @param {string} name Nombre del lácteo
+   * @param {string} origin Origen(país) del lácteo
+   * @param {string} priceByKg Precio por Kilogramo
+   * @param {string} macronutrients Macronutrientes, (objeto de la clase Macronutrients)
    */
   constructor(name: string, origin: string, priceByKg: number, macronutrients: Macronutrients) {
     super(name, origin, priceByKg, macronutrients);
@@ -18,7 +18,7 @@ export class Dairy extends BasicFood {
 
   /**
    * Obtiene el grupo de alimento al que pertenece
-   * @returns Objeto de tipo FoodGroup(enum)
+   * @returns {FoodGroup} Objeto de tipo FoodGroup(enum)
    */
   getFoodGroup(): FoodGroup {
     return FoodGroup.Dairy;
@@ -26,7 +26,7 @@ export class Dairy extends BasicFood {
 
   /**
    * Obtiene la información del lácteo
-   * @returns Una cadena con la información
+   * @returns {string} Una cadena con la información
    */
   getInfo() {
     return `Lácteo\n` + super.getInfo();
