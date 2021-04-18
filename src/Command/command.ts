@@ -64,7 +64,7 @@ export class Command {
    * @param plateName Nombre del plato
    */
   removePlate(plateName: string) {
-    this.orders.forEach((order, index) => order.getPlate().getName() === plateName ? this.removePlateByIndex(index) : true);
+    this.orders.forEach((order, index) => order.getOrder().getName() === plateName ? this.removePlateByIndex(index) : true);
   }
 
   /**
