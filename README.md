@@ -2,7 +2,19 @@
 [![Tests](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/actions/workflows/node.js.yml/badge.svg)](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e/actions/workflows/node.js.yml)
 # [**Ver en Github**](https://github.com/ULL-ESIT-INF-DSI-2021/ull-esit-inf-dsi-20-21-prct07-menu-datamodel-grupo-e)
 
-
+# **Tabla de contenidos**
+* #### [**Objetivos**](./#objetivos-1)
+* #### [**Introducción**](./#introducción-1)
+* #### [**Foods**](./#foods-1)
+* #### [**Plates**](./#plates-1)
+* #### [**Menú**](./#menu)
+* #### [**Carta**](./#carta-1)
+* #### [**Command**](./#command-1)
+* #### [**Stock**](./#stock-1)
+* #### [**StockEditor**](./#stockeditor-1)
+* #### [**Parser**](./#parser-1)
+* #### [**CommandMaker**](./#commandmaker-1) 
+* #### [**App**](./#app-1)
 ## **Objetivos**
 * Desarrollar un modelo de datos con programación orientada a objetos.
 * Aprender a utilizar los módulos `inquirerjs` y `lowdb`.
@@ -17,7 +29,7 @@
 En esta práctica desarrollaremos el modelo de datos que permite el diseño de un sistema de menús para un restaurante. Utilizando el lenguaje TypeScript y diversos módulos como `inquirer`, `lowdb`, `clone`, etc... Crearemos una aplicación interactiva que permita gestionar alimentos, platos, menús y cartas de un restaurante.
 
 
-## **[Foods](src/Food/)**
+## **[Foods](./classes/food_basic_food.basicfood.html)**
 En este apartado abordaremos las clases y detalles referentes al manejo y representación de los alimentos dentro de nuestra aplicación.
 
 Para representar los alimentos hemos creado una jerarquía de clases que tiene como padre la clase abstracta `BasicFood`. Esta clase define los atributos comunes a todos los alimentos: nombre, origen, precio por kilogramo y macronutrientes (cantidad en gramos por cada 100g del alimento); así como los métodos también comunes a todos los alimentos: setters y getters de los atributos. Todos los atributos se definen como `protected` para permitir el acceso a las clases hijas sin necesidad de recurrir a los setters y getters.
@@ -29,12 +41,12 @@ Una vez definida `BasicFood`, pasamos a desarrollar las clases que la extienden,
 ![Diagrama de Alimentos](media://foods-diag.svg)
 
 
-### **Macronutrients**
+### [**Macronutrients**](./classes/food_macronutrients.macronutrients.html)
 Esta clase define los atributos que conformarán los macronutrientes de un alimento: lípidos, carbohidratos y proteínas. A pesar de que no tiene ningún método, hemos optado por que sea una clase en vez de una interfaz para positibilitar la creación de la misma con valores por defecto.  
 
 ![Clase Macronutrients](media://macronutrients-diag.svg)
 
-## **[Plates](src/Plate/)**
+## **[Plates](./classes/plate_basic_plate.basicplate.html)**
 
 Una vez tenemos las clases que se encargan de representa los alimentos pasaremos a desarrollar las que representarán los platos del restaurante.
 
@@ -50,7 +62,7 @@ Luego, añadimos las clases que implementan cada uno de los tipos de plato:
 
 
 
-## **[Menu](src/Menu/)**
+## **[Menu](./classes/menu_menu.menu.html)**
 El siguiente paso es desarrollar la clase que representará un menú del restaurante. Un menú estará formado por un nombre y conjunto de platos.
 
 ### **Validación de platos**
@@ -69,22 +81,27 @@ Además, se puede añadir y eliminar platos con  `addPlate()` y `removePlate()` 
 Por último, podemos listar los grupos de alimentos del plato, con `listFoodGroup`.
 
 ![Diagrama de menú](media://menu-diag.svg)
-## **[Carta](src/Carta/)**
+## **[Carta](./classes/carta_carta.carta.html)**
 La clase `Carta` consta de un conjunto de `Menús` y un conjunto de platos individuales. Consideramos que el conjunto de platos individuales tiene siempre (como mínimo) todos los platos presentes en los menús de la carta, de modo que un usuario pueda pedir un plato de cualquiera de ellos. Esto lo hacemos mediante la comprobación de que no haya dos platos con igual nombre e igual tipo en el conjunto de platos individuales en el método `addPlate`. Además, cada vez que se añade un menú, se añaden todos sus platos al conjunto de platos individuales.
 
-* La clase `Carta` dispone de tres atributos, un identificador, `nombre`, un conjunto de menús, `menus`, y `singlePlates`, que
-  constituye un conjunto de platos individuales.
-* Todos los atributos consideremos que deben ser privados.
-* Tenemos tres métodos, `getName()`, `getMenus()` y `getPlates()`, que funcionan como *getters* para obtener el nombre, el menú y los platos 
-  individuales.
+* La clase `Carta` dispone de tres atributos, un identificador, `nombre`, un conjunto de menús, `menus`, y `singlePlates`, que constituye un conjunto de platos individuales.
 
-## **[Comanda](src/Command/)**
-La clase **Comanda** tiene como función principal almacenar una comanda individual por cada cliente nuevo del restaurante. Para conseguir el funcionamiento requerido se ha definido una subclase adicional:  
-* **Command_order**
-  Esta clase tiene como objetivo el establecer la cantidad de un plato que que desee el cliente, para ello mediante su constructor se inicializan sus atributos privados `order: BasicPlate` y `quantity: number`, mediante los cuales podremos establecer las cantidades de un determinado plato. Además esta clase cuanta con sus getters para acceder a los atributos nombrados anteriormente desde la clase `command`.  
+![Diagrama de Carta](media://carta-diag.svg)
 
-## **[Stock](src/Stock/)**
-Esta clase representa el inventario del restaurante, por lo que interactúa directamente con la base de datos del sistema (implementada con `lowdb`). Cuenta con atributos para almacenar alimentos, platos, menús y cartas además de la base de datos en cuestión `database: lowdb.LowdbSync<StockScheme>` y un `parse: Parser`, que define los métodos que se encargan de transformar los datos de la base de datos (en formato JSON) a objetos de nuestra implementación y viceversa. En el constructor de esta clase se inicializa la base de datos mediante el uso del método `setDatabase(databaseName: string)` el cual hace uso del módulo `lowdb` para inicializar la base de datos en una determinada ruta y cargar y guardar en ella los datos correspondientes a los diversos productos.
+
+
+## **[Command](./classes/command_command.command.html)**
+La clase **Command** tiene como función principal almacenar la comanda de un cliente. En este punto nos encontramos con una situación similar a la de los alimentos y los ingredientes: en una comanda debemos almacenar un plato y la cantidad del mismo. Por ello, se ha definido una subclase adicional:  
+* [**CommandOrder**](./../docs/classes/command_command_order.commandorder.html)
+  Esta clase tiene como objetivo el establecer la cantidad de un plato que que desee el cliente, para ello mediante su constructor se inicializan sus atributos privados `order: BasicPlate` y `quantity: number`, mediante los cuales podremos establecer el número de instancias de un determinado plato.  
+  ![Diagrama de Commandorder](media://command-order-diag.svg)
+
+De esta forma, `Command` almacenará un conjunto de `CommandOrder`s 
+
+![Diagrama Command](media://command-diag.svg)
+
+## **[Stock](./classes/stock_stock.stock.html)**
+Esta clase representa el inventario del restaurante, por lo que interactúa directamente con la base de datos del sistema (implementada con `lowdb`). Cuenta con atributos para almacenar alimentos, platos, menús y cartas además de la base de datos en cuestión `database: lowdb.LowdbSync<StockScheme>` y un [`parse: Parser`](./classes/parser_parser.parser.html), que define los métodos que se encargan de transformar los datos de la base de datos (en formato JSON) a objetos de nuestra implementación y viceversa. En el constructor de esta clase se inicializa la base de datos mediante el uso del método `setDatabase(databaseName: string)` el cual hace uso del módulo `lowdb` para inicializar la base de datos en una determinada ruta y cargar y guardar en ella los datos correspondientes a los diversos productos.
 
 Por cada tipo de producto, es decir, Food, Plate, Menu y Carta se han desarrollado los siguientes métodos necesarios para interactuar con la base de datos(Es en este punto donde se ha hecho uso de **Lowdb**): 
   * `loadTipoProducto()` --> Método encargado de cargar desde la base de datos los productos.
@@ -93,6 +110,8 @@ Por cada tipo de producto, es decir, Food, Plate, Menu y Carta se han desarrolla
   * `deleteTipoProducto(TipoProductoName: string)` --> Eliminar del inventario (y la base de datos) un determinado producto.
   * `addTipoProducto(newTipoProducto: TipoProducto)` --> Añadir un producto al inventario (y a la base de datos).
   * `storeTipoProducto()` --> Guarda los productos de TipoProducto actuales en la base de datos.
+
+![Diagrama de Stock](media://stock-diag.svg)
 
 **JsonObjects**  
   Hemos creado un conjunto de alias de tipos que representan la información de cada objeto de nuestras clases en formato JSON, para así poder guardar cada instancia en nuestra base de datos, por ejemplo:
@@ -106,25 +125,31 @@ Por cada tipo de producto, es decir, Food, Plate, Menu y Carta se han desarrolla
   };
   ```
 
-## **[Stock editor](src/StockEditor/)**
+## **[StockEditor](./classes/stockeditor_stock_editor.stockeditor.html)**
 Esta clase hace de intermediaria entre el usuario y el inventario, de modo que el usuario pueda editar el inventario de manera cómoda y rápida. Para ello, hace uso pincipalmente del módulo `inquirer`, que ofrece herramientas para gestionar la entrada de datos mediante consolas interactivas. 
 
 Es aquí donde entran en juego las **`Interfaces`** que hemos definido: `FoodsHolder, PlatesHolder, CartasHolder, IngredientsHolder, MenusHolder, Nameable, OriginHolder, PriceByKgHolder`.
 
-Dado que las opciones de edición son similares entre sí, por ejemplo: queremos poder añadir un plato tanto a un Menú como al Stock o Carta, hemos creado las interfaces para definir métodos que se encarguen de aprovechar estas similitudes. 
+Dado que las opciones de edición son similares entre sí, por ejemplo: queremos poder añadir un plato tanto a un Menú como al Stock o a una Carta, hemos creado las interfaces para definir métodos que se encarguen de aprovechar estas similitudes. 
 
 En el caso de `PlatesHolder`, el método de `StockEditor` `promptNewPlatesFor`, recibe como argumento un objeto que implementa la interfaz `PlatesHolder` y se encarga de mostrar las opciones al usuario para porder crear un nuevo plato y añadirlo al objeto que se le pasa por parámetro. De esta forma, reutilizamos varios de los métodos de la clase y hacemos más fácil el expandir las funcionalidades del código.
 
-## **[Parser](src/Parser/)**
+En resumen, esta clase ofrece una serie de menús al usuario con los cuales poder editar el inventario.
+
+## **[Parser](./classes/parser_parser.parser.html/)**
 Como se mencionó anteriormente, esta clase define los métodos que se encargan de transformar las instancias de las clases a objetos JSON que puedan ser guardados en la base de datos y viceversa. 
 
-Es importante recalcar que, por defecto, el método `ParseMenu`, que recibe un `JsonMenu` y devuelve un objeto `Menu` a partir de él, tiene la opción de validación de platos desactivada por defecto debido a lo mencionado antes: al editar un menú y guardarlo en la base de datos es posible que el usuario desee guardar un conjunto no válido de platos, pero al cargar de nuevo ese menú lanzaría un error debido a la invalidez del menú editado anteriormente.
+Es importante recalcar que, por defecto, el método `ParseMenu`, que recibe un `JsonMenu` y devuelve un objeto `Menu` a partir de él, tiene la opción de validación de platos desactivada por defecto debido a que al editar un menú y guardarlo en la base de datos es posible que el usuario desee guardarlo con un conjunto no válido de platos, pero al cargar de nuevo ese menú lanzaría un error debido a la invalidez del menú editado anteriormente. Por lo que los platos son validados solo cuando el menú es creado desde la aplicación y no cuando se edita o se carga de la base de datos.
 
-## **[App](src/App/)**
-Por último se encuentra la clase `App`, esta representa al programa principal.  
+## [**CommandMaker**](./classes/command_command_maker.commandmaker.html)
+De forma silimar a `StockEditor`, esta clase actúa de intermediaria entre `Stock` y el usuario para ofrecer a este último una serie de menús para crear una `Command` que contendrá los platos seleccionados por el usuario.
+
+
+## **[App](./classes/app_app.app.html)**
+Por último se encuentra la clase `App`, esta tiene como atributos un elemento `Stock`, uno `StockEditor` y uno `CommandMaker`
 Esta clase representa el mas alto nivel de nuestro proyecto, inicializando nuestra base de datos (stock), y dando un método `promptMainMenu()`, el cual mediante el uso de inquirer nos permite seleccionar desde la consola tareas como editar el inventario o generar una comanda. Dicha clase interactúa con el usuario y con las clases `StockEditor` y `CommandMaker`.
 
 
-## **Prueba Final**
 
-## **Conclusiones**
+
+

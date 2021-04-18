@@ -20,21 +20,19 @@ export class CommandOrder {
    * Devuelve el plato de la orden
    * @returns {BasicPlate}
    */
-  getPlate() {
+  getOrder(): BasicPlate {
     return this.order;
   }
+
   
   /**
    * Devuelve el precio
    * @returns {number}
    */
   getPrice() {
-    return this.order.getPrice();
+    return this.order.getPrice() * this.quantity;
   }
   
-  getOrder(): BasicPlate {
-    return this.order;
-  }
 
   /**
    * Getter del atributo quantity
