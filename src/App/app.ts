@@ -80,9 +80,3 @@ export class App {
 
 };
 
-// const app = new App('./src/App/database.json');
-// const app = new App('./Databases/stock_database.json');
-// app.run();
-
-const app = new App('./src/App/database.json');
-app.run();
