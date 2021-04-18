@@ -16,39 +16,34 @@
 * Tratar de respetar los principios SOLID de diseño orientado a objetos.
 
 ## **Introducción**
-En esta práctica tenemos que desarrollar el modelo de datos que permite el diseño de un sistema de menús, para ello
-explicaremos la estructura y la solución adoptada desglosada en varios apartados.
+En esta práctica desarrollaremos el modelo de datos que permite el diseño de un sistema de menús para un restaurante. Utilizando el lenguaje TypeScript y diversos módulos como `inquirer`, `lowdb`, `clone`, etc... Crearemos una aplicación interactiva que permita gestionar alimentos, platos, menús y cartas de un restaurante.
 
 ## **[Foods](src/Food/)**
-Consideramos un alimento dentro del sistema de menú, disponemos de una clase `BasicFood`, y una serie de subclases
-que la extienden, solo modifican el comportamiento de la clase abstracta en la información.
-### **BasicFood**
-* Los atributos consisten en `name`, nombre del alimento, `origin`, origen o país del alimento, `priceByKg`, precio del alimento en euros,
-  y `macronutrients`, objeto de la clase `Ingredient`.
-* Los atributos son `protected` para que las clases descendientes puedan acceder a ellos sin tener que recurrir a getters y setters.
+En este apartado abordaremos las clases y detalles referentes al manejo y presentación de los alimentos dentro de nuestra aplicación.
+### **Clase abstracta BasicFood**
+Representa un alimento básico, por lo que consta de una clase abstracta que define los atributos y métodos comunes a todos los alimentos:
+
+*  `name`, nombre del alimento, `origin`, origen o país del alimento, `priceByKg`, precio del alimento en euros,
+  y `macronutrients`, objeto de la clase `Macronutrients` que representa la composición nutricional de un alimento (lípidos, carbohidratos y proteínas por cada 100g).
+* Todos los atributos son `protected` para que las clases descendientes puedan acceder a ellos sin tener que recurrir a getters y setters.
 * Íbamos a incluir un `ammount` en la clase pero decidimos crear una nueva clase llamada `Ingredient` que se encargue de almacenar un alimento y su cantidad a utilizar, a modo de intermediaria entre los alimentos y el plato.
 * Dispone de una serie de Getters para los atributos `name`, `origin`, `priceByKg` y `Macronutrients` así como sus respectivos setters.
-* También dispone de un método que obtiene la información del alimento
+* El método `getFoodGroup` es abstracto y se encarga de indicar el tipo del alimento. Este tipo puede ser cualquiera de los siguientes: 
+  *   Carnes, pescados, huevos, tofu, frutos secos, semillas y legumbres.
+  *   Verduras y hortalizas.
+  *   Leche y derivados.
+  *   Cereales.
+  *   Frutas.
 
 #### **Cereal, Fruit, Rich_Protein_Food y Vegetable**
-* Las clases `Cereal`,`Fruits`,`Rich_Protein_Foods` y `Vegetable` disponen de los mismos atributos.
-* El método `get_info()` es diferente en cada uno de ellos.
+* Las clases `Cereal`,`Fruits`,`Rich_Protein_Foods`, `Dairy` y `Vegetable` extienden a `BasicFood`, y representan implementaciones específicas correspondientes a cada uno de los grupos antes mencionados.
 
 ## **[Plates](src/Plate/)**
-Consideramos que un plato representa a un conjunto de alimentos, y existen distintos tipos de platos, para abordarlos, seguimos la mimsa estructura
-que en *Food*, disponemos de una clase abstracta **Basic Plate** y de ella derivan **Starter Plate**, **First Plate**, **Second Plate** y **Dessert**.
+Consideramos que un plato puede ser `Entrante`, `Primer plato`, `Segundo plato` o `Postre`. Por lo que desarrollamos una clase asbtracta `BasicPlate` que será extendida por las clases que representan cada uno de los platos específicos.
 
-### **Basic Plate**
-* Dispone de una serie de aributos internos, también protegidos para garantizar el acceso por las subclases, `nutritionalComposition`, que es un
-  objeto de la clase `Macronutrients`, `name`, que es simplemente un nombre, y un vector de alimentos, `ingredients`.
-* Desde el constructor se hace una llamada a un método privado `CalculateNutritionalComposition`, que como su nombre indica, es el que calcula la
-  composición nutricional, es decir, en cada uno de los ingredientes que conforman a un plato en sí.
-* Un método de la clase que es importante, es `addIngredient`, que permite añadir un ingrediente a un plato en específico, internamente al atributo
-  que conforma el vector de alimentos.
-* Dispone de una serie de Getters que acceden a los atributos `name`, `nutritionalComposition` e `ingredients`.
-* Como requisitos del sistema de menú, tenemos un método que calcula el grupo de alimento predominante, `getPredominantFoodGroup`, en base a los 
-  ingredientes y sus tipos, aprovechándose de el tipo de dato que comentamos anteriormente, también tenemos otro método que calcula el precio, `getPrice`,
-  total de los ingredientes.
+Además, un plato está formado por un vector de objetos de tipo `Ingredient`, cada uno de los cuales tiene como atributos un `BasicFood` y una cantidad en gramos de dicho alimento.
+
+De esta forma, cada ingrediente es responsable de calcular su composición nutricional teniendo en cuenta la composición nutriticonal del alimento que lo compone (por cada 100g) y la cantidad en gramos de dicho alimento.
 
 ### **Starter_Plate, First_Plate, Second_Plate y Desser**
 * Las clases `Starter_Plate`, `First_Plate`, `Second_Plate` y `Dessert`, disponen de los mismos atributos.

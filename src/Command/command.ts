@@ -43,14 +43,6 @@ export class Command {
   }
 
   /**
-   * Getter que devuelve los menús del vector de las comandas individuales
-   * @returns Un objeto de tipo Menu[], (vector)
-   */
-  getMenus(): Menu[] {
-    return this.orders.filter((order) => order instanceof Menu).map((order) => order.getOrder()) as Menu[];
-  }
-
-  /**
    * Getter que devuelve los platos del vector de las comandas individuales
    * @returns Un objeto de tipo BasicPlate[], (vector)
    */
